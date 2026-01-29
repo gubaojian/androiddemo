@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -18,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.TypedEpoxyController
 import com.example.myapplication.databinding.MainLayoutBinding
 
-class MainActivity : ComponentActivity() {
+class MainActivity3 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,7 +26,7 @@ class MainActivity : ComponentActivity() {
             Toast.makeText(baseContext, "hello world", Toast.LENGTH_SHORT).show()
         }
         val controller = ListController()
-        binding.recycleView.layoutManager = LinearLayoutManager(this@MainActivity,
+        binding.recycleView.layoutManager = LinearLayoutManager(this@MainActivity3,
             LinearLayoutManager.VERTICAL, false)
         binding.recycleView.setController(controller)
 
@@ -36,30 +35,18 @@ class MainActivity : ComponentActivity() {
         for( i in 1.. 100) {
             data1.add("eproxy demo index ${i}");
         }
-        binding.demo2.setOnClickListener {
-            startActivity(Intent(this@MainActivity, MainActivity2::class.java))
-        }
-        binding.change.setOnClickListener {
-            val data2: MutableList<String> = mutableListOf();
-            for( i in 1.. 100) {
-                data2.add("change demo index ${i}");
-            }
-            controller.setData(data2)
-        }
         controller.setData(data1)
-
         setContentView(binding.root)
     }
     class ListController : TypedEpoxyController<List<String>>() {
         override fun buildModels(data: List<String>?) {
-            if (data.isNullOrEmpty()) return
-            data?.forEachIndexed { index, it->
+            data?.forEach {
                 headerView {
-                    id("header_view_hot_${index}")
+                    id("header_view_hot")
                     title2("header title ${it}")
                 }
                 footerView {
-                    id("footer_view_${index}")
+                    id("footer_view")
                     title("${it}")
                     backgroundColor("red background")
                 }

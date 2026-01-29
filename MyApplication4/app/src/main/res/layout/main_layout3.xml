@@ -15,16 +15,4 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/recycleView"/>
-
-    <TextView
-        android:id="@+id/demo2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="demo2"/>
-
-    <TextView
-        android:id="@+id/change"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="change"/>
 </LinearLayout>

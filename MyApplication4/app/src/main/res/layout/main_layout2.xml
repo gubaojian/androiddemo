@@ -17,14 +17,9 @@
         android:id="@+id/recycleView"/>
 
     <TextView
-        android:id="@+id/demo2"
+        android:id="@+id/change_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="demo2"/>
+        android:text="change_data"/>
 
-    <TextView
-        android:id="@+id/change"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="change"/>
 </LinearLayout>
