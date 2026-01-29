@@ -53,6 +53,10 @@ class MainActivity : ComponentActivity() {
     class ListController : TypedEpoxyController<List<String>>() {
         override fun buildModels(data: List<String>?) {
             if (data.isNullOrEmpty()) return
+            headerView {
+                id("header_view_fixed")
+                title2("fixed header view")
+            }
             data?.forEachIndexed { index, it->
                 headerView {
                     id("header_view_hot_${index}")

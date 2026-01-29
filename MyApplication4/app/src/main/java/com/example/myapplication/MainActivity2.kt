@@ -42,7 +42,7 @@ class MainActivity2 : ComponentActivity() {
             for( i in 1.. 100) {
                 data1.add("change demo index ${i}");
             }
-            controller.setData(data1, false)
+            controller.setData(data1, true)
         }
         setContentView(binding.root)
     }
@@ -52,6 +52,14 @@ class MainActivity2 : ComponentActivity() {
             data: List<String>?,
             data2: Boolean?
         ) {
+            data2?.let {
+                if (data2) {
+                    headerView {
+                        id("load more")
+                        title2("load more header")
+                    }
+                }
+            }
             data?.forEachIndexed { index, it ->
                 headerView {
                     id("header_view_hot_${index}")
@@ -63,6 +71,7 @@ class MainActivity2 : ComponentActivity() {
                     backgroundColor("red background")
                 }
             }
+
         }
     }
 }
