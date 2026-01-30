@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.example.myapplication.databinding.HeaderViewContentBinding
 import com.example.myapplication.databinding.MainLayout3Binding
 
 
@@ -28,6 +29,7 @@ class MainActivity3 : ComponentActivity() {
             data1.add("base quick adapter demo index ${i}");
         }
         val adapter = QuickAdapter(data1);
+        
         binding.recycleView.layoutManager = LinearLayoutManager(this@MainActivity3,
             LinearLayoutManager.VERTICAL, false)
         binding.recycleView.adapter = adapter;
@@ -44,6 +46,8 @@ class MainActivity3 : ComponentActivity() {
         binding.recycleView2.layoutManager = LinearLayoutManager(this@MainActivity3,
         LinearLayoutManager.VERTICAL, false)
         binding.recycleView2.adapter = multiAdapter ;
+
+
 
         setContentView(binding.root)
     }
@@ -93,7 +97,8 @@ class MainActivity3 : ComponentActivity() {
             item: MultiItem
         ) {
             if (item.itemType == 0) {
-                helper.setText(R.id.header_view_content, item.label)
+                val binding: HeaderViewContentBinding = HeaderViewContentBinding.bind(helper.itemView)
+                binding.headerViewContent.text = item.label
 
             }else if (item.itemType == 1) {
                 helper.setText(R.id.header_view_content, item.label)
