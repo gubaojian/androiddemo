@@ -39,6 +39,9 @@ class MainActivity : ComponentActivity() {
         binding.demo2.setOnClickListener {
             startActivity(Intent(this@MainActivity, MainActivity2::class.java))
         }
+        binding.demo3.setOnClickListener {
+            startActivity(Intent(this@MainActivity, MainActivity3::class.java))
+        }
         binding.change.setOnClickListener {
             val data2: MutableList<String> = mutableListOf();
             for( i in 1.. 100) {

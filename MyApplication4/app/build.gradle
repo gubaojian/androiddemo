@@ -52,6 +52,7 @@ dependencies {
     implementation libs.epoxy
     ksp libs.epoxy.annotationProcessor
 
+    implementation libs.adapterhelper
 
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit

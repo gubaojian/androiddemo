@@ -27,4 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="change"/>
+    <TextView
+        android:id="@+id/demo3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="demo3"/>
 </LinearLayout>

@@ -29,6 +29,7 @@ recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version
 epoxy = { group = "com.airbnb.android", name = "epoxy", version="5.2.1"}
 epoxy-annotationProcessor = { group = "com.airbnb.android", name = "epoxy-processor", version="5.2.1"}
 
+adapterhelper = { group = "com.github.CymChad", name = "BaseRecyclerViewAdapterHelper", version="2.9.50"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

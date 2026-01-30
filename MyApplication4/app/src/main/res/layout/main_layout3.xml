@@ -11,8 +11,12 @@
         android:layout_height="wrap_content"
         android:text="hello world"/>
 
-    <com.airbnb.epoxy.EpoxyRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/recycleView"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/recycleView2"/>
 </LinearLayout>
