@@ -2,6 +2,8 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.epoxy.TypedEpoxyController
 import com.example.myapplication.databinding.MainLayoutBinding
+import kotlin.math.abs
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +29,7 @@ class MainActivity : ComponentActivity() {
         binding.hello.setOnClickListener {
             Toast.makeText(baseContext, "hello world", Toast.LENGTH_SHORT).show()
         }
+        binding.input.addTextChangedListener(PriceFormatInputTextWatcher())
         val controller = ListController()
         binding.recycleView.layoutManager = LinearLayoutManager(this@MainActivity,
             LinearLayoutManager.VERTICAL, false)
@@ -69,6 +73,61 @@ class MainActivity : ComponentActivity() {
                     id("footer_view_${index}")
                     title("${it}")
                     backgroundColor("red background")
+                }
+            }
+        }
+    }
+
+    class PriceFormatInputTextWatcher : TextWatcher {
+        var isEditIng = false
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            val input = s?.toString() ?: ""
+            if (!isEditIng) {
+                val numbers = input.split(Regex("\\."))
+                if (numbers.size >= 2) {
+                    val firstPart = numbers[0].toIntOrNull()
+                    firstPart?.let {
+                        var formatInput = "";
+                        formatInput = if (abs(firstPart) <= 0) {
+                            if (numbers[1].length <= 3) {
+                                "${abs(firstPart)}.${numbers[1]}"
+                            } else {
+                                "${abs(firstPart)}.${numbers[1].substring(0, 3)}"
+                            }
+                        } else {
+                            if (numbers[1].length <= 2) {
+                                "${abs(firstPart)}.${numbers[1]}"
+                            } else {
+                                "${abs(firstPart)}.${numbers[1].substring(0, 2)}"
+                            }
+                        }
+                        if (input != formatInput) {
+                            isEditIng = true
+                            s?.clear()
+                            s?.append(formatInput)
+                            isEditIng = false
+                        }
+                    }
+                } else {
+                    val firstPart = input.toIntOrNull()
+                    firstPart?.let {
+                        val formatInput = "${abs(firstPart)}";
+                        if (input != formatInput) {
+                            isEditIng = true
+                            s?.clear()
+                            s?.append(formatInput)
+                            isEditIng = false
+                        }
+                    }
                 }
             }
         }
