@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_option_date_line_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="2dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:background="#B18E8E">
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="2dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <!-- 主文本（示例：26/02/20），复用 priceLabel 以兼容现有代码 -->
+        <TextView
+            android:id="@+id/tv_option_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/text_color_1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="26/02/20" />
+
+        <!-- 顶部一行：主文本 + 独立的 W 文本 -->
+        <TextView
+            android:id="@+id/tv_week_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_option_date"
+            android:layout_marginStart="2dp"
+            android:layout_toRightOf="@id/tv_option_date"
+            android:textColor="@color/text_color_1"
+            android:textSize="10sp"
+            tools:text="W" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_option_diff_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/text_color_1"
+        android:textSize="14sp"
+        tools:text="82 天" />
+    </LinearLayout>
+</FrameLayout>
+
+

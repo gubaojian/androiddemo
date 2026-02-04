@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/common_shape_dca_bottom_dialog"
+    android:orientation="vertical">
+
+    <!--   title-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_dca_confirm_finance_allow_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:gravity="start"
+            android:text="更换期权"
+            android:textColor="@color/text_color_1"
+            android:textSize="@dimen/text_font_36" />
+
+
+        <ImageView
+            android:id="@+id/iv_dca_confirm_finance_allow_close"
+            android:layout_width="@dimen/dp_26"
+            android:layout_height="@dimen/dp_26"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/dp_6"
+            android:src="@mipmap/trade_dca_dialog_right_close" />
+
+    </RelativeLayout>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="13dp"
+        android:gravity="start"
+        android:text="我理想的 RKLB 止盈价格："
+        android:textColor="@color/text_color_1"
+        android:textSize="@dimen/text_font_28" />
+
+
+    <!-- price  rv-->
+    <com.longbridge.mdtrade.widget.option.TradeOptionRealPriceScrollView
+        android:id="@+id/srl_option_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/line_color" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="13dp"
+        android:gravity="start"
+        android:text="我判断股价在此日期前，正股不会高于 52 ："
+        android:textColor="@color/text_color_1"
+        android:textSize="@dimen/text_font_28" />
+
+
+    <!-- date  rv-->
+    <com.longbridge.mdtrade.widget.option.TradeOptionDateScrollView
+        android:id="@+id/srl_option_date_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/line_color" />
+
+    <View style="@style/divider_vertical_margin_20" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+
+            android:gravity="start"
+            android:text="预计收息"
+            android:textColor="@color/text_color_1"
+            android:textSize="@dimen/text_font_32" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:gravity="start"
+            android:text="$1,900"
+            android:textColor="@color/color_orange_100"
+            android:textSize="@dimen/text_font_32" />
+
+    </RelativeLayout>
+
+
+    <View style="@style/divider_vertical_margin_20" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="10dp"
+        android:gravity="start"
+        android:text="组合预览"
+        android:textColor="@color/text_color_1"
+        android:textSize="@dimen/text_font_32" />
+
+    <!--part one-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:gravity="start"
+            android:text="持有"
+            android:textColor="@color/color_orange_100"
+            android:textSize="@dimen/text_font_28" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="18dp"
+            android:gravity="start"
+            android:text="RKLB"
+            android:textColor="@color/text_color_1"
+            android:textSize="@dimen/text_font_28" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="18dp"
+            android:gravity="end"
+            android:text="200 股"
+            android:textColor="@color/text_color_1"
+            android:textSize="@dimen/text_font_28" />
+
+
+    </LinearLayout>
+
+    <!--part two-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:gravity="start"
+            android:text="持有"
+            android:textColor="@color/color_cyan_100"
+            android:textSize="@dimen/text_font_28" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="18dp"
+            android:gravity="start"
+            android:text="RKLB 251024 52 Call"
+            android:textColor="@color/text_color_1"
+            android:textSize="@dimen/text_font_28" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="18dp"
+            android:gravity="end"
+            android:text="2 张"
+            android:textColor="@color/text_color_1"
+            android:textSize="@dimen/text_font_28" />
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="13dp"
+        android:gravity="start"
+        android:text="若期权到期时，正股股价上涨超过 $52，您的 200 股 RKLB 股票将会以 $52 止盈卖出。"
+        android:textColor="@color/text_color_2"
+        android:textSize="@dimen/text_font_24" />
+
+    <global.longbridge.libpierui.button.RoundButton
+        android:id="@+id/btn_dca_confirm_finance_allow_continue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_l"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_marginBottom="12dp"
+        android:background="#100F0F"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="@color/color_neutral_colour_30"
+        android:textSize="16sp" />
+
+</LinearLayout>
+

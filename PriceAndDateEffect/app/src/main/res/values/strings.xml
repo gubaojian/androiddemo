@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PriceAndDate2</string>
+
+    <string name="core_monday">星期一</string>
+    <string name="core_sunday">星期日</string>
+    <string name="core_tuesday">星期二</string>
+    <string name="core_wednesday">星期三</string>
+    <string name="core_thursday">星期四</string>
+    <string name="core_friday">星期五</string>
+    <string name="core_saturday">星期六</string>
+
+    <string name="app_lb_name">LB_HK_Test</string>
+    <string name="common_simple_day_number">天</string>
+    <string name="common_order_status_expired_status2">已到期</string>
+</resources>

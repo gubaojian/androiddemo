@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="adapter_position" type="id" />
+    <item name="tag_child_click" type="id" />
+    <item name="recyclerview_custom_divider" type="id" />
+    <item name="recyclerview_notify_queue" type="id" />
+    <item name="view_time_ms" type="id" />
+    <item name="custom_tag" type="id" />
+    <item name="view_theme_bg" type="id" />
+    <item name="view_theme_bg_night" type="id" />
+    <item name="view_theme_bg_id" type="id" />
+    <item name="view_theme_bg_id_2" type="id" />
+    <declare-styleable name="CustomTitleBar">
+        <attr name="tlb_title_background_color" format="reference|integer" />
+
+        <attr name="tlb_title_main_text" format="string" />
+        <attr name="tlb_title_text" format="string" />
+        <attr name="tlb_title_text_color" format="color" />
+        <attr name="tlb_title_text_drawable" format="reference|integer" />
+
+        <attr name="tlb_left_button_text" format="string" />
+        <attr name="tlb_left_button_text_size" format="dimension" />
+        <attr name="tlb_left_button_text_color" format="color" />
+        <attr name="tlb_left_button_drawable" format="reference|integer" />
+        <attr name="tlb_left_button_drawable_visible" format="boolean" />
+        <attr name="tlb_left_button_visible" format="boolean" />
+
+        <attr name="tlb_right_button_text" format="string" />
+        <attr name="tlb_right_button_text_color" format="color" />
+        <attr name="tlb_right_button_drawable" format="reference|integer" />
+        <attr name="tlb_right_button_visible" format="boolean" />
+        <attr name="tlb_left_button_onbackpress" format="boolean" />
+        <attr name="tlb_vender_ui" format="boolean" />
+
+    </declare-styleable>
+
+    <!--验证码的属性-->
+    <declare-styleable name="VerificationCodeEditText">
+        <attr name="figures" format="integer" />
+        <attr name="verCodeMargin" format="dimension" />
+        <attr name="bottomLineSelectedColor" format="reference" />
+        <attr name="bottomLineNormalColor" format="reference" />
+        <attr name="bottomLineHeight" format="dimension" />
+        <attr name="selectedBackgroundColor" format="reference" />
+        <attr name="bgStyle" format="enum">
+            <enum name="bottom_line" value="0" />
+            <enum name="rect" value="1" />
+            <enum name="middle_line" value="2" />
+        </attr>
+        <!-- 背景边框的颜色 -->
+        <attr name="rectBgColor" format="color" />
+        <!-- 背景边框的圆角大小 -->
+        <attr name="rectBgCorner" format="dimension" />
+        <!-- 光标颜色 -->
+        <attr name="cursorColor" format="color" />
+        <!-- 是否密码 -->
+        <attr name="isPwd" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="PositionHolderView">
+        <attr name="module" format="string" />
+        <attr name="viewName" format="string" />
+        <attr name="tagName" format="string" />
+    </declare-styleable>
+
+    <!-- 手势密码 -->
+    <declare-styleable name="PatternView">
+        <!-- 选中状态的手势点-->
+        <attr name="selectedBitmap" format="reference" />
+        <!-- 未选中状态的手势点-->
+        <attr name="unselectedBitmap" format="reference" />
+        <!-- 选中状态的手势小点-->
+        <attr name="selectedBitmapSmall" format="reference" />
+        <!-- 未选中状态的手势小点-->
+        <attr name="unselectedBitmapSmall" format="reference" />
+        <!-- 验证失败后再次验证的拦截时间-->
+        <attr name="waitTime" format="integer" />
+        <!-- 验证的最大失败次数-->
+        <attr name="maxFailCounts" format="integer" />
+        <!-- 绘制时最少连接的点数-->
+        <attr name="minPoint" format="integer" />
+        <!-- 字体的颜色-->
+        <attr name="paintColor" format="color" />
+        <!-- 字体的大小-->
+        <attr name="paintTextSize" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="EarningsView">
+        <attr name="expect_color" format="color" />
+        <attr name="practical_color" format="color" />
+        <attr name="text_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ScrollLayout">
+        <attr name="extendOffset" format="dimension" />
+        <attr name="exitOffset" format="dimension" />
+        <attr name="mode">
+            <flag name="open" value="0x0" />
+            <flag name="close" value="0x1" />
+            <flag name="extend" value="0x2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="maxCollapsedLines" format="integer" />
+        <attr name="animDuration" format="integer" />
+        <attr name="animAlphaStart" format="float" />
+        <attr name="expandIndicator" format="reference" />
+        <attr name="collapseIndicator" format="reference" />
+        <attr name="expandToggleType" format="enum">
+            <enum name="ImageButton" value="0" />
+            <enum name="TextView" value="1" />
+        </attr>
+        <attr name="expandableTextId" format="reference" />
+        <attr name="expandCollapseToggleId" format="reference" />
+        <attr name="expandToggleOnTextClick" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CollapsibleTextView">
+        <attr name="etv_MaxLinesOnShrink" format="reference|integer" />
+        <attr name="etv_EllipsisHint" format="reference|string" /><!--default is ..-->
+        <attr name="etv_ToExpandHint" format="reference|string" /><!--"to expand" hint string, default is "Expand"-->
+        <attr name="etv_ToShrinkHint" format="reference|string" /><!--"to shrink" hint string, default is "Shrink"-->
+        <attr name="etv_GapToExpandHint" format="reference|string" /><!--gap between "toExpandHint" and "trimmed text"-->
+        <attr name="etv_GapToShrinkHint" format="reference|string" /><!--gap between "toShrinkHint" and "trimmed text"-->
+        <attr name="etv_EnableToggle" format="reference|boolean" /><!--if toggle the state when click ExpandTextView-->
+        <attr name="etv_ToExpandHintShow" format="reference|boolean" /><!--if show "toExpandHint"-->
+        <attr name="etv_ToShrinkHintShow" format="reference|boolean" /><!--if show "toShrinkHint"-->
+        <attr name="etv_ToExpandHintColor" format="reference|color" /><!--text color of "toExpandHint"-->
+        <attr name="etv_ToShrinkHintColor" format="reference|color" /><!--text color of "toShrinkHint"-->
+        <attr name="etv_ToExpandHintColorBgPressed" format="reference|color" /><!--background color if "toExpandHint" pressed-->
+        <attr name="etv_ToShrinkHintColorBgPressed" format="reference|color" /><!--background color if "toShrinkHint" pressed-->
+        <attr name="etv_InitState" format="enum"><!--init state, default is shrink-->
+            <enum name="shrink" value="0" />
+            <enum name="expand" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FoldTextView">
+        <attr name="showMaxLine" format="integer" />
+        <attr name="tipGravity" format="integer" />
+        <attr name="tipColor" format="reference|color" />
+        <attr name="tipClickable" format="boolean" />
+        <attr name="foldText" format="string" />
+        <attr name="expandText" format="string" />
+        <attr name="showTipAfterExpand" format="boolean" />
+        <attr name="isSetParentClick" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CommonSharePlatformView">
+        <attr name="share_type">
+            <enum name="web" value="0" />
+            <enum name="image" value="1" />
+        </attr>
+        <attr name="skin_disable" format="boolean" />
+        <attr name="share_style">
+            <enum name="single" value="1" />
+            <enum name="twice" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="IndexView">
+        <attr name="index_textColor" format="color" />
+        <attr name="index_textSize" format="dimension" />
+        <attr name="index_lineSpace" format="dimension" />
+        <attr name="index_select_background_color" format="color" />
+        <attr name="index_select_text_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="YRecyclerView">
+        <attr name="yrecycler_head" format="reference" />
+        <attr name="yrecycler_foot" format="reference" />
+        <attr name="yrecycler_empty" format="reference" />
+        <attr name="yrecycler_error" format="reference" />
+        <attr name="yrecycler_empty_msg" format="string" />
+        <attr name="yrecycler_empty_show_type" format="enum">
+            <enum name="show_head_foot" value="1" />
+            <enum name="show_head" value="2" />
+            <enum name="show_foot" value="3" />
+            <enum name="show_none" value="4" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="DrawableView">
+        <!--图标宽度-->
+        <attr name="labelWidth" format="dimension" />
+        <!--图标高度-->
+        <attr name="labelHeight" format="dimension" />
+        <!--字体大小-->
+        <attr name="labelTextSize" format="dimension" />
+        <!--字体是否粗体-->
+        <attr name="labelTextBold" format="boolean" />
+        <!--图标字体间距-->
+        <attr name="labelPadding" format="dimension" />
+        <!--组件需要裁剪的高度-->
+        <attr name="labelCutHeight" format="dimension" />
+        <!--图标需要移动的高度-->
+        <attr name="labelMoveHeight" format="dimension" />
+        <!--组件需要裁剪的宽度-->
+        <attr name="labelCutWeight" format="dimension" />
+        <!--图标朝向-->
+        <attr name="labelOrientation">
+            <enum name="left" value="1" />
+            <enum name="top" value="2" />
+            <enum name="right" value="3" />
+            <enum name="bottom" value="4" />
+        </attr>
+        <!--文字方位-->
+        <attr name="labelTextGravity">
+            <enum name="alignCenter" value="0" />
+            <enum name="alignLeft" value="1" />
+            <enum name="alignTop" value="2" />
+            <enum name="alignRight" value="3" />
+            <enum name="alignBottom" value="4" />
+        </attr>
+        <!--图标资源-->
+        <attr name="labelSource" format="reference" />
+        <!--字体颜色-->
+        <attr name="labelTextColor" format="color|reference" />
+        <!--图标着色-->
+        <attr name="labelTintColor" format="color|reference" />
+        <!--初始化文案-->
+        <attr name="labelInitText" format="string" />
+        <!--图标显示模式-->
+        <attr name="labelType">
+            <enum name="centerInside" value="1" />
+            <enum name="centerCrop" value="2" />
+            <enum name="fixXY" value="3" />
+        </attr>
+        <!--图标是否居中-->
+        <attr name="labelGravity" format="boolean" />
+        <!--是否以图标为标准的居中(区别与图标和文字的整体居中)-->
+        <attr name="labelAlignCenter" format="boolean" />
+        <!--是否隐藏图标-->
+        <attr name="labelVisible" format="boolean" />
+        <!--是否设置关键词，当设置此关键词时，隐藏文字-->
+        <attr name="labelTextKeyHide" format="string" />
+        <!--是否适配主题色-->
+        <attr name="labelTextAutoTheme" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="AnimateView">
+        <attr name="simple_label_animate" format="enum">
+            <!--缩放效果-->
+            <enum name="scale" value="1" />
+            <!--旋转效果-->
+            <enum name="rotate" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="ToggleItemLayout">
+        <attr name="toggle_item_text_size" format="integer" />
+        <attr name="toggle_item_min_text_size" format="integer" />
+        <attr name="toggle_item_text_default_color" format="color" />
+        <attr name="toggle_item_text_disable_color" format="reference" />
+        <attr name="toggle_item_text_margin" format="dimension" />
+        <attr name="toggle_item_text_paddingVert" format="dimension" />
+        <attr name="toggle_item_text_paddingHori" format="dimension" />
+        <attr name="toggle_item_text_selected_color" format="color" />
+        <attr name="toggle_item_text_selected_bg" format="reference" />
+        <attr name="toggle_item_text_selected_bold" format="boolean" />
+        <attr name="toggle_item_text_default_bg" format="reference" />
+        <attr name="toggle_item_text_color_auto_skin" format="boolean" />
+        <attr name="toggle_item_text_suffix" format="string" />
+        <attr name="toggle_scroll_enable" format="boolean" />
+        <attr name="toggle_item_minWidth" format="dimension" />
+        <attr name="toggle_item_minHeight" format="dimension" />
+        <attr name="toggle_item_avearge_width" format="boolean" />
+        <attr name="toggle_item_menu_height" format="enum">
+            <enum name="auto" value="1" />
+            <enum name="exactly" value="2" />
+        </attr>
+        <attr name="toggle_item_text_style" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italic" value="2" />
+        </attr>
+        <attr name="toggle_item_type" format="enum">
+            <enum name="single" value="1" />
+            <enum name="multi" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="RadarChart">
+        <!--        雷达图内部的环数-->
+        <attr name="radar_level" format="integer" />
+        <!--        雷达图有几个角-->
+        <attr name="radar_sharp_corner" format="integer" />
+        <!--        雷达图每条边的长度-->
+        <attr name="radar_arm_length" format="dimension" />
+        <!--        雷达图线的颜色-->
+        <attr name="radar_line_color" format="color|reference" />
+    </declare-styleable>
+    <declare-styleable name="BarGraphChart">
+        <!--        柱状图数量-->
+        <attr name="graph_count" format="integer" />
+        <!--        每个柱状图的间隔-->
+        <attr name="graph_bar_margin" format="dimension" />
+        <!--        柱状图起始间距-->
+        <attr name="graph_start_margin" format="dimension" />
+        <!--        柱状图末尾间距-->
+        <attr name="graph_end_margin" format="dimension" />
+        <!--        柱状图的宽度-->
+        <attr name="graph_bar_width" format="dimension" />
+        <!--        柱状图虚线数量-->
+        <attr name="graph_level" format="integer" />
+        <!--        柱状图标题颜色-->
+        <attr name="graph_title_color" format="color|reference" />
+        <!--        柱状图线条颜色-->
+        <attr name="graph_line_color" format="color|reference" />
+        <!--        标题文字大小-->
+        <attr name="graph_title_size" format="dimension" />
+        <!--        预留底部空间(有的柱状图有底部文字，有的没有)-->
+        <attr name="graph_custom_title_height" format="dimension" />
+        <!--        柱状图方向，横向或者纵向-->
+        <attr name="graph_bar_direction" format="enum">
+            <enum name="hori" value="1" />
+            <enum name="vert" value="2" />
+        </attr>
+        <!--        柱状图是否居中显示(忽略startMargin)-->
+        <attr name="graph_gravity_center" format="boolean" />
+        <!--       标题旋转角度-->
+        <attr name="graph_title_rotation" format="integer" />
+        <attr name="graph_title_x_offset" format="dimension" />
+        <!--        柱状图自适应间距-->
+        <attr name="graph_auto_bar_width" format="boolean" />
+        <!--        柱状图自适应间距(除去间距以后)-->
+        <attr name="graph_auto_bar_margin" format="boolean" />
+        <!--        柱状图是否展示标题的竖线-->
+        <attr name="graph_title_line_visible" format="boolean" />
+        <!--        纵向柱状图的左间距-->
+        <attr name="graph_bar_hori_margin_start" format="dimension" />
+        <!--        柱状图最大长度-->
+        <attr name="graph_bar_maxlength" format="dimension" />
+        <attr name="graph_bar_minlength" format="dimension" />
+        <!--        柱状图最大个数-->
+        <attr name="graph_bar_max_size" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="CircleChart">
+        <!--        饼图半径-->
+        <attr name="circle_radius" format="dimension" />
+        <!--        饼图内环半径(挖空)-->
+        <attr name="circle_inline_radius" format="dimension" />
+        <!--        饼图分割线宽度-->
+        <attr name="circle_split_width" format="dimension" />
+        <!--        展示扩展指示线-->
+        <attr name="circle_show_indicatrix" format="boolean" />
+        <!--        折现百分比长度-->
+        <attr name="circle_indicatrix_length_percent" format="float" />
+        <attr name="circle_indicatrix_text_size" format="dimension" />
+        <!--        折线文字颜色-->
+        <attr name="circle_indicatrix_text_color" format="reference" />
+        <attr name="circle_indicatrix_style" format="enum">
+            <enum name="default_style" value="1" />
+            <enum name="line_feed" value="2" />
+        </attr>
+        <!--        按压动画-->
+        <attr name="circle_rect_press_animation" format="enum">
+            <!-- 无效果-->
+            <enum name="none" value="1" />
+            <!-- 分离效果-->
+            <enum name="transalate" value="2" />
+            <!-- 高亮模式-->
+            <enum name="highlight" value="3" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="MinutesChart">
+        <!--        分时图线的颜色-->
+        <attr name="minutes_line_color" format="color|reference" />
+        <!--        预留底部空间-->
+        <attr name="minutes_custom_title_height" format="dimension" />
+        <!--        起始间距-->
+        <attr name="minutes_line_startmargin" format="dimension" />
+        <!--        图表基准线左右间距-->
+        <attr name="minutes_line_padding_hori" format="dimension" />
+        <!--        是否绘制图表基准线-->
+        <attr name="minutes_show_line" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="SwitchIndicator">
+        <attr name="switch_text_size" format="dimension" />
+        <attr name="switch_text_check_color" format="reference" />
+        <attr name="switch_text_normal_color" format="reference" />
+        <attr name="switch_text_auto_width" format="boolean" />
+        <attr name="switch_text_margin" format="dimension" />
+        <attr name="switch_text_fill_width" format="boolean" />
+        <attr name="switch_text_auto_height" format="boolean" />
+        <attr name="switch_text_hori_padding" format="dimension" />
+        <attr name="switch_item_divider" format="boolean" />
+        <attr name="switch_item_divider_padding" format="dimension" />
+        <attr name="switch_text_width" format="dimension" />
+        <attr name="switch_bg" format="reference" />
+        <attr name="switch_check_bg" format="reference" />
+        <attr name="switch_check_bg_gone" format="boolean" />
+        <attr name="switch_check_bold" format="boolean" />
+        <attr name="switch_can_click" format="boolean" />
+        <attr name="switch_drivder_height" format="dimension" />
+        <attr name="switch_menu_height" format="enum">
+            <enum name="auto" value="1" />
+            <enum name="exactly" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="order_choose_kline_view">
+        <attr name="candle_height" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="stock_detail_lb_kline_view">
+        <attr name="isHorizontal" format="boolean" />
+        <attr name="kline_selector_id" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="DividerLinearLayout_Layout">
+        <attr name="layout_divider_hide" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="RoundCoverListLayout">
+        <attr name="rcl_count" format="integer" />
+        <attr name="rcl_size" format="dimension" />
+        <attr name="rcl_offset" format="float" />
+        <attr name="rcl_margin" format="dimension" />
+        <attr name="rcl_more" format="boolean" />
+        <attr name="rcl_fill_empty_cover" format="reference" />
+        <attr name="rcl_layer" format="enum">
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ArbitrageChat">
+        <attr name="arbitrage_main_line_color" format="color|reference" />
+        <attr name="arbitrage_dash_color" format="color|reference" />
+        <attr name="arbitrage_rect_color" format="color|reference" />
+        <attr name="arbitrage_assist_normal_color" format="color|reference" />
+        <attr name="arbitrage_assist_mark_color" format="color|reference" />
+        <attr name="arbitrage_time_text_color" format="color|reference" />
+        <attr name="arbitrage_padding" format="dimension" />
+        <attr name="arbitrage_bottom_time_height" format="dimension" />
+    </declare-styleable>
+
+    <style name="LBDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <declare-styleable name="MaxHeightRecyclerView">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="FakeBoldAppCompatTextView">
+        <attr name="lbFakeBold" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ComplianceView">
+        <attr name="lbComplianceType" format="integer" />
+        <attr name="lbComplianceText" format="string" />
+        <attr name="lbComplianceCenter" format="boolean" />
+        <attr name="lbComplianceSloganVisible" format="boolean" />
+        <attr name="lbComplianceTextColor" format="color|reference" />
+        <attr name="lbComplianceTextSize" format="dimension" />
+        <attr name="lbComplianceTextStyle" format="enum">
+            <enum name="default_compliance" value="0" />
+            <enum name="simple_compliance" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="SupportDrawableSizeTextView">
+        <attr name="drawableSize" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CommonToggleImageButton">
+        <attr name="ctib_check_image" format="reference" />
+        <attr name="ctib_uncheck_image" format="reference" />
+        <attr name="ctib_checked" format="boolean" />
+        <attr name="ctib_show_progress" format="boolean" />
+        <attr name="ctib_button_width" format="dimension" />
+        <attr name="ctib_button_height" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="HoverView">
+        <attr name="mTopFill" format="float" />
+        <attr name="mTopHover" format="float" />
+    </declare-styleable>
+    <declare-styleable name="CurrentCapitalAccountView">
+        <attr name="right_operation_visible" format="boolean" />
+        <attr name="account_can_change" format="boolean" />
+        <attr name="account_line_visible" format="boolean" />
+        <attr name="account_icon_visible" format="boolean" />
+        <attr name="account_text_size" format="dimension" />
+        <attr name="account_visible_single" format="boolean" />
+        <attr name="account_show_disable_channel_gray" format="boolean" />
+        <attr name="account_icon_arrow" format="reference" />
+        <attr name="account_wrap_mode" format="enum">
+            <enum name="wrap" value="0" />
+            <enum name="match" value="1" />
+            <enum name="weight" value="2" />
+        </attr>
+        <attr name="account_select_mode" format="enum">
+            <enum name="bottom" value="0" />
+            <enum name="pop_window" value="1" />
+        </attr>
+        <attr name="account_display_mode" format="enum">
+            <enum name="org_type" value="0" />
+            <enum name="vendor_type" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CommonSelectorPopView">
+        <attr name="cspv_title" format="string" />
+        <attr name="cspv_title_icon" format="reference" />
+        <attr name="cspv_title_size" format="reference" />
+        <attr name="cspv_title_color" format="color|reference" />
+        <attr name="cspv_view_bg" format="reference" />
+        <attr name="cspv_select_list_bg" format="reference" />
+        <attr name="cspv_select_text_color" format="color|reference" />
+        <attr name="cspv_un_select_text_color" format="color|reference" />
+        <attr name="cspv_select_icon" format="reference" />
+        <attr name="cspv_un_select_icon" format="reference" />
+        <attr name="cspv_layout_width" format="dimension" />
+        <attr name="cspv_layout_pop_width" format="dimension" />
+        <attr name="cspv_all_tag_re_select" format="boolean" />
+        <attr name="cspv_hor_position" format="enum">
+            <enum name="center" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+            <enum name="align_left" value="3" />
+            <enum name="align_right" value="4" />
+        </attr>
+        <attr name="cspv_ver_position" format="enum">
+            <enum name="center" value="0" />
+            <enum name="above" value="1" />
+            <enum name="below" value="2" />
+            <enum name="align_top" value="3" />
+            <enum name="align_bottom" value="4" />
+        </attr>
+        <attr name="cspv_select_mode" format="enum">
+            <enum name="single" value="0" />
+            <enum name="multiple" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="LBLikeLottieView">
+        <attr name="like_icon" format="reference" />
+        <attr name="unlike_icon" format="reference" />
+        <attr name="like_lottie_json" format="string" />
+        <attr name="unlike_lottie_json" format="string" />
+        <attr name="icon_size" format="dimension" />
+        <attr name="lottie_size" format="dimension" />
+        <attr name="lottie_text_color" format="reference" />
+        <attr name="lottie_text_size" format="dimension" />
+        <attr name="lottie_text_bold" format="boolean" />
+        <attr name="lottie_text_padding" format="dimension" />
+        <attr name="lottie_text_paddingEnd" format="dimension" />
+        <attr name="lottie_text_gravity" format="enum">
+            <enum name="right" value="0" />
+            <enum name="bottom" value="1" />
+            <enum name="left" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ExImageView">
+        <attr name="exScaleType" format="enum">
+            <enum name="center" value="0" />
+            <enum name="centerCrop" value="1" />
+            <enum name="centerInside" value="2" />
+            <enum name="fitCenter" value="3" />
+            <enum name="fitEnd" value="4" />
+            <enum name="fitStart" value="5" />
+            <enum name="fitXY" value="6" />
+            <enum name="fitTop" value="7" />
+            <enum name="fitBottom" value="8" />
+            <enum name="matrix" value="9" />
+        </attr>
+        <attr name="exRadius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CommonSortTextView">
+        <attr name="cst_normal_icon" format="reference" />
+        <attr name="cst_up_icon" format="reference" />
+        <attr name="cst_down_icon" format="reference" />
+        <attr name="cst_text_sort_color" format="color" />
+        <attr name="cst_change_order" format="enum">
+            <enum name="normal" value="0" /><!--默认变更顺序，涨->跌->默认 -->
+            <enum name="upDown" value="1" /><!--变更顺序，涨->跌->涨->跌 -->
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CommonStockKLineView">
+        <attr name="cskv_chart_normal_paint_color" format="color" />
+        <attr name="cskv_chart_guide_paint_color" format="color" />
+        <attr name="cskv_chart_is_stroke" format="boolean" />
+        <attr name="cskv_chart_stroke_alpha" format="float" />
+        <attr name="cskv_chart_stroke_width" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="CapsuleMenuView">
+        <!--是否显示下拉箭头 -->
+        <attr name="capsule_menu_arrow" format="boolean" />
+        <!--0:不换行，超出显示区时横向滑动; 1: 均分显示，超出 spanCount 时换行，默认 0; 2:自由布局自动换行-->
+        <attr name="capsule_menu_flexWrap" format="integer" />
+        <!--一行显示个数，flexWrap 为 1 时有效，默认 4 -->
+        <attr name="capsule_menu_spanCount" format="integer" />
+        <!--是否单行 -->
+        <attr name="capsule_menu_single_line" format="boolean" />
+        <!--是否子菜单-->
+        <attr name="capsule_menu_is_second_menu" format="boolean" />
+        <!--灰底还是白底，默认白底 -->
+        <attr name="capsule_menu_bg_type" format="string" />
+        <!-- flexWrap 为 0 时，左边距 -->
+        <attr name="capsule_padding_start" format="dimension" />
+        <!-- flexWrap 为 0 时，右边距 -->
+        <attr name="capsule_padding_end" format="dimension" />
+        <attr name="capsule_menu_fullscreen_popup" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="FloatLinearLayout">
+        <attr name="layout_pin" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CommonStockFollowView">
+        <attr name="follow_icon_size" format="dimension" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <com.lb.demo.LBGenericScrollView
+        android:id="@+id/generic_view"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="16dp" />
+
+    <com.lb.demo.LBPriceScrollView
+        android:id="@+id/price_view"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_option_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Option Dialog"
+        android:textAllCaps="false" />
+
+    <com.longbridge.market.mvp.ui.widget.option.strategy.guide.view.OptionDateScrollView
+        android:id="@+id/srl_option_date_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
+
