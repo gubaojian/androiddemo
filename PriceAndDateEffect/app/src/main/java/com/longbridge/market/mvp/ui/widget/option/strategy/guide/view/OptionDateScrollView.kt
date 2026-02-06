@@ -144,13 +144,13 @@ open class OptionDateScrollView @JvmOverloads constructor(context: Context, attr
                     if (pendingHapticAfterSnap) {
                         if (lastFeedbackIndex != centerIdx) {
                             LogUtils.d(TAG, "HAPTIC(afterSnap) centerIdx=$centerIdx")
-                            performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                            //performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                             lastFeedbackIndex = centerIdx
                         }
                         pendingHapticAfterSnap = false
                     } else if (lastFeedbackIndex != centerIdx) {
                         LogUtils.d(TAG, "HAPTIC(center change on idle) centerIdx=$centerIdx")
-                        performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                        //performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                         lastFeedbackIndex = centerIdx
                     }
                     notifyIfIndexChanged(centerIdx)
