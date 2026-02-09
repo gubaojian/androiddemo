@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MinutesChart">
+        <!--        分时图线的颜色-->
+        <attr name="minutes_line_color" format="color|reference" />
+        <!--        预留底部空间-->
+        <attr name="minutes_custom_title_height" format="dimension" />
+        <!--        起始间距-->
+        <attr name="minutes_line_startmargin" format="dimension" />
+        <!--        图表基准线左右间距-->
+        <attr name="minutes_line_padding_hori" format="dimension" />
+        <!--        是否绘制图表基准线-->
+        <attr name="minutes_show_line" format="boolean" />
+    </declare-styleable>
+</resources>

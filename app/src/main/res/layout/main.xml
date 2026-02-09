@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="示例"/>
+    <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+        android:id="@+id/minuteCharts"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"/>
+    <TextView
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="示例二"/>
+    <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+        android:id="@+id/minuteCharts2"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"/>
 </LinearLayout>
