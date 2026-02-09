@@ -219,9 +219,13 @@ class OptionPriceTrendMinutesDrawProxy(val context: Context) : MinutesDrawProxy(
         val bottomYInner = 248.dp - 2.dp - 40.dp
         mRightPath.reset()
         mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
-        mRightPath.lineTo(drawWidth - 100.dp - 16.dp, bottomYInner)
-        mRightPath.lineTo(drawWidth- 16.dp, bottomYInner)
-        mRightPath.lineTo(drawWidth- 16.dp, topYInner)
+        mRightPath.lineTo(drawWidth - 100.dp - 16.dp,
+            topYInner + (bottomYInner - topYInner)/2)
+
+        mRightPath.quadTo(drawWidth - 100.dp - 16.dp,
+            topYInner + (bottomYInner - topYInner)/2,
+            drawWidth- 16.dp, topYInner)
+
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
             0.0f, 0.0f, drawWidth, 0.0f,
