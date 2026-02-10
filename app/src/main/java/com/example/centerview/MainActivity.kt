@@ -113,6 +113,29 @@ class MainActivity : ComponentActivity() {
         binding.minuteCharts4.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         proxy4.initData(points)
 
+        val proxy5 = OptionPriceDrawProxy(this)
+        proxy5.drawScene = "two_price_move_with_in"
+        proxy5.targetPrice = lastPrice  - 300
+        proxy5.targetTrendPrice = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice)
+
+        proxy5.targetPrice2 = lastPrice  + 100
+        proxy5.targetTrendPrice2 = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice2)
+
+        binding.minuteCharts5.setDrawProxy(proxy5)
+        proxy5.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts5) {
+            override fun onDataChange() {
+                doOnDataChange()
+            }
+        }, binding.minuteCharts5)
+        binding.minuteCharts5.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
+        binding.minuteCharts5.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        proxy5.initData(points)
+
+
+
+
+
+
 
 
     }
