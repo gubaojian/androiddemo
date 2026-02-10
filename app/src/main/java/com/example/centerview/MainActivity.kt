@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import com.example.centerview.databinding.MainBinding
 import com.longbridge.common.uiLib.chart.minutes.MinutesChart
 import com.longbridge.core.comm.FApp
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,6 +92,26 @@ class MainActivity : ComponentActivity() {
         binding.minuteCharts3.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
         binding.minuteCharts3.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         proxy3.initData(points)
+
+
+        val proxy4 = OptionPriceDrawProxy(this)
+        val lastPrice = points[points.size -1].price.toFloat()
+        proxy4.drawScene = "two_price_move_at_least"
+        proxy4.targetPrice = lastPrice  - 300
+        proxy4.targetTrendPrice = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice)
+
+        proxy4.targetPrice2 = lastPrice  + 300
+        proxy4.targetTrendPrice2 = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice2)
+
+        binding.minuteCharts4.setDrawProxy(proxy4)
+        proxy4.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts4) {
+            override fun onDataChange() {
+                doOnDataChange()
+            }
+        }, binding.minuteCharts4)
+        binding.minuteCharts4.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
+        binding.minuteCharts4.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        proxy4.initData(points)
 
 
 
