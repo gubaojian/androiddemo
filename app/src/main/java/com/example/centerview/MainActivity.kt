@@ -39,12 +39,15 @@ class MainActivity : ComponentActivity() {
         binding.minuteCharts.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         proxy.initData(points)
 
+        val lastPrice = points[points.size -1].price.toFloat()
+
         val proxyPriceDown = OptionPriceDrawProxy(this)
-        proxy.drawScene = "choose_date"
-        proxyPriceDown.mLinePaint.color = ContextCompat.getColor(this, R.color.market_option_price_trend_down_color)
-        proxyPriceDown.mDashPaint.color = ContextCompat.getColor(this, R.color.market_option_price_trend_down_color)
-        proxyPriceDown.dateRectStartColor = ContextCompat.getColor(this, R.color.date_linear_rect_price_down_start_color)
-        proxyPriceDown.dateRectEndColor = ContextCompat.getColor(this, R.color.date_linear_rect_price_down_end_color)
+        proxyPriceDown.drawScene = "two_price_move_with_in"
+        proxyPriceDown.targetPrice = lastPrice  + 100
+        proxyPriceDown.targetTrendPrice = String.format(Locale.getDefault(), "%.2f", proxyPriceDown.targetPrice)
+
+        proxyPriceDown.targetPrice2 = lastPrice  + 500
+        proxyPriceDown.targetTrendPrice2 = String.format(Locale.getDefault(), "%.2f", proxyPriceDown.targetPrice2)
         binding.minuteChartsPriceDown.setDrawProxy(proxyPriceDown)
         proxyPriceDown.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteChartsPriceDown) {
             override fun onDataChange() {
@@ -97,7 +100,6 @@ class MainActivity : ComponentActivity() {
 
 
         val proxy4 = OptionPriceDrawProxy(this)
-        val lastPrice = points[points.size -1].price.toFloat()
         proxy4.drawScene = "two_price_move_at_least"
         proxy4.targetPrice = lastPrice  - 300
         proxy4.targetTrendPrice = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice)
@@ -120,7 +122,7 @@ class MainActivity : ComponentActivity() {
         proxy5.targetPrice = lastPrice  - 300
         proxy5.targetTrendPrice = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice)
 
-        proxy5.targetPrice2 = lastPrice  + 300
+        proxy5.targetPrice2 = lastPrice + 300
         proxy5.targetTrendPrice2 = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice2)
 
         binding.minuteCharts5.setDrawProxy(proxy5)

@@ -773,15 +773,21 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val dx = targetX2 - lastX
         val dy2 = targetY2 - lastY
 
-        val control1X1 = midX1
-        val control1Y1 = targetY2
-        val control2X1 = midX1
-        val control2Y1 = lastY // 向上偏移减小，让控制点更偏下
 
-        val control1X2 = midX2
-        val control1Y2 = lastY
-        val control2X2 = midX2
-        val control2Y2 = targetY2 // 向上偏移减小，让控制点更偏下
+
+
+
+        val control1X1 = lastX + dx * 0.25f
+        val control1Y1 = lastY + dy1 * 0.25f + abs(dy1) * 0.25f // 向下偏移减小，让控制点更往上
+        val control2X1 = lastX + dx * 0.75f
+        val control2Y1 = lastY + dy1 * 0.75f - abs(dy1) * 0.15f // 向上偏移减小，让控制点更偏下
+
+
+        val control1X2 = lastX + dx * 0.25f
+        val control1Y2 = lastY + dy2 * 0.25f + abs(dy2) * 0.25f // 向下偏移减小，让控制点更往上
+        val control2X2 = lastX + dx * 0.75f
+        val control2Y2 = lastY + dy2 * 0.75f - abs(dy2) * 0.15f // 向上偏移减小，让控制点更偏下
+
 
         mRightPath.reset()
         mRightPath.moveTo(lastX, lastY)
