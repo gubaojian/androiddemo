@@ -48,14 +48,14 @@ class MainActivity : ComponentActivity() {
 
         proxyPriceDown.targetPrice2 = lastPrice  + 500
         proxyPriceDown.targetTrendPrice2 = String.format(Locale.getDefault(), "%.2f", proxyPriceDown.targetPrice2)
-        binding.minuteChartsPriceDown.setDrawProxy(proxyPriceDown)
-        proxyPriceDown.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteChartsPriceDown) {
+        binding.minuteCharts1.setDrawProxy(proxyPriceDown)
+        proxyPriceDown.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts1) {
             override fun onDataChange() {
                 doOnDataChange()
             }
-        }, binding.minuteChartsPriceDown)
-        binding.minuteChartsPriceDown.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
-        binding.minuteChartsPriceDown.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        }, binding.minuteCharts1)
+        binding.minuteCharts1.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
+        binding.minuteCharts1.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         proxyPriceDown.initData(points)
 
 

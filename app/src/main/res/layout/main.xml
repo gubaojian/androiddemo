@@ -23,16 +23,16 @@
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="示例"/>
+                android:text="示例一"/>
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
-                android:id="@+id/minuteChartsPriceDown"
+                android:id="@+id/minuteCharts1"
                 android:layout_width="match_parent"
                 android:layout_height="248dp"/>
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="示例二"/>
+                android:text="示例三"/>
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts2"
                 android:layout_width="match_parent"
