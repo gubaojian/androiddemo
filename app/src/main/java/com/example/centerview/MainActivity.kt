@@ -118,7 +118,7 @@ class MainActivity : ComponentActivity() {
         proxy5.targetPrice = lastPrice  - 300
         proxy5.targetTrendPrice = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice)
 
-        proxy5.targetPrice2 = lastPrice  + 100
+        proxy5.targetPrice2 = lastPrice  + 300
         proxy5.targetTrendPrice2 = String.format(Locale.getDefault(), "%.2f", proxy4.targetPrice2)
 
         binding.minuteCharts5.setDrawProxy(proxy5)
