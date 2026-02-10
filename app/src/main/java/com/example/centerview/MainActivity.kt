@@ -7,6 +7,8 @@ import android.view.View.MeasureSpec
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
+import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.KLinePoint
+import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.OptionPriceDrawProxy
 import com.example.centerview.databinding.MainBinding
 import com.longbridge.common.uiLib.chart.minutes.MinutesChart
 import com.longbridge.core.comm.FApp
@@ -39,8 +41,8 @@ class MainActivity : ComponentActivity() {
 
         val proxyPriceDown = OptionPriceDrawProxy(this)
         proxy.drawScene = "choose_date"
-        proxyPriceDown.mLinePaint.color = ContextCompat.getColor(this, R.color.price_trend_down_color)
-        proxyPriceDown.mDashPaint.color = ContextCompat.getColor(this, R.color.price_trend_down_color)
+        proxyPriceDown.mLinePaint.color = ContextCompat.getColor(this, R.color.market_option_price_trend_down_color)
+        proxyPriceDown.mDashPaint.color = ContextCompat.getColor(this, R.color.market_option_price_trend_down_color)
         proxyPriceDown.dateRectStartColor = ContextCompat.getColor(this, R.color.date_linear_rect_price_down_start_color)
         proxyPriceDown.dateRectEndColor = ContextCompat.getColor(this, R.color.date_linear_rect_price_down_end_color)
         binding.minuteChartsPriceDown.setDrawProxy(proxyPriceDown)
@@ -78,8 +80,8 @@ class MainActivity : ComponentActivity() {
         proxy3.drawScene = "single_price_trend"
         proxy3.targetTrendPrice = "120.0"
         proxy3.targetPrice = 120.0f
-        proxy3.mLinePaint.color = ContextCompat.getColor(this, R.color.price_trend_down_color)
-        proxy3.mDashPaint.color = ContextCompat.getColor(this, R.color.price_trend_down_color)
+        proxy3.mLinePaint.color = ContextCompat.getColor(this, R.color.market_option_price_trend_down_color)
+        proxy3.mDashPaint.color = ContextCompat.getColor(this, R.color.market_option_price_trend_down_color)
         proxy3.priceTrendRectStartColor = ContextCompat.getColor(this, R.color.price_down_trend_linear_rect_start_color)
         proxy3.priceTrendRectEndColor = ContextCompat.getColor(this, R.color.price_down_trend_linear_rect_end_color)
 

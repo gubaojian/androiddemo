@@ -1,4 +1,4 @@
-package com.example.centerview
+package com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy
 
 import android.content.Context
 import android.graphics.Canvas
@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.Shader
 import androidx.core.content.ContextCompat
+import com.example.centerview.R
 import com.longbridge.common.kotlin.expansion.dp
 import com.longbridge.common.uiLib.chart.minutes.MinutesDrawProxy
 import com.longbridge.core.comm.FApp
@@ -22,22 +23,21 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
     //K线画笔
     val mLinePaint = Paint().apply {
         strokeWidth = 1.5F.dp
-        color = ContextCompat.getColor(context, R.color.dash_line_color)
+        color = ContextCompat.getColor(context, R.color.market_option_dash_line_color)
         style = Paint.Style.STROKE
-    };
+    }
 
     //虚线画笔
     val mDashPaint = Paint().apply {
         style = Paint.Style.STROKE
         strokeWidth = 1.0F.dp
-        color = ContextCompat.getColor(context, R.color.dash_line_color)
+        color = ContextCompat.getColor(context, R.color.market_option_dash_line_color)
         pathEffect = DashPathEffect(floatArrayOf(5f, 5f), 0F)
     }
 
     val mGradientPaint = Paint().apply {
         style = Paint.Style.FILL
     }
-
 
     val mPriceTextPaint = Paint().apply {
         color = ContextCompat.getColor(context, R.color.text_color_1)
@@ -59,34 +59,32 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         textSize = 12.dp
     }
 
-
     val mBottomLinePaint = Paint().apply {
         strokeWidth = 1.0F.dp
-        color = ContextCompat.getColor(context, R.color.option_bottom_line_color)
+        color = ContextCompat.getColor(context, R.color.market_option_option_bottom_line_color)
         style = Paint.Style.STROKE
     }
 
     var dateRectStartColor: Int =
-        ContextCompat.getColor(context, R.color.date_linear_rect_start_color)
-    var dateRectEndColor: Int = ContextCompat.getColor(context, R.color.date_linear_rect_end_color)
+        ContextCompat.getColor(context, R.color.market_option_date_linear_rect_start_color)
+    var dateRectEndColor: Int = ContextCompat.getColor(context, R.color.market_option_date_linear_rect_end_color)
 
     var priceTrendRectStartColor: Int =
-        ContextCompat.getColor(context, R.color.price_trend_linear_rect_start_color)
+        ContextCompat.getColor(context, R.color.market_option_price_trend_linear_rect_start_color)
     var priceTrendRectEndColor: Int =
-        ContextCompat.getColor(context, R.color.price_trend_linear_rect_end_color)
+        ContextCompat.getColor(context, R.color.market_option_price_trend_linear_rect_end_color)
 
-
-    var points: MutableList<KLinePoint> = mutableListOf();
+    var points: MutableList<KLinePoint> = mutableListOf()
 
     var yStartLabel = "09/05"
     var yEndLabel = "09/31"
 
     var yRectEndLabel = "09/31"
 
-    var targetTrendPrice = "120.00";
+    var targetTrendPrice = "120.00"
     var targetPrice: Float = 120.0f
 
-    var targetTrendPrice2 = "120.00";
+    var targetTrendPrice2 = "120.00"
     var targetPrice2: Float = 120.0f
 
     var drawScene: String = "choose_date"
@@ -114,7 +112,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
         drawLinePath(canvas, topY, bottomY)
         drawYLabel(canvas, topY, bottomY)
-
     }
 
     fun drawDashLine(
@@ -123,15 +120,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp;
-        val topYInner = topY + 20.dp;
+        val endOffsetX = drawWidth - 100.dp
+        val topYInner = topY + 20.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp
         val middleY = topYInner + (bottomYInner - topYInner) / 2.0f
         canvas.drawLine(
             16.dp, middleY,
             drawWidth - 16.dp, middleY, mDashPaint
         )
-
     }
 
     fun drawBottomLineLabel(
@@ -140,8 +136,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 20.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 20.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp
         canvas.drawLine(0.dp, bottomYInner, drawWidth, bottomYInner, mBottomLinePaint)
     }
@@ -152,10 +148,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 20.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 20.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp
-
 
         canvas.drawText(yStartLabel, startOffsetX, bottomYInner + 16.dp, mYLabelTextPaint)
 
@@ -166,16 +161,13 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             bottomYInner + 16.dp, mYLabelTextPaint
         )
 
-
         val yRectEndLabelWidth = mRectTextPaint.measureText(yRectEndLabel)
         canvas.drawText(
             yRectEndLabel,
             drawWidth - 16.dp - yRectEndLabelWidth - 4.dp,
             bottomYInner + 16.dp, mRectTextPaint
         )
-
     }
-
 
     fun drawLinePath(
         canvas: Canvas,
@@ -195,20 +187,20 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
 
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 40.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
-        var minX = 0.0f;
-        var minY = 0.0f;
-        var maxX = 0.0f;
-        var maxY = 0.0f;
+        var minX = 0.0f
+        var minY = 0.0f
+        var maxX = 0.0f
+        var maxY = 0.0f
         var maxPriceLabel: String = ""
         var minPriceLabel: String = ""
         mLinePath.reset()
         points.forEachIndexed { index, point ->
             val price = point.price.toFloatOrNull() ?: 0.0f
             val x =
-                startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f);
+                startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
             val y =
                 bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
             if (index == 0) {
@@ -220,14 +212,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 if (maxX <= 0.0f) {
                     maxX = x
                     maxY = y
-                    maxPriceLabel = String.format(Locale.getDefault(), "%.2f", price)
+                    maxPriceLabel = String.Companion.format(Locale.getDefault(), "%.2f", price)
                 }
             }
             if (price == minPrice) {
                 if (minX <= 0.0f) {
                     minX = x
                     minY = y
-                    minPriceLabel = String.format(Locale.getDefault(), "%.2f", price)
+                    minPriceLabel = String.Companion.format(Locale.getDefault(), "%.2f", price)
                 }
             }
         }
@@ -242,8 +234,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
         val minPriceLabelWidth = mPriceTextPaint.measureText(minPriceLabel)
         canvas.drawText(minPriceLabel, minX - minPriceLabelWidth - 4.dp, minY, mPriceTextPaint)
-
-
     }
 
     fun drawChooseDateRightPath(
@@ -251,7 +241,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         topY: Float,
         bottomY: Float
     ) {
-        val topYInner = topY + 20.dp;
+        val topYInner = topY + 20.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp
         mRightPath.reset()
         mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
@@ -273,7 +263,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         topY: Float,
         bottomY: Float
     ) {
-
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
@@ -287,28 +276,27 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
 
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 40.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
 
-        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f);
+        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
         val y =
             bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
         val targetPriceY =
             bottomYInner - (bottomYInner - topYInner) * ((targetPrice - minPrice) / (maxPrice - minPrice))
 
-        val lastX = x;
+        val lastX = x
         val lastY = y
-        val targetX = drawWidth - 16.dp;
+        val targetX = drawWidth - 16.dp
         var targetY = max(topYInner, targetPriceY)
         targetY = min(targetY, bottomYInner)
 
         val dx = targetX - lastX
         val dy = targetY - lastY
-
 
         val control1X = lastX + dx * 0.25f
         val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
@@ -342,7 +330,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
-        val dashPath = Path();
+        val dashPath = Path()
         dashPath.moveTo(lastX, lastY)
         dashPath.cubicTo(
             control1X, control1Y,
@@ -358,16 +346,13 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             targetY,
             mTrendPriceTextPaint
         )
-
     }
-
 
     fun drawTwoPriceTrendPathForMoveAtLeastTop(
         canvas: Canvas,
         topY: Float,
         bottomY: Float
     ) {
-
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
@@ -381,28 +366,27 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
 
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 40.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
 
-        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f);
+        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
         val y =
             bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
         val targetPriceY =
             bottomYInner - (bottomYInner - topYInner) * ((targetPrice2 - minPrice) / (maxPrice - minPrice))
 
-        val lastX = x;
+        val lastX = x
         val lastY = y
-        val targetX = drawWidth - 16.dp;
+        val targetX = drawWidth - 16.dp
         var targetY = max(topYInner, targetPriceY)
         targetY = min(targetY, bottomYInner)
 
         val dx = targetX - lastX
         val dy = targetY - lastY
-
 
         val control1X = lastX + dx * 0.25f
         val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
@@ -436,7 +420,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
-        val dashPath = Path();
+        val dashPath = Path()
         dashPath.moveTo(lastX, lastY)
         dashPath.cubicTo(
             control1X, control1Y,
@@ -452,7 +436,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             targetY,
             mTrendPriceTextPaint
         )
-
     }
 
     fun drawTwoPriceTrendPathForMoveAtLeastBottom(
@@ -460,7 +443,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         topY: Float,
         bottomY: Float
     ) {
-
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
@@ -474,28 +456,27 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
 
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 40.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
 
-        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f);
+        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
         val y =
             bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
         val targetPriceY =
             bottomYInner - (bottomYInner - topYInner) * ((targetPrice - minPrice) / (maxPrice - minPrice))
 
-        val lastX = x;
+        val lastX = x
         val lastY = y
-        val targetX = drawWidth - 16.dp;
+        val targetX = drawWidth - 16.dp
         var targetY = max(topYInner, targetPriceY)
         targetY = min(targetY, bottomYInner)
 
         val dx = targetX - lastX
         val dy = targetY - lastY
-
 
         val control1X = lastX + dx * 0.25f
         val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
@@ -529,7 +510,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
-        val dashPath = Path();
+        val dashPath = Path()
         dashPath.moveTo(lastX, lastY)
         dashPath.cubicTo(
             control1X, control1Y,
@@ -545,7 +526,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             targetY,
             mTrendPriceTextPaint
         )
-
     }
 
     fun drawTwoPriceTrendPathForMoveWithIn(
@@ -571,7 +551,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         topY: Float,
         bottomY: Float
     ) {
-
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
@@ -585,28 +564,27 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
 
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 40.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
 
-        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f);
+        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
         val y =
             bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
         val targetPriceY =
             bottomYInner - (bottomYInner - topYInner) * ((targetPrice2 - minPrice) / (maxPrice - minPrice))
 
-        val lastX = x;
+        val lastX = x
         val lastY = y
-        val targetX = drawWidth - 16.dp;
+        val targetX = drawWidth - 16.dp
         var targetY = max(topYInner, targetPriceY)
         targetY = min(targetY, bottomYInner)
 
         val dx = targetX - lastX
         val dy = targetY - lastY
-
 
         val control1X = lastX + dx * 0.25f
         val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
@@ -639,7 +617,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
-        val dashPath = Path();
+        val dashPath = Path()
         dashPath.moveTo(lastX, lastY)
         dashPath.cubicTo(
             control1X, control1Y,
@@ -655,7 +633,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             targetY,
             mTrendPriceTextPaint
         )
-
     }
 
     fun drawTwoPriceTrendPathForMoveWithInBottom(
@@ -663,7 +640,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         topY: Float,
         bottomY: Float
     ) {
-
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
@@ -677,28 +653,27 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
 
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 40.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
 
-        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f);
+        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
         val y =
             bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
         val targetPriceY =
             bottomYInner - (bottomYInner - topYInner) * ((targetPrice - minPrice) / (maxPrice - minPrice))
 
-        val lastX = x;
+        val lastX = x
         val lastY = y
-        val targetX = drawWidth - 16.dp;
+        val targetX = drawWidth - 16.dp
         var targetY = max(topYInner, targetPriceY)
         targetY = min(targetY, bottomYInner)
 
         val dx = targetX - lastX
         val dy = targetY - lastY
-
 
         val control1X = lastX + dx * 0.25f
         val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
@@ -731,7 +706,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
-        val dashPath = Path();
+        val dashPath = Path()
         dashPath.moveTo(lastX, lastY)
         dashPath.cubicTo(
             control1X, control1Y,
@@ -747,7 +722,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             targetY,
             mTrendPriceTextPaint
         )
-
     }
 
     fun drawTwoPriceTrendPathForMoveWithInAllOneSide(
@@ -755,7 +729,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         topY: Float,
         bottomY: Float
     ) {
-
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
@@ -769,14 +742,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
 
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 40.dp;
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
 
-        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f);
+        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
         val y =
             bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
         val targetPriceY1 =
@@ -784,13 +757,13 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val targetPriceY2 =
             bottomYInner - (bottomYInner - topYInner) * ((targetPrice2 - minPrice) / (maxPrice - minPrice))
 
-        val lastX = x;
+        val lastX = x
         val lastY = y
-        val targetX2 = drawWidth - 16.dp;
+        val targetX2 = drawWidth - 16.dp
         var targetY2 = max(topYInner, targetPriceY2)
         targetY2 = min(targetY2, bottomYInner)
 
-        val targetX1 = drawWidth - 16.dp;
+        val targetX1 = drawWidth - 16.dp
         var targetY1 = max(topYInner, targetPriceY1)
         targetY1 = min(targetY1, bottomYInner)
 
@@ -798,12 +771,10 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val dx = targetX2 - lastX
         val dy2 = targetY2 - lastY
 
-
         val control1X1 = lastX + dx * 0.25f
         val control1Y1 = lastY + dy1 * 0.25f + abs(dy1) * 0.25f // 向下偏移减小，让控制点更往上
         val control2X1 = lastX + dx * 0.75f
         val control2Y1 = lastY + dy1 * 0.75f - abs(dy1) * 0.15f // 向上偏移减小，让控制点更偏下
-
 
         val control1X2 = lastX + dx * 0.25f
         val control1Y2 = lastY + dy2 * 0.25f + abs(dy2) * 0.25f // 向下偏移减小，让控制点更往上
@@ -834,7 +805,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas.drawPath(mRightPath, mGradientPaint)
 
         targetTrendPrice2.let {
-            val dashPath = Path();
+            val dashPath = Path()
             dashPath.moveTo(lastX, lastY)
             dashPath.cubicTo(
                 control1X2, control1Y2,
@@ -853,7 +824,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
 
         targetTrendPrice.let {
-            val dashPath = Path();
+            val dashPath = Path()
             dashPath.moveTo(lastX, lastY)
             dashPath.cubicTo(
                 control1X1, control1Y1,
@@ -869,7 +840,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 mTrendPriceTextPaint
             )
         }
-
     }
 
     override fun initPath(
