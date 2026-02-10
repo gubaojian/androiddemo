@@ -13,52 +13,64 @@ import com.longbridge.common.uiLib.chart.minutes.MinutesDrawProxy
 import com.longbridge.core.comm.FApp
 import com.longbridge.core.uitls.DimenUtils
 import java.util.Locale
+import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
-class OptionDateMinutesDrawProxy(val context: Context) : MinutesDrawProxy() {
+class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
     //K线画笔
-    private val mLinePaint = Paint().apply {
+    val mLinePaint = Paint().apply {
         strokeWidth = 1.5F.dp
         color = ContextCompat.getColor(context, R.color.dash_line_color)
         style = Paint.Style.STROKE
     };
 
     //虚线画笔
-    private val mDashPaint = Paint().apply{
+    val mDashPaint = Paint().apply{
         style = Paint.Style.STROKE
         strokeWidth = 1.0F.dp
         color = ContextCompat.getColor(context, R.color.dash_line_color)
         pathEffect = DashPathEffect(floatArrayOf(5f, 5f), 0F)
     }
 
-    private val mGradientPaint = Paint().apply{
+    val mGradientPaint = Paint().apply{
         style = Paint.Style.FILL
     }
 
-    private val mPriceTextPaint = Paint().apply {
+
+    val mPriceTextPaint = Paint().apply {
         color = ContextCompat.getColor(context, R.color.text_color_1)
         textSize = 12.dp
     }
 
-    private val mYLabelTextPaint = Paint().apply{
+    val mTrendPriceTextPaint = Paint().apply {
+        color = ContextCompat.getColor(context, R.color.text_color_1)
+        textSize = 12.dp
+    }
+
+    val mYLabelTextPaint = Paint().apply{
         color = ContextCompat.getColor(context, R.color.text_color_2)
         textSize = 12.dp
     }
 
-    private val mRectTextPaint = Paint().apply {
+    val mRectTextPaint = Paint().apply {
         color = ContextCompat.getColor(context, R.color.text_color_1)
         textSize = 12.dp
     }
 
 
-    private val mBottomLinePaint = Paint().apply {
+    val mBottomLinePaint = Paint().apply {
         strokeWidth = 1.0F.dp
         color = ContextCompat.getColor(context, R.color.option_bottom_line_color)
         style = Paint.Style.STROKE
     }
 
+    var dateRectStartColor:Int = ContextCompat.getColor(context, R.color.date_linear_rect_start_color)
+    var dateRectEndColor:Int = ContextCompat.getColor(context, R.color.date_linear_rect_end_color)
 
-
+    var priceTrendRectStartColor:Int = ContextCompat.getColor(context, R.color.price_trend_linear_rect_start_color)
+    var priceTrendRectEndColor:Int = ContextCompat.getColor(context, R.color.price_trend_linear_rect_end_color)
 
 
     var points: MutableList<KLinePoint> = mutableListOf();
@@ -68,6 +80,14 @@ class OptionDateMinutesDrawProxy(val context: Context) : MinutesDrawProxy() {
 
     var yRectEndLabel = "09/31"
 
+    var targetTrendPrice = "120.00";
+    var targetPrice: Float = 120.0f
+
+    var targetTrendPrice2 = "120.00";
+    var targetPrice2: Float = 120.0f
+
+    var drawScene: String = "choose_date"
+
     override fun onDraw(
         canvas: Canvas,
         topY: Float,
@@ -76,10 +96,18 @@ class OptionDateMinutesDrawProxy(val context: Context) : MinutesDrawProxy() {
     ) {
         drawDashLine(canvas, topY, bottomY)
         drawBottomLineLabel(canvas, topY, bottomY)
-        drawRightPath(canvas, topY, bottomY)
+        if (drawScene == "choose_date") {
+            drawChooseDateRightPath(canvas, topY, bottomY)
+        } else if (drawScene == "single_price_trend") {
+            drawSinglePriceTrendPath(canvas, topY, bottomY)
+        } else if (drawScene == "two_price_move_at_least") {
+            drawSinglePriceTrendPath(canvas, topY, bottomY)
+        } else if (drawScene == "two_price_move_with_in") {
+            drawSinglePriceTrendPath(canvas, topY, bottomY)
+        }
         drawLinePath(canvas, topY, bottomY)
         drawYLabel(canvas, topY, bottomY)
-        drawRectEndLabel(canvas, topY, bottomY)
+
     }
 
     fun drawDashLine(
@@ -126,22 +154,13 @@ class OptionDateMinutesDrawProxy(val context: Context) : MinutesDrawProxy() {
             bottomYInner + 16.dp, mYLabelTextPaint)
 
 
-    }
-
-    fun drawRectEndLabel(
-        canvas: Canvas,
-        topY: Float,
-        bottomY: Float
-    ) {
-        var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp;
-        val topYInner = topY + 20.dp;
-        val bottomYInner = 248.dp - 2.dp - 40.dp
         val yRectEndLabelWidth = mRectTextPaint.measureText(yRectEndLabel)
         canvas.drawText(yRectEndLabel,
             drawWidth - 16.dp - yRectEndLabelWidth - 4.dp ,
             bottomYInner + 16.dp, mRectTextPaint)
+
     }
+
 
     fun drawLinePath(
         canvas: Canvas,
@@ -210,7 +229,7 @@ class OptionDateMinutesDrawProxy(val context: Context) : MinutesDrawProxy() {
 
 
     }
-    fun drawRightPath(
+    fun drawChooseDateRightPath(
         canvas: Canvas,
         topY: Float,
         bottomY: Float
@@ -225,10 +244,91 @@ class OptionDateMinutesDrawProxy(val context: Context) : MinutesDrawProxy() {
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
             0.0f, 0.0f, drawWidth, 0.0f,
-            0xFF00ADA2.toInt(), 0xFFFFFF.toInt(),
-            Shader.TileMode.REPEAT
+            dateRectStartColor,
+            dateRectEndColor,
+            Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
+    }
+
+    fun drawSinglePriceTrendPath(
+        canvas: Canvas,
+        topY: Float,
+        bottomY: Float
+    ) {
+
+        var minPrice = Float.MAX_VALUE
+        var maxPrice = Float.MIN_VALUE
+        points.forEach {
+            val price = it.price.toFloatOrNull() ?: 0.0f
+            if (price < minPrice) {
+                minPrice = price
+            }
+            if (price > maxPrice) {
+                maxPrice = price
+            }
+        }
+
+        var startOffsetX = 16.dp + 2.dp
+        val endOffsetX = drawWidth - 100.dp - 16.dp;
+        val topYInner = topY + 40.dp;
+        val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
+        val index = points.size -1.0f
+        val point = points.last()
+        val price = point.price.toFloatOrNull() ?: 0.0f
+
+        val x = startOffsetX + (endOffsetX - startOffsetX)*index/(points.size.toFloat() - 1.0f);
+        val y = bottomYInner - (bottomYInner - topYInner)*((price-minPrice)/(maxPrice-minPrice))
+        val targetPriceY = bottomYInner - (bottomYInner - topYInner)*((targetPrice-minPrice)/(maxPrice-minPrice))
+
+        val lastX = x;
+        val lastY = y
+        val targetX = drawWidth- 16.dp;
+        var targetY = max(topYInner, targetPriceY)
+        targetY = min(targetY, bottomYInner)
+
+        val dx = targetX - lastX
+        val dy = targetY - lastY
+
+
+        val control1X = lastX + dx * 0.25f
+        val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
+        val control2X = lastX + dx * 0.75f
+        val control2Y = lastY + dy * 0.75f - abs(dy) * 0.15f // 向上偏移减小，让控制点更偏下
+        mRightPath.reset()
+        if (targetPrice >= price) { //上涨
+            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
+            mRightPath.lineTo(lastX, lastY)
+            mRightPath.cubicTo( control1X,control1Y,
+                control2X, control2Y,targetX,
+                targetY)
+            mRightPath.lineTo(targetX, topYInner)
+        } else {
+            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner)
+            mRightPath.lineTo(lastX, lastY)
+            mRightPath.cubicTo( control1X,control1Y,
+                control2X, control2Y,targetX,
+                targetY)
+            mRightPath.lineTo(targetX, bottomYInner)
+        }
+        mRightPath.close()
+        mGradientPaint.shader = LinearGradient(
+            0.0f, 0.0f, drawWidth, bottomYInner,
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
+            Shader.TileMode.CLAMP
+        )
+        canvas.drawPath(mRightPath, mGradientPaint)
+        val dashPath = Path();
+        dashPath.moveTo(lastX, lastY)
+        dashPath.cubicTo( control1X,control1Y,
+            control2X, control2Y,targetX,
+            targetY)
+        canvas.drawPath(dashPath, mDashPaint)
+
+        val trendPriceWidth = mPriceTextPaint.measureText(targetTrendPrice)
+        canvas.drawText(targetTrendPrice, targetX - trendPriceWidth - 4.dp, targetY, mTrendPriceTextPaint)
+
     }
 
     override fun initPath(

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.MeasureSpec
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.core.content.ContextCompat
 import com.example.centerview.databinding.MainBinding
 import com.longbridge.common.uiLib.chart.minutes.MinutesChart
 import com.longbridge.core.comm.FApp
@@ -23,7 +24,8 @@ class MainActivity : ComponentActivity() {
             val price = ((Math.random()*1000).toInt()).toString()
             points.add(KLinePoint(price = price))
         }
-        val proxy = OptionDateMinutesDrawProxy(this)
+        val proxy = OptionPriceDrawProxy(this)
+        proxy.drawScene = "choose_date"
         binding.minuteCharts.setDrawProxy(proxy)
         proxy.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts) {
             override fun onDataChange() {
@@ -32,10 +34,32 @@ class MainActivity : ComponentActivity() {
         }, binding.minuteCharts)
         binding.minuteCharts.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
         binding.minuteCharts.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-
         proxy.initData(points)
 
-        val proxy2 = OptionPriceTrendMinutesDrawProxy(this)
+        val proxyPriceDown = OptionPriceDrawProxy(this)
+        proxy.drawScene = "choose_date"
+        proxyPriceDown.mLinePaint.color = ContextCompat.getColor(this, R.color.price_trend_down_color)
+        proxyPriceDown.mDashPaint.color = ContextCompat.getColor(this, R.color.price_trend_down_color)
+        proxyPriceDown.dateRectStartColor = ContextCompat.getColor(this, R.color.date_linear_rect_price_down_start_color)
+        proxyPriceDown.dateRectEndColor = ContextCompat.getColor(this, R.color.date_linear_rect_price_down_end_color)
+        binding.minuteChartsPriceDown.setDrawProxy(proxyPriceDown)
+        proxyPriceDown.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteChartsPriceDown) {
+            override fun onDataChange() {
+                doOnDataChange()
+            }
+        }, binding.minuteChartsPriceDown)
+        binding.minuteChartsPriceDown.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
+        binding.minuteChartsPriceDown.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        proxyPriceDown.initData(points)
+
+
+
+
+
+        val proxy2 = OptionPriceDrawProxy(this)
+        proxy2.drawScene = "single_price_trend"
+        proxy2.targetTrendPrice = "1200.0"
+        proxy2.targetPrice = 1200.0f
         binding.minuteCharts2.setDrawProxy(proxy2)
         proxy2.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts2) {
             override fun onDataChange() {
@@ -46,6 +70,27 @@ class MainActivity : ComponentActivity() {
         binding.minuteCharts2.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
         proxy2.initData(points)
+
+
+
+        val proxy3 = OptionPriceDrawProxy(this)
+        proxy3.drawScene = "single_price_trend"
+        proxy3.targetTrendPrice = "120.0"
+        proxy3.targetPrice = 120.0f
+        proxy3.mLinePaint.color = ContextCompat.getColor(this, R.color.price_trend_down_color)
+        proxy3.mDashPaint.color = ContextCompat.getColor(this, R.color.price_trend_down_color)
+        proxy3.priceTrendRectStartColor = ContextCompat.getColor(this, R.color.price_down_trend_linear_rect_start_color)
+        proxy3.priceTrendRectEndColor = ContextCompat.getColor(this, R.color.price_down_trend_linear_rect_end_color)
+
+        binding.minuteCharts3.setDrawProxy(proxy3)
+        proxy3.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts3) {
+            override fun onDataChange() {
+                doOnDataChange()
+            }
+        }, binding.minuteCharts3)
+        binding.minuteCharts3.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
+        binding.minuteCharts3.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        proxy3.initData(points)
 
 
 

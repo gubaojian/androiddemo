@@ -13,10 +13,21 @@
 
 
     <color name="dash_line_color">#8000ADA2</color>
+    <color name="price_trend_down_color">#FF3A75</color>
     <color name="option_bottom_line_color">#E6E7E8</color>
 
+    <color name="date_linear_rect_start_color">#00ADA2</color>
+    <color name="date_linear_rect_end_color">#00FFFFFF</color>
+
+    <color name="date_linear_rect_price_down_start_color">#FF3A75</color>
+    <color name="date_linear_rect_price_down_end_color">#00FFFFFF</color>
 
 
+    <color name="price_trend_linear_rect_start_color">#3300ADA2</color>
+    <color name="price_trend_linear_rect_end_color">#CC00ADA2</color>
+
+    <color name="price_down_trend_linear_rect_start_color">#33FF3A75</color>
+    <color name="price_down_trend_linear_rect_end_color">#CCFF3A75</color>
 
 
 
