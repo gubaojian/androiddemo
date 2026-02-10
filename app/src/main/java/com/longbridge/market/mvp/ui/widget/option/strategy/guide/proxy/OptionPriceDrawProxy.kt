@@ -298,10 +298,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val dx = targetX - lastX
         val dy = targetY - lastY
 
-        val control1X = lastX + dx * 0.25f
-        val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
-        val control2X = lastX + dx * 0.75f
-        val control2Y = lastY + dy * 0.75f - abs(dy) * 0.15f // 向上偏移减小，让控制点更偏下
+        val midX = (x + targetX)/2.0f
+        val control1X = midX
+        val control1Y = lastY
+        val control2X = midX
+        val control2Y = targetY
+
         mRightPath.reset()
         if (targetPrice >= price) { //上涨
             mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
@@ -385,13 +387,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var targetY = max(topYInner, targetPriceY)
         targetY = min(targetY, bottomYInner)
 
-        val dx = targetX - lastX
-        val dy = targetY - lastY
+        val midX = (x + targetX)/2.0f
+        val control1X = midX
+        val control1Y = lastY
+        val control2X = midX
+        val control2Y = targetY
 
-        val control1X = lastX + dx * 0.25f
-        val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
-        val control2X = lastX + dx * 0.75f
-        val control2Y = lastY + dy * 0.75f - abs(dy) * 0.15f // 向上偏移减小，让控制点更偏下
         mRightPath.reset()
         if (targetPrice2 >= price) { //上涨
             mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
@@ -475,13 +476,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var targetY = max(topYInner, targetPriceY)
         targetY = min(targetY, bottomYInner)
 
-        val dx = targetX - lastX
-        val dy = targetY - lastY
+        val midX = (x + targetX)/2.0f
+        val control1X = midX
+        val control1Y = lastY
+        val control2X = midX
+        val control2Y = targetY
 
-        val control1X = lastX + dx * 0.25f
-        val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
-        val control2X = lastX + dx * 0.75f
-        val control2Y = lastY + dy * 0.75f - abs(dy) * 0.15f // 向上偏移减小，让控制点更偏下
         mRightPath.reset()
         if (targetPrice >= price) { //上涨
             mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
@@ -585,11 +585,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
         val dx = targetX - lastX
         val dy = targetY - lastY
-
-        val control1X = lastX + dx * 0.25f
-        val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
-        val control2X = lastX + dx * 0.75f
-        val control2Y = lastY + dy * 0.75f - abs(dy) * 0.15f // 向上偏移减小，让控制点更偏下
+        val midX = (x + targetX)/2.0f
+        val control1X = midX
+        val control1Y = lastY // 向下偏移减小，让控制点更往上
+        val control2X = midX
+        val control2Y = targetY // 向上偏移减小，让控制点更偏下
         mRightPath.reset()
         if (targetPrice2 >= price) { //上涨
             mRightPath.moveTo(lastX, lastY)
@@ -671,14 +671,13 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val targetX = drawWidth - 16.dp
         var targetY = max(topYInner, targetPriceY)
         targetY = min(targetY, bottomYInner)
-
         val dx = targetX - lastX
         val dy = targetY - lastY
-
-        val control1X = lastX + dx * 0.25f
-        val control1Y = lastY + dy * 0.25f + abs(dy) * 0.25f // 向下偏移减小，让控制点更往上
-        val control2X = lastX + dx * 0.75f
-        val control2Y = lastY + dy * 0.75f - abs(dy) * 0.15f // 向上偏移减小，让控制点更偏下
+        val midX = (x + targetX)/2.0f
+        val control1X = midX
+        val control1Y = lastY // 向下偏移减小，让控制点更往上
+        val control2X = midX
+        val control2Y = targetY // 向上偏移减小，让控制点更偏下
         mRightPath.reset()
         if (targetPrice >= price) { //上涨
             mRightPath.moveTo(lastX, lastY)
@@ -767,19 +766,22 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var targetY1 = max(topYInner, targetPriceY1)
         targetY1 = min(targetY1, bottomYInner)
 
+        val midX1 = (x + targetX1)/2.0f
+        val midX2 = (x + targetX2)/2.0f
+
         val dy1 = targetY1 - lastY
         val dx = targetX2 - lastX
         val dy2 = targetY2 - lastY
 
-        val control1X1 = lastX + dx * 0.25f
-        val control1Y1 = lastY + dy1 * 0.25f + abs(dy1) * 0.25f // 向下偏移减小，让控制点更往上
-        val control2X1 = lastX + dx * 0.75f
-        val control2Y1 = lastY + dy1 * 0.75f - abs(dy1) * 0.15f // 向上偏移减小，让控制点更偏下
+        val control1X1 = midX1
+        val control1Y1 = targetY2
+        val control2X1 = midX1
+        val control2Y1 = lastY // 向上偏移减小，让控制点更偏下
 
-        val control1X2 = lastX + dx * 0.25f
-        val control1Y2 = lastY + dy2 * 0.25f + abs(dy2) * 0.25f // 向下偏移减小，让控制点更往上
-        val control2X2 = lastX + dx * 0.75f
-        val control2Y2 = lastY + dy2 * 0.75f - abs(dy2) * 0.15f // 向上偏移减小，让控制点更偏下
+        val control1X2 = midX2
+        val control1Y2 = lastY
+        val control2X2 = midX2
+        val control2Y2 = targetY2 // 向上偏移减小，让控制点更偏下
 
         mRightPath.reset()
         mRightPath.moveTo(lastX, lastY)
