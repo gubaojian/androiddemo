@@ -452,7 +452,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             drawWidth,
             bottomYInner,
-            "#00FFFFFF".toColorInt(),
+            "#6600B8B8".toColorInt(),
             "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
@@ -531,10 +531,10 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
             endOffsetX,
-            bottomYInner,
-            drawWidth,
             0.0f,
-            "#00FFFFFF".toColorInt(),
+            drawWidth,
+            bottomYInner,
+            "#6600B8B8".toColorInt(),
             "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
