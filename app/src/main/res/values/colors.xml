@@ -20,6 +20,8 @@
     <color name="market_option_price_trend_linear_rect_start_color">#3300ADA2</color>
     <color name="market_option_price_trend_linear_rect_end_color">#CC00ADA2</color>
 
+    <color name="common_color_new_brand1">#00B8B8</color>
+    <color name="common_color_new_brand1_night">#00F0C4</color>
 
     <color name="date_linear_rect_price_down_start_color">#FF3A75</color>
     <color name="date_linear_rect_price_down_end_color">#00FFFFFF</color>
