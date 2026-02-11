@@ -19,6 +19,7 @@ import java.util.Locale
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+import androidx.core.graphics.toColorInt
 
 class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
@@ -324,6 +325,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val control2Y = targetY
 
         mRightPath.reset()
+        var linearGradient: LinearGradient
         if (targetPrice >= price) { //上涨
             mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
             mRightPath.lineTo(lastX, lastY)
@@ -331,6 +333,15 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 control1X, control1Y, control2X, control2Y, targetX, targetY
             )
             mRightPath.lineTo(targetX, topYInner)
+            linearGradient = LinearGradient(
+                endOffsetX,
+                0.0f,
+                drawWidth,
+                bottomYInner,
+                "#00FFFFFF".toColorInt(),
+                "#6600B8B8".toColorInt(),
+                Shader.TileMode.CLAMP
+            )
         } else {
             mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner)
             mRightPath.lineTo(lastX, lastY)
@@ -338,17 +349,18 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 control1X, control1Y, control2X, control2Y, targetX, targetY
             )
             mRightPath.lineTo(targetX, bottomYInner)
+            linearGradient = LinearGradient(
+                endOffsetX,
+                bottomYInner,
+                drawWidth,
+                0.0f,
+                "#00FFFFFF".toColorInt(),
+                "#6600B8B8".toColorInt(),
+                Shader.TileMode.CLAMP
+            )
         }
         mRightPath.close()
-        mGradientPaint.shader = LinearGradient(
-            0.0f,
-            0.0f,
-            drawWidth,
-            bottomYInner,
-            priceTrendRectStartColor,
-            priceTrendRectEndColor,
-            Shader.TileMode.CLAMP
-        )
+        mGradientPaint.shader = linearGradient
         canvas.drawPath(mRightPath, mGradientPaint)
         val dashPath = Path()
         dashPath.moveTo(lastX, lastY)
@@ -425,12 +437,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
-            0.0f,
+            endOffsetX,
             0.0f,
             drawWidth,
             bottomYInner,
-            priceTrendRectStartColor,
-            priceTrendRectEndColor,
+            "#00FFFFFF".toColorInt(),
+            "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -507,12 +519,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
-            0.0f,
-            0.0f,
-            drawWidth,
+            endOffsetX,
             bottomYInner,
-            priceTrendRectStartColor,
-            priceTrendRectEndColor,
+            drawWidth,
+            0.0f,
+            "#00FFFFFF".toColorInt(),
+            "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -605,12 +617,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
-            0.0f,
+            endOffsetX,
             0.0f,
             drawWidth,
             bottomYInner,
-            priceTrendRectStartColor,
-            priceTrendRectEndColor,
+            "#00FFFFFF".toColorInt(),
+            "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -686,14 +698,15 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
-            0.0f,
-            0.0f,
-            drawWidth,
+            endOffsetX,
             bottomYInner,
-            priceTrendRectStartColor,
-            priceTrendRectEndColor,
+            drawWidth,
+            0.0f,
+            "#00FFFFFF".toColorInt(),
+            "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
+
         canvas.drawPath(mRightPath, mGradientPaint)
         val dashPath = Path()
         dashPath.moveTo(lastX, lastY)
@@ -778,14 +791,15 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         )
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
-            0.0f,
+            endOffsetX,
             0.0f,
             drawWidth,
             bottomYInner,
-            priceTrendRectStartColor,
-            priceTrendRectEndColor,
+            "#00FFFFFF".toColorInt(),
+            "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
+
         canvas.drawPath(mRightPath, mGradientPaint)
         canvas.drawLine(
             16.dp, targetY1, drawWidth - 16.dp, targetY1, mDashPaint
@@ -872,12 +886,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         mRightPath.lineTo(targetX, bottomYInner)
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
-            0.0f,
+            endOffsetX,
             0.0f,
             drawWidth,
             bottomYInner,
-            priceTrendRectStartColor,
-            priceTrendRectEndColor,
+            "#6600B8B8".toColorInt(),
+            "#00FFFFFF".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -949,12 +963,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         mRightPath.lineTo(targetX, topYInner)
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
+            endOffsetX + 100.dp,
             0.0f,
-            0.0f,
-            drawWidth,
+            endOffsetX,
             bottomYInner,
-            priceTrendRectStartColor,
-            priceTrendRectEndColor,
+            "#00FFFFFF".toColorInt(),
+            "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)

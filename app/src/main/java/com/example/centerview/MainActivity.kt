@@ -77,6 +77,20 @@ class MainActivity : ComponentActivity() {
 
         proxy2.initData(points)
 
+        val proxy7 = OptionPriceDrawProxy(this)
+        proxy7.drawScene = "single_price_trend"
+        proxy7.targetTrendPrice = "100.0"
+        proxy7.targetPrice = 100.0f
+        binding.minuteCharts7.setDrawProxy(proxy7)
+        proxy7.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts7) {
+            override fun onDataChange() {
+                doOnDataChange()
+            }
+        }, binding.minuteCharts7)
+        binding.minuteCharts7.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
+        binding.minuteCharts7.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        proxy7.initData(points)
+
 
 
         val proxy3 = OptionPriceDrawProxy(this)
