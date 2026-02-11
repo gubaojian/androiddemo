@@ -631,7 +631,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             endOffsetX,
             0.0f,
             drawWidth,
-            bottomYInner,
+            0.0f,
             "#00FFFFFF".toColorInt(),
             "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
@@ -712,7 +712,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             endOffsetX,
             0.0f,
             drawWidth,
-            bottomYInner,
+            0.0f,
             "#00FFFFFF".toColorInt(),
             "#6600B8B8".toColorInt(),
             Shader.TileMode.CLAMP
