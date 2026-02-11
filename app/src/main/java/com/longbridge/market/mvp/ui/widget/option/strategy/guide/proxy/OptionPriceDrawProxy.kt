@@ -88,8 +88,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
     var yStartLabel = "09/05"
     var yEndLabel = "09/31"
-
     var yRectEndLabel = "09/31"
+    var yRectEndTopLabel = "in 28 days"
 
     var targetTrendPrice = "120.00"
     var targetPrice: Float = 120.0f
@@ -165,7 +165,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 248.dp - 2.dp - 40.dp
-        //canvas.drawLine(startOffsetX, topYInner, drawWidth - 16.dp, topYInner, mBottomLinePaint)
+        canvas.drawLine(startOffsetX, topYInner, drawWidth - 16.dp, topYInner, mBottomLinePaint)
         canvas.drawLine(0.dp, bottomYInner, drawWidth, bottomYInner, mBottomLinePaint)
     }
 
@@ -184,6 +184,13 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             yEndLabel, endOffsetX - yEndLabelWidth - 4.dp, bottomYInner + 16.dp, mYLabelTextPaint
         )
 
+        val yRectEndTopLabelWidth = mPriceTextPaint.measureText(yRectEndTopLabel)
+        canvas.drawText(
+            yRectEndTopLabel,
+            drawWidth - 16.dp - yRectEndTopLabelWidth - 4.dp,
+            bottomYInner - 4.dp,
+            mYLabelTextPaint
+        )
         val yRectEndLabelWidth = mRectTextPaint.measureText(yRectEndLabel)
         canvas.drawText(
             yRectEndLabel,
@@ -327,12 +334,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         mRightPath.reset()
         var linearGradient: LinearGradient
         if (targetPrice >= price) { //上涨
-            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
+            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner - 20.dp)
             mRightPath.lineTo(lastX, lastY)
             mRightPath.cubicTo(
                 control1X, control1Y, control2X, control2Y, targetX, targetY
             )
-            mRightPath.lineTo(targetX, topYInner)
+            mRightPath.lineTo(targetX, topYInner - 20.dp)
             linearGradient = LinearGradient(
                 endOffsetX,
                 0.0f,
@@ -343,12 +350,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 Shader.TileMode.CLAMP
             )
         } else {
-            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner)
+            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner + 20.dp)
             mRightPath.lineTo(lastX, lastY)
             mRightPath.cubicTo(
                 control1X, control1Y, control2X, control2Y, targetX, targetY
             )
-            mRightPath.lineTo(targetX, bottomYInner)
+            mRightPath.lineTo(targetX, bottomYInner + 20.dp)
             linearGradient = LinearGradient(
                 endOffsetX,
                 bottomYInner,
@@ -421,19 +428,19 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
         mRightPath.reset()
         if (targetPrice2 >= price) { //上涨
-            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
+            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner - 20.dp)
             mRightPath.lineTo(lastX, lastY)
             mRightPath.cubicTo(
                 control1X, control1Y, control2X, control2Y, targetX, targetY
             )
-            mRightPath.lineTo(targetX, topYInner)
+            mRightPath.lineTo(targetX, topYInner - 20.dp)
         } else {
-            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner)
+            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner + 20.dp)
             mRightPath.lineTo(lastX, lastY)
             mRightPath.cubicTo(
                 control1X, control1Y, control2X, control2Y, targetX, targetY
             )
-            mRightPath.lineTo(targetX, bottomYInner)
+            mRightPath.lineTo(targetX, bottomYInner + 20.dp)
         }
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
@@ -503,19 +510,19 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
         mRightPath.reset()
         if (targetPrice >= price) { //上涨
-            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
+            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner - 20.dp)
             mRightPath.lineTo(lastX, lastY)
             mRightPath.cubicTo(
                 control1X, control1Y, control2X, control2Y, targetX, targetY
             )
-            mRightPath.lineTo(targetX, topYInner)
+            mRightPath.lineTo(targetX, topYInner - 20.dp)
         } else {
-            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner)
+            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner + 20.dp)
             mRightPath.lineTo(lastX, lastY)
             mRightPath.cubicTo(
                 control1X, control1Y, control2X, control2Y, targetX, targetY
             )
-            mRightPath.lineTo(targetX, bottomYInner)
+            mRightPath.lineTo(targetX, bottomYInner + 20.dp)
         }
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
@@ -878,12 +885,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val control2Y = targetY
 
         mRightPath.reset()
-        mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner)
+        mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner + 20.dp)
         mRightPath.lineTo(lastX, lastY)
         mRightPath.cubicTo(
             control1X, control1Y, control2X, control2Y, targetX, targetY
         )
-        mRightPath.lineTo(targetX, bottomYInner)
+        mRightPath.lineTo(targetX, bottomYInner + 20.dp)
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
             endOffsetX,
@@ -955,12 +962,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val control2Y = targetY
 
         mRightPath.reset()
-        mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
+        mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner - 20.dp)
         mRightPath.lineTo(lastX, lastY)
         mRightPath.cubicTo(
             control1X, control1Y, control2X, control2Y, targetX, targetY
         )
-        mRightPath.lineTo(targetX, topYInner)
+        mRightPath.lineTo(targetX, topYInner - 20.dp)
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
             endOffsetX + 100.dp,
@@ -994,7 +1001,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         paint.getTextBounds(text, 0, text.length, textBounds)
         val textWidth = textBounds.width().toFloat()
         val textHeight = textBounds.height().toFloat()
-        val centerX = x - (textWidth + 8.dp) / 2 - 4.dp
+        val centerX = x - (textWidth + 8.dp) / 2 + 16.dp
         val centerY = y
         val rectLeft = centerX - (textWidth + 8.dp) / 2
         val rectTop = centerY - 20.dp / 2
@@ -1003,6 +1010,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val bgRectF = RectF()
         bgRectF.set(rectLeft, rectTop, rectRight, rectBottom)
         canvas.drawRoundRect(bgRectF, 6.dp, 6.dp, bgTextPaint)
+
+        val bgRect2 = RectF()
+        bgRect2.set(rectLeft + 20.dp, rectTop, rectRight, rectBottom)
+        canvas.drawRect(bgRect2, bgTextPaint)
+
         val fontMetrics = paint.fontMetrics
         val textBaseLineY = centerY - (fontMetrics.ascent + fontMetrics.descent) / 2f
         canvas.drawText(text, centerX - textWidth / 2, textBaseLineY, paint)
