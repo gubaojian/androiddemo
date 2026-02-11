@@ -109,7 +109,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawTwoPriceTrendPathForMoveAtLeastBottom(canvas, topY, bottomY)
         } else if (drawScene == "two_price_move_with_in") {
             drawTwoPriceTrendPathForMoveWithIn(canvas, topY, bottomY)
+        } else if (drawScene == "connect_options_premium_not_exceed") {
+            drawSinglePriceTrendPathNotExceed(canvas, topY, bottomY)
+        } else if (drawScene == "connect_options_premium_not_fall_below") {
+            drawSinglePriceTrendPathNotFallBelow(canvas, topY, bottomY)
         }
+
         drawLinePath(canvas, topY, bottomY)
         drawYLabel(canvas, topY, bottomY)
     }
@@ -849,6 +854,169 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             )
         }
     }
+
+    fun drawSinglePriceTrendPathNotExceed(
+        canvas: Canvas,
+        topY: Float,
+        bottomY: Float
+    ) {
+        var minPrice = Float.MAX_VALUE
+        var maxPrice = Float.MIN_VALUE
+        points.forEach {
+            val price = it.price.toFloatOrNull() ?: 0.0f
+            if (price < minPrice) {
+                minPrice = price
+            }
+            if (price > maxPrice) {
+                maxPrice = price
+            }
+        }
+
+        var startOffsetX = 16.dp + 2.dp
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
+        val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
+        val index = points.size - 1.0f
+        val point = points.last()
+        val price = point.price.toFloatOrNull() ?: 0.0f
+
+        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
+        val y =
+            bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
+        val targetPriceY =
+            bottomYInner - (bottomYInner - topYInner) * ((targetPrice - minPrice) / (maxPrice - minPrice))
+
+        val lastX = x
+        val lastY = y
+        val targetX = drawWidth - 16.dp
+        var targetY = max(topYInner, targetPriceY)
+        targetY = min(targetY, bottomYInner)
+
+        val dx = targetX - lastX
+        val dy = targetY - lastY
+
+        val midX = (x + targetX)/2.0f
+        val control1X = midX
+        val control1Y = lastY
+        val control2X = midX
+        val control2Y = targetY
+
+        mRightPath.reset()
+        mRightPath.moveTo(drawWidth - 100.dp - 16.dp, bottomYInner)
+        mRightPath.lineTo(lastX, lastY)
+        mRightPath.cubicTo(
+            control1X, control1Y,
+            control2X, control2Y, targetX,
+            targetY
+        )
+        mRightPath.lineTo(targetX, bottomYInner)
+        mRightPath.close()
+        mGradientPaint.shader = LinearGradient(
+            0.0f, 0.0f, drawWidth, bottomYInner,
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
+            Shader.TileMode.CLAMP
+        )
+        canvas.drawPath(mRightPath, mGradientPaint)
+        val dashPath = Path()
+        dashPath.moveTo(lastX, lastY)
+        dashPath.cubicTo(
+            control1X, control1Y,
+            control2X, control2Y, targetX,
+            targetY
+        )
+        canvas.drawPath(dashPath, mDashPaint)
+
+        val trendPriceWidth = mPriceTextPaint.measureText(targetTrendPrice)
+        canvas.drawText(
+            targetTrendPrice,
+            targetX - trendPriceWidth - 4.dp,
+            targetY,
+            mTrendPriceTextPaint
+        )
+    }
+
+    fun drawSinglePriceTrendPathNotFallBelow(
+        canvas: Canvas,
+        topY: Float,
+        bottomY: Float
+    ) {
+        var minPrice = Float.MAX_VALUE
+        var maxPrice = Float.MIN_VALUE
+        points.forEach {
+            val price = it.price.toFloatOrNull() ?: 0.0f
+            if (price < minPrice) {
+                minPrice = price
+            }
+            if (price > maxPrice) {
+                maxPrice = price
+            }
+        }
+
+        var startOffsetX = 16.dp + 2.dp
+        val endOffsetX = drawWidth - 100.dp - 16.dp
+        val topYInner = topY + 40.dp
+        val bottomYInner = 248.dp - 2.dp - 40.dp - 20.dp
+        val index = points.size - 1.0f
+        val point = points.last()
+        val price = point.price.toFloatOrNull() ?: 0.0f
+
+        val x = startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
+        val y =
+            bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
+        val targetPriceY =
+            bottomYInner - (bottomYInner - topYInner) * ((targetPrice - minPrice) / (maxPrice - minPrice))
+
+        val lastX = x
+        val lastY = y
+        val targetX = drawWidth - 16.dp
+        var targetY = max(topYInner, targetPriceY)
+        targetY = min(targetY, bottomYInner)
+
+        val dx = targetX - lastX
+        val dy = targetY - lastY
+
+        val midX = (x + targetX)/2.0f
+        val control1X = midX
+        val control1Y = lastY
+        val control2X = midX
+        val control2Y = targetY
+
+        mRightPath.reset()
+        mRightPath.moveTo(drawWidth - 100.dp - 16.dp, topYInner)
+        mRightPath.lineTo(lastX, lastY)
+        mRightPath.cubicTo(
+            control1X, control1Y,
+            control2X, control2Y, targetX,
+            targetY
+        )
+        mRightPath.lineTo(targetX, topYInner)
+        mRightPath.close()
+        mGradientPaint.shader = LinearGradient(
+            0.0f, 0.0f, drawWidth, bottomYInner,
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
+            Shader.TileMode.CLAMP
+        )
+        canvas.drawPath(mRightPath, mGradientPaint)
+        val dashPath = Path()
+        dashPath.moveTo(lastX, lastY)
+        dashPath.cubicTo(
+            control1X, control1Y,
+            control2X, control2Y, targetX,
+            targetY
+        )
+        canvas.drawPath(dashPath, mDashPaint)
+
+        val trendPriceWidth = mPriceTextPaint.measureText(targetTrendPrice)
+        canvas.drawText(
+            targetTrendPrice,
+            targetX - trendPriceWidth - 4.dp,
+            targetY,
+            mTrendPriceTextPaint
+        )
+    }
+
 
     override fun initPath(
         width: Float,

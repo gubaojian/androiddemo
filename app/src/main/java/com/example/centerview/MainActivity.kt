@@ -80,14 +80,9 @@ class MainActivity : ComponentActivity() {
 
 
         val proxy3 = OptionPriceDrawProxy(this)
-        proxy3.drawScene = "single_price_trend"
-        proxy3.targetTrendPrice = "120.0"
-        proxy3.targetPrice = 120.0f
-        proxy3.mLinePaint.color = ContextCompat.getColor(this, R.color.market_option_price_trend_down_color)
-        proxy3.mDashPaint.color = ContextCompat.getColor(this, R.color.market_option_price_trend_down_color)
-        proxy3.priceTrendRectStartColor = ContextCompat.getColor(this, R.color.price_down_trend_linear_rect_start_color)
-        proxy3.priceTrendRectEndColor = ContextCompat.getColor(this, R.color.price_down_trend_linear_rect_end_color)
-
+        proxy3.drawScene = "connect_options_premium_not_exceed"
+        proxy3.targetTrendPrice = "800.0"
+        proxy3.targetPrice = 800.0f
         binding.minuteCharts3.setDrawProxy(proxy3)
         proxy3.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts3) {
             override fun onDataChange() {
@@ -97,6 +92,20 @@ class MainActivity : ComponentActivity() {
         binding.minuteCharts3.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
         binding.minuteCharts3.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         proxy3.initData(points)
+
+        val proxy6 = OptionPriceDrawProxy(this)
+        proxy6.drawScene = "connect_options_premium_not_fall_below"
+        proxy6.targetTrendPrice = "100.0"
+        proxy6.targetPrice = 100.0f
+        binding.minuteCharts6.setDrawProxy(proxy6)
+        proxy6.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts6) {
+            override fun onDataChange() {
+                doOnDataChange()
+            }
+        }, binding.minuteCharts6)
+        binding.minuteCharts6.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
+        binding.minuteCharts6.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        proxy6.initData(points)
 
 
         val proxy4 = OptionPriceDrawProxy(this)
