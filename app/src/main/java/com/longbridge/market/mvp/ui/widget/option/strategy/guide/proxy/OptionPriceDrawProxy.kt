@@ -255,9 +255,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 canvas.drawLine(
                     16.dp, y, drawWidth - 16.dp, y, mDashPaint
                 )
-                val lastPrice =  String.format(Locale.getDefault(), "%s%.2f", "$", price)
+                val lastPrice = String.format(Locale.getDefault(), "%s%.2f", "$", price)
                 val lastPriceWidth = mPriceTextPaint.measureText(lastPrice)
-                val offsetX = (100.dp - lastPriceWidth)/2
+                val offsetX = (100.dp - lastPriceWidth) / 2
                 canvas.drawText(lastPrice, x + offsetX, y + 16.dp, mPriceTextPaint)
             }
         }
