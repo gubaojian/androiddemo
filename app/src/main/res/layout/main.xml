@@ -18,7 +18,7 @@
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts"
                 android:layout_width="match_parent"
-                android:layout_height="288dp"/>
+                android:layout_height="268dp"/>
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts2"
                 android:layout_width="match_parent"
-                android:layout_height="288dp"/>
+                android:layout_height="268dp"/>
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts7"
                 android:layout_width="match_parent"
-                android:layout_height="288dp"/>
+                android:layout_height="268dp"/>
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts1"
                 android:layout_width="match_parent"
-                android:layout_height="288dp"/>
+                android:layout_height="268dp"/>
 
 
             <TextView
@@ -56,7 +56,7 @@
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts4"
                 android:layout_width="match_parent"
-                android:layout_height="288dp"/>
+                android:layout_height="268dp"/>
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts5"
                 android:layout_width="match_parent"
-                android:layout_height="288dp"/>
+                android:layout_height="268dp"/>
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts3"
                 android:layout_width="match_parent"
-                android:layout_height="288dp"/>
+                android:layout_height="268dp"/>
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
@@ -83,7 +83,7 @@
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts6"
                 android:layout_width="match_parent"
-                android:layout_height="288dp"/>
+                android:layout_height="268dp"/>
         </LinearLayout>
     </ScrollView>
 
