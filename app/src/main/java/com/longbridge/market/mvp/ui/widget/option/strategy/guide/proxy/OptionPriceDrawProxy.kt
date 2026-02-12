@@ -275,8 +275,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         }
         canvas.drawPath(mLinePath, mLinePaint)
 
-        canvas.drawCircle(lastPointX, lastPointY, 6.dp, mSmallCirclePaint)
-        canvas.drawCircle(lastPointX, lastPointY, 10.dp, mBigCirclePaint)
+        canvas.drawCircle(lastPointX, lastPointY, 3.dp, mSmallCirclePaint)
+        canvas.drawCircle(lastPointX, lastPointY, 5.dp, mBigCirclePaint)
 
         val maxPriceLabelWidth = mPriceTextPaint.measureText(maxPriceLabel)
         if (maxX + 4.dp + maxPriceLabelWidth > (drawWidth - 16.dp)) {
