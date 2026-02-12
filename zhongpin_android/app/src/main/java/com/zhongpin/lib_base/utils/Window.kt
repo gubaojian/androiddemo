@@ -1,0 +1,58 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Mash Kyrielight <fiepi@live.com>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+ */
+package com.zhongpin.lib_base.utils;
+
+import android.os.Build
+import android.view.View
+import android.view.ViewGroup.MarginLayoutParams
+import androidx.core.graphics.Insets
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
+
+fun View.setOnApplyWindowInsetsListenerCompat(listener: (v: View, insets: WindowInsetsCompat) -> WindowInsetsCompat) {
+    ViewCompat.setOnApplyWindowInsetsListener(this, listener)
+}
+
+fun WindowInsetsCompat.getSafeDrawInsets(): Insets {
+    return getInsets(
+        WindowInsetsCompat.Type.systemBars()
+                or WindowInsetsCompat.Type.displayCutout()
+                or WindowInsetsCompat.Type.ime()
+    )
+}
+
+fun View.setupBottomPadding() {
+    //Build.VERSION_CODES.VANILLA_ICE_CREAM 35
+    if (Build.VERSION.SDK_INT < 35) {
+        return
+    }
+    val originalBottomPadding = paddingBottom
+    setOnApplyWindowInsetsListenerCompat { _, insets ->
+        val safeInsets = insets.getSafeDrawInsets()
+        updatePadding(bottom = originalBottomPadding + safeInsets.bottom)
+        insets
+    }
+}
+
+fun View.setupBottomMargin() {
+    //Build.VERSION_CODES.VANILLA_ICE_CREAM 35
+    if (Build.VERSION.SDK_INT < 35) {
+        return
+    }
+    val originalBottomMargin = (layoutParams as MarginLayoutParams).bottomMargin
+    setOnApplyWindowInsetsListenerCompat { _, insets ->
+        val safeInsets = insets.getSafeDrawInsets()
+        updateLayoutParams<MarginLayoutParams> {
+            bottomMargin = originalBottomMargin + safeInsets.bottom
+        }
+        insets
+    }
+}
+
+
+

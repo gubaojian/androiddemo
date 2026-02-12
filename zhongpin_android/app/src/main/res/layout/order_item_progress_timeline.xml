@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
+
+    <com.github.vipulasri.timelineview.TimelineView
+        android:id="@+id/timeline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:markerSize="20dp"
+        app:lineWidth="1dp"
+        app:startLineColor="#BABABA"
+        app:endLineColor="#BABABA"
+        app:markerInCenter="true"
+        app:lineStyle="dash"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:minHeight="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/dp_10">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeline_title"
+            android:text="接到订单"
+            android:textColor="#ff333333"
+            android:textSize="14dp"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timeline_date"
+            android:text="2025/3/20 18:30"
+            android:textColor="#ff999999"
+            android:textSize="14dp"/>
+    </LinearLayout>
+</LinearLayout>

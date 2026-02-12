@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <application
+        android:name="com.zhongpin.mvvm_android.MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
+        android:largeHeap="true"
+        android:hardwareAccelerated="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.App">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="9b9c7700a59396797881de3663f0f3d4"/>
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.LaunchTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.zhongpin.mvvm_android.ui.splash.SplashActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@style/Theme.Splash.Overlay">
+
+        </activity>
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:exported="false"
+            android:theme="@style/Theme.Login" />
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.register.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.find.FindPwdActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:theme="@style/Theme.White" />
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.setpwd.FindSetPwdActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Login" />
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.verify.person.PersonVerifyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Verify" />
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.verify.company.CompanyVerifyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Verify" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.submit.SubmitCompanyInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Verify" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.sign.CompanySignActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Verify" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.result.CompanySignResultActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Verify" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.web.WebActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.photo.preview.PhonePreviewerActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.App" />
+
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.order.preview.result.SubmitOrderPayResultActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.scan.ScanCaptureActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.App" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.CompanyListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.detail.CompanyDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.edit.EditCompanyVerifyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Verify" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.address.AddressListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.address.choose.ChooseAddressListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.address.add.AddReceiveAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Verify" />
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.address.edit.EditReceiveAddressActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Verify" />
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.notify.setting.NotifySettingActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.shouhuo.ConfirmShuoHuoActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Green" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.shouhuo.result.ShuoHuoSuccessActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Green" />
+
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.feedback.PingZhiFeedbackActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.feedback.chooseorder.FeedbackChooseOrderActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.detail.OrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.delivery.DeliveryDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.buy.PublishBuyActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.buy.detail.PublishBuyDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.buy.edit.EditPublishBuyDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.buy.add.AddPublishBuyDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.add.AddOrderActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.preview.PreviewAddOrderActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.preview.detail.PreviewOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.add.item.add.AddPurchaseItemActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.add.code.ChoosePlatCodeActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.search.list.OrderSearchListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.search.OrderSearchQueryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Gray" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.add.history.HistoryOrderSearchListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.add.history.search.HistoryOrderSearchQueryActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.feedback.list.FeedbackListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.feedback.list.search.FeedbackSearchQueryActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.feedback.detail.FeedbackDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.feedback.submit.SubmitFeedbackActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.feedback.list.OrderFeedbackListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.about.AboutActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.pay.PayAccountDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.pay.chargeinput.ChargeInputActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.pay.chargepay.ChargePayActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.pay.detail.PayBillDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.me.profile.UserProfileActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.me.profile.change.head.ChangeHeadImageActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.me.profile.change.nick.ChangeNickActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.me.profile.change.tip.ChangePhoneTipActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.me.profile.change.phone.ChangePhoneActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.mine.company.profile.CompanyProfileActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.mine.company.profile.change.ChangeCompanyContractActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.member.CompanyMemberListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.mine.company.member.search.CompanyMemberSearchQueryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Gray" />
+
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.mine.company.member.add.CompanyAddMemberActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White"
+            />
+
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.home.mineprice.MinePriceListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.home.mineprice.detail.MinePriceDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.home.platform.detail.PlatformPriceDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.home.platform.list.PlatformPriceListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.home.platform.list.search.PlatformPriceListSearchQueryActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:exported="false"
+            android:theme="@style/Theme.Gray" />
+
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.feedback.zhongcai.ApplyZhongCaiActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.purchaselist.PurchaseOrderListActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray" />
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.purchaselist.pay.PayPurchaseOrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.order.confirmreceipt.ConfirmReceiptOrderActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+
+        <activity android:name="com.zhongpin.mvvm_android.ui.order.confirmreceipt.result.ConfirmReceiptOrderPayResultActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.Gray"
+            />
+
+        <activity
+            android:name="com.zhilianshidai.pindan.app.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:taskAffinity="com.zhilianshidai.pindan.app"
+            android:theme="@style/Theme.Transparent"
+            android:launchMode="singleTask"/>
+
+
+        <activity
+            android:name="com.zhongpin.mvvm_android.ui.debug.DebugActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            android:theme="@style/Theme.White" />
+
+
+        <service android:name="com.zhongpin.mvvm_android.service.NotificationService"
+            android:foregroundServiceType="remoteMessaging"
+            android:exported="false"></service>
+
+        <service
+            android:name="com.amap.api.location.APSService"
+            android:foregroundServiceType="location" />
+
+
+
+    </application>
+    <queries package="${applicationId}">
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE">
+            </action>
+        </intent>
+        <intent>
+            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE">
+
+            </action>
+        </intent>
+        <intent>
+            <action android:name="*"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+        </intent>
+    </queries>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING" />
+    <!-- 去掉录音权限
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+
+    <!--- Android 13版本适配，细化存储权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Normal Permissions 不需要运行时注册 -->
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+
+    <!-- 请求网络 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- 不是SDK需要的权限，是示例中的后台唤醒定位需要的权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <!-- 需要运行时注册的权限 -->
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 用于提高GPS定位速度 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <!-- 更改设置 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <!--如果设置了target >= 28 如果需要启动后台定位则必须声明这个权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <!--如果您的应用需要后台定位权限，且有可能运行在Android Q设备上,并且设置了target>28，必须增加这个权限声明-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+
+
+</manifest>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginHorizontal="@dimen/dp_10"
+        android:background="@drawable/bg_home_item"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录后查看专属报价"
+            android:textColor="#ff333333"
+            android:textSize="14dp"
+            />
+        <TextView
+            android:id="@+id/homeItemLoginNow"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_32"
+            android:paddingHorizontal="@dimen/dp_12"
+            android:gravity="center"
+            android:background="@drawable/btn_blue_common_solid_selector"
+            android:text="立即登录"
+            android:textColor="#ffffffff"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            style="@style/RippleForeground"
+            />
+    </LinearLayout>
+</FrameLayout>

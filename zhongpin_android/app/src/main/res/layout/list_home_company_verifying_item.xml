@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_38"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/bg_home_company_verifying_item"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_marginStart="@dimen/dp_15"
+            android:layout_width="@dimen/dp_16"
+            android:layout_height="@dimen/dp_17"
+            android:src="@mipmap/home_company_verify_yellow_tag"/>
+        <TextView
+            android:id="@+id/companyStatusText"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企业认证：认证中"
+            android:textColor="#ff333333"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp"/>
+        <TextView
+            android:id="@+id/seeVerifyProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_24"
+            android:paddingHorizontal="@dimen/dp_18"
+            android:gravity="center"
+            android:background="@drawable/btn_yellow_common_solid_normal"
+            android:text="查看"
+            android:textColor="#ffffffff"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            style="@style/RippleForeground"
+            android:layout_marginEnd="@dimen/dp_10"
+            />
+    </LinearLayout>
+</FrameLayout>

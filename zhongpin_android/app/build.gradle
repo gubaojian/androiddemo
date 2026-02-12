@@ -1,0 +1,305 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('keystore/key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    namespace 'com.zhilianshidai.pindan.app'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.zhilianshidai.pindan.app"
+        minSdk 21
+        targetSdk 34
+        versionCode 5
+        versionName "1.0.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+       }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? rootProject.file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+
+        debug {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? rootProject.file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 重命名 apk
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (variant.buildType.name == "release") {
+                // 获取版本
+                def versionName = variant.versionName
+                def versionCode = variant.versionCode
+                // 设置新名称
+                def newApkName = "app_v${versionName}_${versionCode}.apk"
+                outputFileName = new File(newApkName)
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    /**
+     * https://developer.android.com/topic/libraries/view-binding?hl=zh-cn#java
+     * */
+    buildFeatures {
+        compose true
+        viewBinding true
+        buildConfig  true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.1'
+    }
+    packaging {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(":common")
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.lifecycle.runtime.ktx
+
+    implementation libs.androidx.activity.compose
+    implementation libs.androidx.appcompat
+    implementation("androidx.compose.foundation:foundation-layout:1.7.0")
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.androidx.ui
+    implementation libs.androidx.ui.graphics
+    implementation libs.androidx.ui.tooling.preview
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.process
+    implementation libs.androidx.swiperefreshlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation platform(libs.androidx.compose.bom)
+    androidTestImplementation libs.androidx.ui.test.junit4
+    debugImplementation libs.androidx.ui.tooling
+    debugImplementation libs.androidx.ui.test.manifest
+
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.compose.material3:material3:1.3.2")
+
+    //https://github.com/KingJA/LoadSir
+    implementation("com.kingja.loadsir:loadsir:1.3.8")
+
+    //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    //https://github.com/CymChad/BaseRecyclerViewAdapterHelper/wiki
+    implementation("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
+
+    // https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+
+
+    //网络请求
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //https://github.com/greenrobot/EventBus
+    implementation("org.greenrobot:eventbus:3.3.1")
+
+    //https://github.com/Tencent/MMKV
+    implementation 'com.tencent:mmkv:1.3.14'
+
+
+
+    //https://github.com/youth5201314/banner
+    implementation 'io.github.youth5201314:banner:2.2.3'
+
+
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+
+
+    //https://github.com/scwang90/SmartRefreshLayout
+    implementation  'io.github.scwang90:refresh-drawable-path:3.0.0-alpha'      //矢量路径
+    implementation  'io.github.scwang90:refresh-layout-kernel:3.0.0-alpha'      //核心必须依赖
+    implementation  'io.github.scwang90:refresh-header-classics:3.0.0-alpha'    //经典刷新头
+    implementation  'io.github.scwang90:refresh-header-radar:3.0.0-alpha'       //雷达刷新头
+    implementation  'io.github.scwang90:refresh-header-falsify:3.0.0-alpha'     //虚拟刷新头
+    implementation  'io.github.scwang90:refresh-header-material:3.0.0-alpha'    //谷歌刷新头
+    implementation  'io.github.scwang90:refresh-header-two-level:3.0.0-alpha'   //二级刷新头
+    implementation  'io.github.scwang90:refresh-footer-ball:3.0.0-alpha'        //球脉冲加载
+    implementation  'io.github.scwang90:refresh-footer-classics:3.0.0-alpha'
+
+
+
+    //https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
+    implementation 'com.blankj:utilcodex:1.31.1'
+
+
+    // PictureSelector basic (Necessary)
+    implementation 'io.github.lucksiege:pictureselector:v3.11.2'
+
+    // image compress library (Not necessary)
+    implementation 'io.github.lucksiege:compress:v3.11.2'
+
+    // uCrop library (Not necessary)
+    implementation 'io.github.lucksiege:ucrop:v3.11.2'
+
+    // simple camerax library (Not necessary)
+    implementation 'io.github.lucksiege:camerax:v3.11.2'
+
+    // https://mvnrepository.com/artifact/androidx.camera/camera-view
+    implementation("androidx.camera:camera-view:1.4.2")
+
+    // https://github.com/gzu-liyujiang/AndroidPicker
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.14'
+    implementation 'com.github.gzu-liyujiang.AndroidPicker:AddressPicker:4.1.14'
+
+    //https://github.com/Curzibn/Luban
+    //implementation 'top.zibin:Luban:1.1.8'
+
+    //https://github.com/gyf-dev/ImmersionBar
+    // 沉浸式导航栏，基础依赖包，必须要依赖
+    implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    // kotlin扩展（可选）
+    implementation 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
+    // fragment快速实现（可选）已废弃
+    implementation 'com.geyifeng.immersionbar:immersionbar-components:3.2.2'
+
+
+    //https://github.com/junixapp/XPopup?tab=readme-ov-file
+    implementation 'com.github.li-xiaojun:XPopup:2.10.0'
+
+    //https://github.com/airbnb/lottie-android
+    implementation 'com.airbnb.android:lottie:6.6.6'
+
+    //https://github.com/guolindev/PermissionX
+   //implementation 'com.guolindev.permissionx:permissionx:1.8.1'
+
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.github.getActivity:XXPermissions:25.2'
+
+    //https://github.com/JeremyLiao/LiveEventBus
+    implementation 'io.github.jeremyliao:live-event-bus-x:1.8.0'
+
+    //https://github.com/Baseflow/PhotoView
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+
+    //https://github.com/journeyapps/zxing-android-embedded
+    //https://blog.csdn.net/qq_29848853/article/details/131057600
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+
+    //https://github.com/hdodenhof/CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'com.kyleduo.switchbutton:library:2.1.0'
+
+    implementation 'org.java-websocket:Java-WebSocket:1.6.0'
+
+    implementation 'com.github.vipulasri:timelineview:1.2.2'
+
+    //集成 https://github.com/jenly1314/AppPay
+    // 微信支付
+    implementation 'com.github.jenly1314.AppPay:wxpay:2.1.0'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
+
+    // AliPay
+    implementation 'com.github.jenly1314.AppPay:alipay:2.1.0'
+
+    // UnionPay
+    //implementation 'com.github.jenly1314.AppPay:unionpay:2.1.0'
+
+    // AppPay
+    implementation 'com.github.jenly1314.AppPay:apppay:2.1.0'
+
+    //https://opendocs.alipay.com/common/02km9l
+    api 'com.alipay.sdk:alipaysdk-android:15.8.35'
+
+
+
+    //MagicIndicator
+    implementation("com.github.hackware1993:MagicIndicator:1.7.0")
+
+    implementation 'com.nex3z:flow-layout:1.3.3'
+
+
+    implementation 'com.alibaba.fastjson2:fastjson2:2.0.57.android5'
+
+
+    implementation 'com.tencent.bugly:crashreport:4.1.9.3'
+
+    // https://mvnrepository.com/artifact/com.amap.api/location
+    implementation("com.amap.api:location:6.4.9")
+
+
+    implementation 'com.xw.repo:xedittext-androidx:2.3.0'
+
+
+    implementation "io.reactivex.rxjava3:rxjava:3.1.11"
+
+
+}
+
+/**打印so在那个 aar中 */
+ /**
+tasks.configureEach {
+    task ->
+        if(task.name == 'mergeDebugNativeLibs') {
+            task.doFirst {
+                it.inputs.files.each { file ->
+                    printSoPath(new File(file.absolutePath))
+                }
+            }
+        }
+}
+def printSoPath(File file) {
+    if(file != null) {
+        if(file.isDirectory()) {
+            file.listFiles().each { printSoPath(it) }
+        } else if(file.absolutePath.endsWith(".so")) {
+            println("so file: ${file.absolutePath}")
+        }
+    }
+} */

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginEnd="7.5dp">
+        <com.zhongpin.mvvm_android.view.AspectRatioLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:arl_heightRatio="1"
+            app:arl_widthRatio="1">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#D8D8D8"
+                android:scaleType="centerCrop" />
+        </com.zhongpin.mvvm_android.view.AspectRatioLayout>
+    </FrameLayout>
+</FrameLayout>

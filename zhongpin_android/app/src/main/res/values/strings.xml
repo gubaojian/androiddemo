@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">拼华夏</string>
+
+    <string name="title_home">首页</string>
+    <string name="title_classify">订单</string>
+    <string name="title_cart">通知</string>
+    <string name="title_mine">我的</string>
+
+    <string name="stock">库存 %1$s 件</string>
+    <string name="edit">编辑</string>
+    <string name="finish">完成</string>
+    <string name="selected">已选：%1$s </string>
+    <string name="security">%1$s | ¥ %2$s</string>
+    <string name="cart_like">你可能还喜欢</string>
+    <string name="price">¥ %1$s</string>
+    <string name="cart_all_money">合计：¥ %1$s</string>
+    <string name="cart_coupon_money">优惠券：¥ %1$s &#160;&#8201;优惠明细</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

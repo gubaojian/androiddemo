@@ -1,0 +1,83 @@
+package com.zhongpin.mvvm_android.ui.mine.company.sign
+
+import androidx.lifecycle.MutableLiveData
+import com.zhongpin.mvvm_android.base.repository.BaseRepository
+import com.zhongpin.mvvm_android.base.viewstate.State
+import com.zhongpin.mvvm_android.bean.EntInfoResponse
+import com.zhongpin.mvvm_android.bean.IdCardInfoResponse
+import com.zhongpin.mvvm_android.bean.LatLntResponse
+import com.zhongpin.mvvm_android.bean.UserInfoResponse
+import com.zhongpin.mvvm_android.network.BaseResponse
+import com.zhongpin.mvvm_android.network.dataConvert
+import com.zhongpin.mvvm_android.network.requireLogin
+import com.zhongpin.mvvm_android.network.showLoadingState
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
+
+class CompanySignRepository(private val loadState: MutableLiveData<State>): BaseRepository() {
+
+    suspend fun loadBannerCo(): List<UserInfoResponse>? {
+        return apiService.getUserInfoCo().dataConvert(loadState)
+    }
+
+    suspend fun sendVerifyCode(mobile:String): BaseResponse<Boolean> {
+        return apiService.sendVerifyCo(hashMapOf(
+            "mobile" to mobile
+        )).requireLogin()
+    }
+
+    suspend fun submitEntInfoAuth(parameters:HashMap<String,Any>): BaseResponse<Long> {
+        return apiService.submitEntInfoAuth(parameters).requireLogin()
+    }
+
+    suspend fun getLntLngInfo(address: String): BaseResponse<LatLntResponse> {
+        return apiService.getLntLngInfo(address).requireLogin()
+    }
+
+    suspend fun uploadImage(filePath:String): BaseResponse<String> {
+        val file = File(filePath)
+        val requestFile =
+            RequestBody.create(MultipartBody.FORM, file)
+        // MultipartBody.Part is used to send also the actual file name
+        // https://stackoverflow.com/questions/39953457/how-to-upload-an-image-file-in-retrofit-2
+        val filePart: MultipartBody.Part =
+            MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+        return apiService.uploadImage(filePart).requireLogin()
+    }
+
+    suspend fun identifyEntInfo(filePath:String): BaseResponse<EntInfoResponse> {
+        val file = File(filePath)
+        val requestFile =
+            RequestBody.create(MultipartBody.FORM, file)
+        // MultipartBody.Part is used to send also the actual file name
+        // https://stackoverflow.com/questions/39953457/how-to-upload-an-image-file-in-retrofit-2
+        val filePart: MultipartBody.Part =
+            MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+        return apiService.identifyEntCard(filePart).requireLogin()
+    }
+
+    suspend fun identifyIdCardInfo(filePath:String): BaseResponse<IdCardInfoResponse> {
+        val file = File(filePath)
+        val requestFile =
+            RequestBody.create(MultipartBody.FORM, file)
+        // MultipartBody.Part is used to send also the actual file name
+        // https://stackoverflow.com/questions/39953457/how-to-upload-an-image-file-in-retrofit-2
+        val filePart: MultipartBody.Part =
+            MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+        return apiService.identifyIdCard(filePart).requireLogin()
+    }
+
+    suspend fun editEntInfoAuth(parameters:HashMap<String,Any>): BaseResponse<Boolean> {
+        return apiService.editEntInfoAuth(parameters).requireLogin()
+    }
+
+    suspend fun signEntInfoAuth(parameters:HashMap<String,Any>): BaseResponse<Boolean> {
+        return apiService.signEntInfoAuth(parameters).requireLogin()
+    }
+
+
+}

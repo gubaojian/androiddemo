@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+  <LinearLayout
+      android:id="@+id/empty_add_order_purchase_item"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:background="@drawable/bg_item_form"
+      android:layout_marginHorizontal="@dimen/dp_10"
+      android:gravity="center_horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginVertical="@dimen/dp_34">
+      <ImageView
+          android:layout_width="@dimen/dp_16"
+          android:layout_height="@dimen/dp_16"
+          android:src="@mipmap/blue_plus"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="20dp"
+          android:text="添加"
+          android:textColor="#ff557ef7"
+          android:textSize="14dp"
+          android:textStyle="bold"
+          />
+    </LinearLayout>
+  </LinearLayout>
+</FrameLayout>

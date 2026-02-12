@@ -73,4 +73,7 @@ dependencies {
 
     // optional - Jetpack Compose integration
     implementation("androidx.paging:paging-compose:3.4.1")
+
+    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation("com.google.android.material:material:1.13.0")
 }

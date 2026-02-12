@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.zhongpin.mvvm_android.ui.mine.company.CompanyListActivity">
+        <LinearLayout
+            android:id="@+id/toolbar"
+            style="@style/AppTheme.Toolbar"
+            android:background="@color/transparent">
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/back_black" />
+            <TextView
+                android:id="@+id/iv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发布纸板采购"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="#333333"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/uploadTips"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_64"
+            android:padding="@dimen/dp_15"
+            android:text="温馨提示：本功能目前只支持图片上传，由平台客服人员为您发布采购订单内容，发布成功后您可在“订单”中查看"
+            android:textColor="#ffd34545"
+            android:textSize="12dp"
+            android:gravity="center_vertical|left"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F9F9F9"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                app:tabIndicatorHeight="0dp"
+                app:tabSelectedTextColor="@android:color/black"
+                app:tabTextColor="@android:color/darker_gray" />
+
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#F9F9F9"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@color/white">
+            <Button
+                android:id="@+id/publish_button"
+                android:layout_width="135dp"
+                android:layout_height="@dimen/dp_42"
+                android:background="@drawable/btn_common_solid_selector"
+                android:padding="7dp"
+                android:paddingTop="7dp"
+                android:text="发布采购"
+                android:textColor="@android:color/white"
+                android:textSize="16dp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
