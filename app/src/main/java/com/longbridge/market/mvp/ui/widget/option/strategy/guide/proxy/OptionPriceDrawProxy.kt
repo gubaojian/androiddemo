@@ -10,7 +10,7 @@ import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.Shader
 import androidx.core.content.ContextCompat
-import com.example.centerview.R
+import com.longbridge.market.R
 import com.longbridge.common.kotlin.expansion.dp
 import com.longbridge.common.uiLib.chart.minutes.MinutesDrawProxy
 import com.longbridge.core.comm.FApp
@@ -40,6 +40,16 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
     val mGradientPaint = Paint().apply {
         style = Paint.Style.FILL
+    }
+
+    val mSmallCirclePaint = Paint().apply {
+        style = Paint.Style.FILL
+        color = ContextCompat.getColor(context, R.color.common_color_new_brand1)
+    }
+
+    val mBigCirclePaint = Paint().apply {
+        style = Paint.Style.FILL
+        color = ContextCompat.getColor(context, R.color.common_color_new_brand1_26)
     }
 
     val mPriceTextPaint = Paint().apply {
@@ -225,6 +235,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var maxY = 0.0f
         var maxPriceLabel: String = ""
         var minPriceLabel: String = ""
+        var lastPointX = 0.0f
+        var lastPointY = 0.0f
+        var lastPointPrice = 0.0f
         mLinePath.reset()
         points.forEachIndexed { index, point ->
             val price = point.price.toFloatOrNull() ?: 0.0f
@@ -252,16 +265,18 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 }
             }
             if (index == points.size - 1) {
+                lastPointX = x;
+                lastPointY = y
+                lastPointPrice = price
                 canvas.drawLine(
                     16.dp, y, drawWidth - 16.dp, y, mDashPaint
                 )
-                val lastPrice = String.format(Locale.getDefault(), "%s%.2f", "$", price)
-                val lastPriceWidth = mPriceTextPaint.measureText(lastPrice)
-                val offsetX = (100.dp - lastPriceWidth) / 2
-                canvas.drawText(lastPrice, x + offsetX, y + 16.dp, mPriceTextPaint)
             }
         }
         canvas.drawPath(mLinePath, mLinePaint)
+
+        canvas.drawCircle(lastPointX, lastPointY, 6.dp, mSmallCirclePaint)
+        canvas.drawCircle(lastPointX, lastPointY, 10.dp, mBigCirclePaint)
 
         val maxPriceLabelWidth = mPriceTextPaint.measureText(maxPriceLabel)
         if (maxX + 4.dp + maxPriceLabelWidth > (drawWidth - 16.dp)) {
@@ -270,6 +285,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             canvas.drawText(maxPriceLabel, maxX + 4.dp, maxY, mPriceTextPaint)
         }
 
+        val lastPrice = String.format(Locale.getDefault(), "%s%.2f", "$", lastPointPrice)
+        val lastPriceWidth = mPriceTextPaint.measureText(lastPrice)
+        val offsetX = (100.dp - lastPriceWidth) / 2
+        canvas.drawText(lastPrice, lastPointX + offsetX, lastPointY + 16.dp, mPriceTextPaint)
+        
         val minPriceLabelWidth = mPriceTextPaint.measureText(minPriceLabel)
         canvas.drawText(minPriceLabel, minX - minPriceLabelWidth - 4.dp, minY, mPriceTextPaint)
     }

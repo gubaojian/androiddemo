@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.centerview"
+    namespace = "com.longbridge.market"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.centerview"
+        applicationId = "com.longbridge.market"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

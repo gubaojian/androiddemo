@@ -1,7 +1,7 @@
 package com.longbridge.common.uiLib.chart.minutes
 
 import androidx.core.content.ContextCompat
-import com.example.centerview.R
+import com.longbridge.market.R
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration

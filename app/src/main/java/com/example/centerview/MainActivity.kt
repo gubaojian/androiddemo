@@ -9,7 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.content.ContextCompat
 import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.KLinePoint
 import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.OptionPriceDrawProxy
-import com.example.centerview.databinding.MainBinding
+import com.longbridge.market.databinding.MainBinding
 import com.longbridge.common.uiLib.chart.minutes.MinutesChart
 import com.longbridge.core.comm.FApp
 import java.util.Locale
