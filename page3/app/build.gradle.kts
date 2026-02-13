@@ -76,4 +76,9 @@ dependencies {
 
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("com.google.android.material:material:1.13.0")
+    implementation("androidx.webkit:webkit:1.15.0")
+    implementation("androidx.sharetarget:sharetarget:1.2.0")
+    implementation("androidx.profileinstaller:profileinstaller:1.4.1")
+
+    implementation("androidx.metrics:metrics-performance:1.0.0")
 }
