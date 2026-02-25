@@ -112,7 +112,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
     override fun onDraw(
         canvas: Canvas, topY: Float, bottomY: Float, customTitleHeight: Float
     ) {
-        if (points.size <= 2) {
+
+        var realPointSize = 0
+        points.forEach {
+            if (!it.isVirtualPoint) {
+                realPointSize++
+            }
+        }
+        if (realPointSize < 2) {
             return
         }
         drawBottomLineLabel(canvas, topY, bottomY)
@@ -147,6 +154,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             var minPrice = Float.MAX_VALUE
             var maxPrice = Float.MIN_VALUE
             points.forEach {
+                if (it.isVirtualPoint) {
+                    return@forEach
+                }
                 val price = it.price.toFloatOrNull() ?: 0.0f
                 if (price < minPrice) {
                     minPrice = price
@@ -216,6 +226,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price
@@ -239,13 +252,22 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var lastPointY = 0.0f
         var lastPointPrice = 0.0f
         mLinePath.reset()
+        var virtualPointSize = 0
+        points.forEach { point ->
+            if (point.isVirtualPoint) {
+                virtualPointSize++
+            }
+        }
         points.forEachIndexed { index, point ->
+            if (index < virtualPointSize) {
+                return@forEachIndexed
+            }
             val price = point.price.toFloatOrNull() ?: 0.0f
             val x =
                 startOffsetX + (endOffsetX - startOffsetX) * index / (points.size.toFloat() - 1.0f)
             val y =
                 bottomYInner - (bottomYInner - topYInner) * ((price - minPrice) / (maxPrice - minPrice))
-            if (index == 0) {
+            if (index == 0 || index - virtualPointSize == 0) {
                 mLinePath.moveTo(x, y)
             } else {
                 mLinePath.lineTo(x, y)
@@ -317,6 +339,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price
@@ -415,6 +440,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price
@@ -497,6 +525,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price
@@ -595,6 +626,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price
@@ -677,6 +711,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price
@@ -759,6 +796,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price
@@ -870,6 +910,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price
@@ -947,6 +990,9 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         var minPrice = Float.MAX_VALUE
         var maxPrice = Float.MIN_VALUE
         points.forEach {
+            if (it.isVirtualPoint) {
+                return@forEach
+            }
             val price = it.price.toFloatOrNull() ?: 0.0f
             if (price < minPrice) {
                 minPrice = price

@@ -84,6 +84,15 @@
                 android:id="@+id/minuteCharts6"
                 android:layout_width="match_parent"
                 android:layout_height="268dp"/>
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="示例8"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteCharts8"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
         </LinearLayout>
     </ScrollView>
 

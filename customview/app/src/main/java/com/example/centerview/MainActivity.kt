@@ -160,6 +160,31 @@ class MainActivity : ComponentActivity() {
 
 
 
+        val points2: MutableList<KLinePoint> = mutableListOf();
+        for (i in 0 until 100) {
+            if (i < 50) {
+                val price = ((Math.random()*1000).toInt()).toString()
+                points2.add(KLinePoint(
+                    price = "0.0",
+                    isVirtualPoint = true
+                 ))
+            } else {
+                val price = ((Math.random()*1000).toInt()).toString()
+                points2.add(KLinePoint(price = price))
+            }
+        }
+
+        val proxy8 = OptionPriceDrawProxy(this)
+        proxy8.drawScene = "choose_date"
+        binding.minuteCharts8.setDrawProxy(proxy8)
+        proxy8.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts8) {
+            override fun onDataChange() {
+                doOnDataChange()
+            }
+        }, binding.minuteCharts)
+        binding.minuteCharts8.measure(MeasureSpec.AT_MOST,MeasureSpec.EXACTLY)
+        binding.minuteCharts8.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        proxy8.initData(points2)
 
 
 
