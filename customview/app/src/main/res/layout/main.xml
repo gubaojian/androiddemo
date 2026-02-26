@@ -23,7 +23,7 @@
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="示例三"/>
+                android:text="示例二"/>
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts2"
                 android:layout_width="match_parent"

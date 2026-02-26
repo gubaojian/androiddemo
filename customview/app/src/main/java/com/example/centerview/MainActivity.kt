@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
 
 
         val proxy2 = OptionPriceDrawProxy(this)
-        proxy2.drawScene = "single_price_trend"
+        proxy2.drawScene = "price_up"
         proxy2.targetTrendPrice = "1200.0"
         proxy2.targetPrice = 1200.0f
         binding.minuteCharts2.setDrawProxy(proxy2)
@@ -78,7 +78,7 @@ class MainActivity : ComponentActivity() {
         proxy2.initData(points)
 
         val proxy7 = OptionPriceDrawProxy(this)
-        proxy7.drawScene = "single_price_trend"
+        proxy7.drawScene = "price_down"
         proxy7.targetTrendPrice = "100.0"
         proxy7.targetPrice = 100.0f
         binding.minuteCharts7.setDrawProxy(proxy7)
@@ -94,7 +94,7 @@ class MainActivity : ComponentActivity() {
 
 
         val proxy3 = OptionPriceDrawProxy(this)
-        proxy3.drawScene = "connect_options_premium_not_exceed"
+        proxy3.drawScene = "connect_options_premium_long"
         proxy3.targetTrendPrice = "800.0"
         proxy3.targetPrice = 800.0f
         binding.minuteCharts3.setDrawProxy(proxy3)
@@ -108,7 +108,7 @@ class MainActivity : ComponentActivity() {
         proxy3.initData(points)
 
         val proxy6 = OptionPriceDrawProxy(this)
-        proxy6.drawScene = "connect_options_premium_not_fall_below"
+        proxy6.drawScene = "connect_options_premium_short"
         proxy6.targetTrendPrice = "100.0"
         proxy6.targetPrice = 100.0f
         binding.minuteCharts6.setDrawProxy(proxy6)
