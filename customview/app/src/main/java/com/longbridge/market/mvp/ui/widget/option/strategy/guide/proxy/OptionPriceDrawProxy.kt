@@ -127,10 +127,10 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         if (realPointSize < 2) {
             return
         }
+        calculateMinMaxYPrice()
         if (sourceMaxPrice == sourceMinPrice) {
             return
         }
-        calculateMinMaxYPrice()
         drawBottomLineLabel(canvas, topY, bottomY)
         if (drawScene == "choose_date") {
             drawChooseDateRightPath(canvas, topY, bottomY)
@@ -185,6 +185,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             yMinPrice = minPrice
         }
     }
+
     fun drawBottomLineLabel(
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
