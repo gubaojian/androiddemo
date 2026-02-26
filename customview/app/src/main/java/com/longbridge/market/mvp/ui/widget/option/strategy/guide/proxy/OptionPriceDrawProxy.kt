@@ -306,7 +306,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas.drawText(lastPrice, lastPointX + offsetX, lastPointY + 16.dp, mPriceTextPaint)
 
         val minPriceLabelWidth = mPriceTextPaint.measureText(minPriceLabel)
-        canvas.drawText(minPriceLabel, minX - minPriceLabelWidth - 4.dp, minY, mPriceTextPaint)
+        var minPriceLabelX = minX - minPriceLabelWidth - 4.dp
+        if (minPriceLabelX <= 4.dp) {
+            minPriceLabelX = 4.dp
+        }
+        canvas.drawText(minPriceLabel, minPriceLabelX, minY, mPriceTextPaint)
     }
 
     fun drawChooseDateRightPath(
