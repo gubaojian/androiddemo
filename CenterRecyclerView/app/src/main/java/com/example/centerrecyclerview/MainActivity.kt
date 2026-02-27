@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         binding.centerRecyclerView.layoutManager = layoutManager
 
         // 3. 设置适配器（这里用简单的字符串列表示例，你需替换为自己的适配器）
-        val data = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+        val data = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 4", "Item 5", "Item 4", "Item 5")
         binding.centerRecyclerView.adapter = SimpleAdapter(data)
         val padding = (resources.displayMetrics.widthPixels - 140*resources.displayMetrics.density)/2
         binding.centerRecyclerView.setPadding(padding.toInt(),0,padding.toInt(), 0)
@@ -32,10 +32,10 @@ class MainActivity : ComponentActivity() {
 
         val mCardScaleHelper = CardScaleHelper()
         //图片间距(dp)
-        val mPagePadding = 25
+        val mPagePadding = 0
 
         //左右侧显示宽度(dp)
-        val mShowLeftCardWidth = 65
+        val mShowLeftCardWidth = 0
         mCardScaleHelper.setPagePadding(mPagePadding)
         mCardScaleHelper.setShowLeftCardWidth(mShowLeftCardWidth)
 
