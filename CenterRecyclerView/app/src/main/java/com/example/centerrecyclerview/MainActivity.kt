@@ -1,14 +1,15 @@
 package com.example.centerrecyclerview
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.ComponentActivity
-import androidx.activity.enableEdgeToEdge
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.centerrecyclerview.databinding.MainBinding
 import com.view.jameson.library.CardScaleHelper
+import github.hellocsl.gallerylayoutmanager.layout.impl.ScaleTransformer
+import github.hellocsl.layoutmanager.gallery.GalleryLayoutManager
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,20 @@ class MainActivity : ComponentActivity() {
         mCardScaleHelper.setScale(1.0f)
         mCardScaleHelper.setCurrentItemPos(0)
         mCardScaleHelper.attachToRecyclerView(binding.centerRecyclerView)
+
+
+        val galleryLayoutManager = GalleryLayoutManager(GalleryLayoutManager.HORIZONTAL)
+        galleryLayoutManager.setOnItemSelectedListener { recyclerView, item, position ->
+            Log.e("OnItemSelectedListener", "OnItemSelectedListener " + position)
+        }
+        galleryLayoutManager.attach(binding.recyclerView2, 0)
+        galleryLayoutManager.setItemTransformer(ScaleTransformer())
+        binding.recyclerView2.layoutManager = galleryLayoutManager
+
+        // 3. 设置适配器（这里用简单的字符串列表示例，你需替换为自己的适配器）
+        binding.recyclerView2.adapter = SimpleAdapter(data)
+
+
 
         setContentView(binding.root)
 
