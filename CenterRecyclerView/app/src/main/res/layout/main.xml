@@ -16,20 +16,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/centerRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:clipToPadding="false"
-        android:overScrollMode="never"/>
+        android:layout_height="100dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="10dp"
         android:id="@+id/recyclerView2"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:clipToPadding="false"
-        android:overScrollMode="never"/>
+        android:layout_height="100dp"/>
 
 </LinearLayout>

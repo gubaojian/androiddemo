@@ -24,8 +24,8 @@ class MainActivity : ComponentActivity() {
         // 3. 设置适配器（这里用简单的字符串列表示例，你需替换为自己的适配器）
         val data = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 4", "Item 5", "Item 4", "Item 5")
         binding.centerRecyclerView.adapter = SimpleAdapter(data)
-        val padding = (resources.displayMetrics.widthPixels - 140*resources.displayMetrics.density)/2
-        binding.centerRecyclerView.setPadding(padding.toInt(),0,padding.toInt(), 0)
+        //val padding = (resources.displayMetrics.widthPixels - 140*resources.displayMetrics.density)/2
+        //binding.centerRecyclerView.setPadding(padding.toInt(),0,padding.toInt(), 0)
         // 4. 核心：添加 LinearSnapHelper 实现吸附效果
         //val snapHelper = LinearSnapHelper()
         //snapHelper.attachToRecyclerView(binding.centerRecyclerView)
@@ -61,6 +61,25 @@ class MainActivity : ComponentActivity() {
         setContentView(binding.root)
 
 
+    }
+
+    class CardSimpleAdapter(private val data: List<String>) :
+        RecyclerView.Adapter<CardSimpleAdapter.ViewHolder>() {
+
+        class ViewHolder(itemView: android.view.View) : RecyclerView.ViewHolder(itemView) {
+        }
+
+        override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ViewHolder {
+            val view = android.view.LayoutInflater.from(parent.context)
+                .inflate(R.layout.date_item, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        }
+
+        override fun getItemCount() = data.size
     }
 
     class SimpleAdapter(private val data: List<String>) :
