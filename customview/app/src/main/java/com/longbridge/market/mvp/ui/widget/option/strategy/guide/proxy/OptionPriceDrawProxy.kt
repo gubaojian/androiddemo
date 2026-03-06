@@ -177,12 +177,34 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val lastPointPrice = lastPoint.price.toFloatOrNull() ?: 0.0f
         sourceMaxPrice = maxPrice
         sourceMinPrice = minPrice
-        if (maxPrice - lastPointPrice > lastPointPrice - minPrice) {
-            yMaxPrice = maxPrice
-            yMinPrice = lastPointPrice - (maxPrice - lastPointPrice)
-        } else {
-            yMaxPrice = lastPointPrice + (lastPointPrice - minPrice)
-            yMinPrice = minPrice
+        /**
+         * if (maxPrice - lastPointPrice > lastPointPrice - minPrice) {
+         *             yMaxPrice = maxPrice
+         *             yMinPrice = lastPointPrice - (maxPrice - lastPointPrice)
+         *         } else {
+         *             yMaxPrice = lastPointPrice + (lastPointPrice - minPrice)
+         *             yMinPrice = minPrice
+         *         }
+         *
+         * */
+        yMaxPrice = sourceMaxPrice
+        yMinPrice = sourceMinPrice
+        if (drawScene != "choose_date" && drawScene.isNotEmpty()) {
+            var adjustScalePrice = false
+            if (drawScene == "two_price_move_at_least" || drawScene == "two_price_move_with_in") {
+                if (yMinPrice > targetPrice || yMaxPrice < targetPrice2) {
+                    adjustScalePrice = true
+                }
+            } else {
+                if (yMinPrice > targetPrice || yMaxPrice < targetPrice) {
+                    adjustScalePrice = true
+                }
+            }
+            if (adjustScalePrice) {
+                val adjustValue = (yMaxPrice - yMinPrice) / 2
+                yMaxPrice += adjustValue
+                yMinPrice -= adjustValue
+            }
         }
     }
 
@@ -303,7 +325,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val lastPrice = String.format(Locale.getDefault(), "%s%.2f", "$", lastPointPrice)
         val lastPriceWidth = mPriceTextPaint.measureText(lastPrice)
         val offsetX = (100.dp - lastPriceWidth) / 2
-        canvas.drawText(lastPrice, lastPointX + offsetX, lastPointY + 16.dp, mPriceTextPaint)
+        var lastPricePointY = lastPointY + 16.dp
+        if (lastPricePointY > maxY - 16.dp) {
+            lastPricePointY = maxY - 16.dp
+        }
+        canvas.drawText(lastPrice, lastPointX + offsetX, lastPricePointY, mPriceTextPaint)
 
         val minPriceLabelWidth = mPriceTextPaint.measureText(minPriceLabel)
         var minPriceLabelX = minX - minPriceLabelWidth - 4.dp

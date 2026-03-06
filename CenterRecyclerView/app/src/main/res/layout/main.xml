@@ -18,10 +18,19 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="10dp"
-        android:id="@+id/recyclerView2"
+    <FrameLayout
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        android:layout_height="100dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+        <View
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/select_background"/>
+    </FrameLayout>
 
 </LinearLayout>
