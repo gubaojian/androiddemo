@@ -23,6 +23,15 @@
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="示例分时"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteChartsMinutes"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="示例二"/>
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts2"
@@ -32,9 +41,48 @@
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="示例二分时"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteCharts2Minutes"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="示例七"/>
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts7"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
+
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="示例七分时"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteCharts7Minutes"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
+
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="示例四"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteCharts4"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
+
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="示例四分时"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteCharts4Minutes"
                 android:layout_width="match_parent"
                 android:layout_height="268dp"/>
             <TextView
@@ -47,23 +95,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="268dp"/>
 
-
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="示例四"/>
+                android:text="示例一分时"/>
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
-                android:id="@+id/minuteCharts4"
+                android:id="@+id/minuteCharts1Minutes"
                 android:layout_width="match_parent"
                 android:layout_height="268dp"/>
             <TextView
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="示例五"/>
+                android:text="示例五分时"/>
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts5"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteCharts5Minutes"
                 android:layout_width="match_parent"
                 android:layout_height="268dp"/>
             <TextView
@@ -79,9 +130,27 @@
                 android:layout_marginTop="100dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="示例三分时"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteCharts3Minutes"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="示例六"/>
             <com.longbridge.common.uiLib.chart.minutes.MinutesChart
                 android:id="@+id/minuteCharts6"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"/>
+            <TextView
+                android:layout_marginTop="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="示例六分时"/>
+            <com.longbridge.common.uiLib.chart.minutes.MinutesChart
+                android:id="@+id/minuteCharts6Minutes"
                 android:layout_width="match_parent"
                 android:layout_height="268dp"/>
             <TextView
