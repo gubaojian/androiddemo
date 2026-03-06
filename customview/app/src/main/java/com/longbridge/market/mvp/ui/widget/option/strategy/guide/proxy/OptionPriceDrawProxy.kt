@@ -95,19 +95,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         ContextCompat.getColor(context, R.color.market_option_price_trend_linear_rect_end_color)
 
     var points: MutableList<KLinePoint> = mutableListOf()
-
-    var lineType : Int = kLineTypeNormal // 0 日k，月k， 1 分时
-
+    var lineType: Int = kLineTypeNormal // 0 日k，月k， 1 分时
     var xAlisRatio = 1.0f
     var xAlisStartX = 0.0f
     var xAlisEndX = 0.0f
-
     var yMinPrice = 0.0f
     var yMaxPrice = 0.0f
-
     var sourceMinPrice = 0.0f
     var sourceMaxPrice = 0.0f
-
     var yStartLabel = "09/05"
     var yEndLabel = "09/31"
     var yRectEndLabel = "09/31"
@@ -208,16 +203,16 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             val endOffsetX = drawWidth - 32.dp - 16.dp
             val maxPointSize = 390.0f
             if (points.size >= maxPointSize) {
-                xAlisRatio = (endOffsetX - startOffsetX)/(points.size.toFloat() - 1.0f)
+                xAlisRatio = (endOffsetX - startOffsetX) / (points.size.toFloat() - 1.0f)
             } else {
-                xAlisRatio = (endOffsetX - startOffsetX)/maxPointSize
+                xAlisRatio = (endOffsetX - startOffsetX) / maxPointSize
             }
             xAlisStartX = startOffsetX
             xAlisEndX = endOffsetX
         } else {
             var startOffsetX = 16.dp + 2.dp
             val endOffsetX = drawWidth - 100.dp - 16.dp
-            xAlisRatio = (endOffsetX - startOffsetX)/(points.size.toFloat() - 1.0f)
+            xAlisRatio = (endOffsetX - startOffsetX) / (points.size.toFloat() - 1.0f)
             xAlisStartX = startOffsetX
             xAlisEndX = endOffsetX
         }
@@ -341,7 +336,10 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
         val lastPrice = String.format(Locale.getDefault(), "%s%.2f", "$", lastPointPrice)
         val lastPriceWidth = mPriceTextPaint.measureText(lastPrice)
-        val offsetX = (100.dp - lastPriceWidth) / 2
+        var offsetX = (100.dp - lastPriceWidth) / 2
+        if (lineType == kLineTypeMinute) {
+            offsetX = 4.dp
+        }
         var lastPricePointY = lastPointY + 16.dp
         if (lastPricePointY > bottomYInner - 16.dp) {
             lastPricePointY = bottomYInner - 16.dp
@@ -362,8 +360,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         if (lineType == kLineTypeMinute) {
             val topYInner = topY + 0.dp
             val bottomYInner = 268.dp - 2.dp - 40.dp
-            val point = points.last()
-            val x = xAlisStartX +  (points.size - 1) * xAlisRatio
+            val x = xAlisStartX + (points.size - 1) * xAlisRatio
             mRightPath.reset()
             mRightPath.moveTo(x, topYInner)
             mRightPath.lineTo(x, bottomYInner)
@@ -371,7 +368,13 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             mRightPath.lineTo(drawWidth - 16.dp, topYInner)
             mRightPath.close()
             mGradientPaint.shader = LinearGradient(
-                0.0f, 0.0f, drawWidth, 0.0f, dateRectStartColor, dateRectEndColor, Shader.TileMode.CLAMP
+                0.0f,
+                0.0f,
+                drawWidth,
+                0.0f,
+                dateRectStartColor,
+                dateRectEndColor,
+                Shader.TileMode.CLAMP
             )
             canvas.drawPath(mRightPath, mGradientPaint)
         } else {
@@ -384,7 +387,13 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             mRightPath.lineTo(drawWidth - 16.dp, topYInner)
             mRightPath.close()
             mGradientPaint.shader = LinearGradient(
-                0.0f, 0.0f, drawWidth, 0.0f, dateRectStartColor, dateRectEndColor, Shader.TileMode.CLAMP
+                0.0f,
+                0.0f,
+                drawWidth,
+                0.0f,
+                dateRectStartColor,
+                dateRectEndColor,
+                Shader.TileMode.CLAMP
             )
             canvas.drawPath(mRightPath, mGradientPaint)
         }
@@ -467,7 +476,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
 
-        val x = startOffsetX + xAlisRatio  * index
+        val x = startOffsetX + xAlisRatio * index
         val y =
             bottomYInner - (bottomYInner - topYInner) * ((price - yMinPrice) / (yMaxPrice - yMinPrice))
         val targetPriceY =
@@ -737,7 +746,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
 
-        val x = startOffsetX + xAlisRatio  * index
+        val x = startOffsetX + xAlisRatio * index
         val y =
             bottomYInner - (bottomYInner - topYInner) * ((price - yMinPrice) / (yMaxPrice - yMinPrice))
         val targetPriceY =
