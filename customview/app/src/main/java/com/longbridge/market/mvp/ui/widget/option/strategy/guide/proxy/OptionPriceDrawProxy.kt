@@ -272,7 +272,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         var minX = 0.0f
@@ -395,7 +394,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -463,7 +461,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -531,7 +528,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -599,7 +595,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -667,7 +662,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -737,7 +731,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -823,7 +816,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -893,7 +885,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -963,7 +954,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -1062,7 +1052,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
@@ -1127,7 +1116,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         var startOffsetX = 16.dp + 2.dp
-        val endOffsetX = drawWidth - 100.dp - 16.dp
         val topYInner = topY + 20.dp
         val bottomYInner = 268.dp - 2.dp - 40.dp - 20.dp
         val index = points.size - 1.0f
