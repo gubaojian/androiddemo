@@ -234,7 +234,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
     fun drawYLabel(
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
-
         canvas.drawText(yStartLabel, xAlisStart, yAlisBottom + 16.dp, mYLabelTextPaint)
 
         val lastPointX = xAlisStart + xAlisRatio * (points.size - 1)
@@ -264,7 +263,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
     fun drawLinePath(
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
-
         var minX = 0.0f
         var minY = 0.0f
         var maxX = 0.0f
