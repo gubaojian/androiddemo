@@ -6,10 +6,12 @@ import android.view.View
 import android.view.View.MeasureSpec
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import com.longbridge.common.uiLib.edit.ThousandSeparatorWatcher
 import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.KLinePoint
 import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.OptionPriceDrawProxy
 import com.longbridge.market.databinding.MainBinding
 import com.longbridge.common.uiLib.chart.minutes.MinutesChart
+import com.longbridge.common.uiLib.edit.ThousandSeparatorTransformation
 import com.longbridge.core.comm.FApp
 import java.util.Locale
 
@@ -22,6 +24,12 @@ class MainActivity : ComponentActivity() {
 
         kLineNormal(binding)
         kLineTypeMinutes(binding)
+
+        binding.editText.addTextChangedListener(ThousandSeparatorWatcher())
+
+
+
+
         setContentView(binding.root)
 
     }
