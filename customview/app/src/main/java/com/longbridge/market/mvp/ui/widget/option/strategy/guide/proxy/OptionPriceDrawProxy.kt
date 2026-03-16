@@ -185,18 +185,28 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         yMinPrice = sourceMinPrice
         if (drawScene != "choose_date" && drawScene.isNotEmpty()) {
             var adjustScalePrice = false
+            var adjustMax = false
+            var adjustMin = false
             if (drawScene == "two_price_move_at_least" || drawScene == "two_price_move_with_in") {
-                if (yMinPrice > targetPrice || yMaxPrice < targetPrice2) {
-                    adjustScalePrice = true
+                if (yMinPrice > targetPrice) {
+                    adjustMin = true
+                }
+                if (yMaxPrice < targetPrice2) {
+                    adjustMax = true
                 }
             } else {
-                if (yMinPrice > targetPrice || yMaxPrice < targetPrice) {
-                    adjustScalePrice = true
+                if (yMinPrice > targetPrice) {
+                    adjustMin = true
+                }
+                if (yMaxPrice < targetPrice) {
+                     adjustMax = true
                 }
             }
-            if (adjustScalePrice) {
-                val adjustValue = (yMaxPrice - yMinPrice)
+            val adjustValue = (yMaxPrice - yMinPrice)
+            if (adjustMax) {
                 yMaxPrice += adjustValue
+            }
+            if (adjustMin) {
                 yMinPrice -= adjustValue
             }
         }
