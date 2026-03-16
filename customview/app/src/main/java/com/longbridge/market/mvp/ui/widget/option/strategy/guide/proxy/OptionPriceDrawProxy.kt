@@ -195,7 +195,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 }
             }
             if (adjustScalePrice) {
-                val adjustValue = (yMaxPrice - yMinPrice) / 2
+                val adjustValue = (yMaxPrice - yMinPrice)
                 yMaxPrice += adjustValue
                 yMinPrice -= adjustValue
             }
