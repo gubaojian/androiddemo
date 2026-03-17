@@ -78,6 +78,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         style = Paint.Style.STROKE
     }
 
+    val mPriceLinePaint = Paint().apply {
+        strokeWidth = 1.0F.dp
+        color = ContextCompat.getColor(context, R.color.text_color_3)
+        style = Paint.Style.STROKE
+    }
+
     val bgTextPaint = Paint().apply {
         color = ContextCompat.getColor(context, R.color.common_color_new_brand1)
         isAntiAlias = true
@@ -332,15 +338,16 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             }
         }
         canvas.drawPath(mLinePath, mLinePaint)
-
+        canvas.drawLine(maxX - 4.dp, maxY, maxX + 4.dp, maxY, mPriceLinePaint)
+        canvas.drawLine(minX - 4.dp, minY, minX + 4.dp, minY, mPriceLinePaint)
         canvas.drawCircle(lastPointX, lastPointY, 3.dp, mSmallCirclePaint)
         canvas.drawCircle(lastPointX, lastPointY, 5.dp, mBigCirclePaint)
 
         val maxPriceLabelWidth = mPriceTextPaint.measureText(maxPriceLabel)
-        if (maxX + 4.dp + maxPriceLabelWidth > (drawWidth - 16.dp)) {
-            canvas.drawText(maxPriceLabel, maxX - maxPriceLabelWidth - 4.dp, maxY, mPriceTextPaint)
+        if (maxX + 8.dp + maxPriceLabelWidth > (drawWidth - 16.dp)) {
+            canvas.drawText(maxPriceLabel, maxX - maxPriceLabelWidth - 8.dp, maxY + 3.dp, mPriceTextPaint)
         } else {
-            canvas.drawText(maxPriceLabel, maxX + 4.dp, maxY, mPriceTextPaint)
+            canvas.drawText(maxPriceLabel, maxX + 8.dp, maxY + 3.dp, mPriceTextPaint)
         }
 
         val lastPrice = String.format(Locale.getDefault(), "%s%.2f", "$", lastPointPrice)
@@ -356,11 +363,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas.drawText(lastPrice, lastPointX + offsetX, lastPricePointY, mPriceTextPaint)
 
         val minPriceLabelWidth = mPriceTextPaint.measureText(minPriceLabel)
-        var minPriceLabelX = minX - minPriceLabelWidth - 4.dp
-        if (minPriceLabelX <= 4.dp) {
-            minPriceLabelX = 4.dp
+        var minPriceLabelX = minX - minPriceLabelWidth - 8.dp
+        if (minPriceLabelX <= 8.dp) {
+            minPriceLabelX = 8.dp
         }
-        canvas.drawText(minPriceLabel, minPriceLabelX, minY, mPriceTextPaint)
+        canvas.drawText(minPriceLabel, minPriceLabelX, minY + 3.dp, mPriceTextPaint)
     }
 
     fun drawChooseDateRightPath(
