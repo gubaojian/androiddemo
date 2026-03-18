@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
         binding.editText.addTextChangedListener(ThousandSeparatorWatcher())
 
         binding.editText2.setOnClickListener {
-            binding.editText2.text = binding.editText.toString()
+            binding.editText2.text = binding.editText.text.toString()
         }
 
 
