@@ -118,7 +118,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
     var yEndLabel = "09/31"
     var yRectEndLabel = "09/31"
     var yRectEndTopLabel = "in 28 days"
-
+    var expireDate: String = ""
     var targetTrendPrice = "120.00"
     var targetPrice: Float = 120.0f
 
@@ -222,7 +222,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         if (lineType == kLineTypeMinute) {
             var startOffsetX = 16.dp + 2.dp
             val endOffsetX = drawWidth - 32.dp - 16.dp
-            val maxPointSize = 390.0f
+            val maxPointSize = 1440.0f
             if (points.size >= maxPointSize) {
                 xAlisRatio = (endOffsetX - startOffsetX) / (points.size.toFloat() - 1.0f)
             } else {
@@ -338,8 +338,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             }
         }
         canvas.drawPath(mLinePath, mLinePaint)
-        canvas.drawLine(maxX - 4.dp, maxY, maxX + 4.dp, maxY, mPriceLinePaint)
-        canvas.drawLine(minX - 4.dp, minY, minX + 4.dp, minY, mPriceLinePaint)
+        canvas.drawLine(maxX - 4.dp, maxY - 1.dp, maxX + 4.dp, maxY - 1.dp, mPriceLinePaint)
+        canvas.drawLine(minX - 4.dp, minY + 1.dp, minX + 4.dp, minY + 1.dp, mPriceLinePaint)
         canvas.drawCircle(lastPointX, lastPointY, 3.dp, mSmallCirclePaint)
         canvas.drawCircle(lastPointX, lastPointY, 5.dp, mBigCirclePaint)
 
@@ -367,7 +367,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         if (minPriceLabelX <= 8.dp) {
             minPriceLabelX = 8.dp
         }
-        canvas.drawText(minPriceLabel, minPriceLabelX, minY + 3.dp, mPriceTextPaint)
+        canvas.drawText(minPriceLabel, minPriceLabelX, minY + 5.dp, mPriceTextPaint)
     }
 
     fun drawChooseDateRightPath(

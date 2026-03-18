@@ -27,6 +27,9 @@ class MainActivity : ComponentActivity() {
 
         binding.editText.addTextChangedListener(ThousandSeparatorWatcher())
 
+        binding.editText2.setOnClickListener {
+            binding.editText2.text = binding.editText.toString()
+        }
 
 
 
@@ -180,6 +183,8 @@ class MainActivity : ComponentActivity() {
             val price = ((Math.random()*1000).toInt()).toString()
             points.add(KLinePoint(price = price))
         }
+        val price = ((Math.random()*1000).toInt()).toString()
+        points.add(KLinePoint(price = price))
         val proxy = OptionPriceDrawProxy(this)
         proxy.drawScene = "choose_date"
         binding.minuteCharts.setDrawProxy(proxy)
