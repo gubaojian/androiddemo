@@ -693,21 +693,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val control2Y = targetY
 
         mRightPath.reset()
-        if (targetPrice2 >= price) { //上涨
-            mRightPath.moveTo(lastX, yMinTop)
-            mRightPath.lineTo(lastX, lastY)
-            mRightPath.cubicTo(
-                control1X, control1Y, control2X, control2Y, targetX, targetY
-            )
-            mRightPath.lineTo(targetX, yMinTop)
-        } else {
-            mRightPath.moveTo(lastX, yMaxBottom)
-            mRightPath.lineTo(lastX, lastY)
-            mRightPath.cubicTo(
-                control1X, control1Y, control2X, control2Y, targetX, targetY
-            )
-            mRightPath.lineTo(targetX, yMaxBottom)
-        }
+        mRightPath.moveTo(lastX, yMinTop)
+        mRightPath.lineTo(lastX, lastY)
+        mRightPath.cubicTo(
+            control1X, control1Y, control2X, control2Y, targetX, targetY
+        )
+        mRightPath.lineTo(targetX, yMinTop)
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
             lastX,
@@ -759,21 +750,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         val control2Y = targetY
 
         mRightPath.reset()
-        if (targetPrice >= price) { //上涨
-            mRightPath.moveTo(lastX, yMinTop)
-            mRightPath.lineTo(lastX, lastY)
-            mRightPath.cubicTo(
-                control1X, control1Y, control2X, control2Y, targetX, targetY
-            )
-            mRightPath.lineTo(targetX, yMinTop)
-        } else {
-            mRightPath.moveTo(lastX, yMaxBottom)
-            mRightPath.lineTo(lastX, lastY)
-            mRightPath.cubicTo(
-                control1X, control1Y, control2X, control2Y, targetX, targetY
-            )
-            mRightPath.lineTo(targetX, yMaxBottom)
-        }
+        mRightPath.moveTo(lastX, yMaxBottom)
+        mRightPath.lineTo(lastX, lastY)
+        mRightPath.cubicTo(
+            control1X, control1Y, control2X, control2Y, targetX, targetY
+        )
+        mRightPath.lineTo(targetX, yMaxBottom)
         mRightPath.close()
         mGradientPaint.shader = LinearGradient(
             lastX,
