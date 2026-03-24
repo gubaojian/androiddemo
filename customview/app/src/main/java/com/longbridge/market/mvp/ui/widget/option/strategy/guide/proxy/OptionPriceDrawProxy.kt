@@ -1020,7 +1020,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 canvas, mTrendPriceTextPaint, targetTrendPrice2, targetX2, targetY2 - 10.dp + adjust2Offset
             )
         }
-
         targetTrendPrice.let {
             val dashPath = Path()
             dashPath.moveTo(lastX, lastY)
@@ -1032,7 +1031,6 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 canvas, mTrendPriceTextPaint, targetTrendPrice, targetX1, targetY1 - 10.dp + adjust1Offset
             )
         }
-
     }
 
     fun drawSinglePriceTrendPathConnectOptionsPremiumLong(
