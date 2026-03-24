@@ -202,10 +202,10 @@ class MainActivity : ComponentActivity() {
 
         val proxyPriceDown = OptionPriceDrawProxy(this)
         proxyPriceDown.drawScene = "two_price_move_with_in"
-        proxyPriceDown.targetPrice = lastPrice  + 100
+        proxyPriceDown.targetPrice = lastPrice  + 500
         proxyPriceDown.targetTrendPrice = String.format(Locale.getDefault(), "%.2f", proxyPriceDown.targetPrice)
 
-        proxyPriceDown.targetPrice2 = lastPrice  + 500
+        proxyPriceDown.targetPrice2 = lastPrice  + 550
         proxyPriceDown.targetTrendPrice2 = String.format(Locale.getDefault(), "%.2f", proxyPriceDown.targetPrice2)
         binding.minuteCharts1.setDrawProxy(proxyPriceDown)
         proxyPriceDown.setDataObserver(object : MinutesChart.DefaultDataObserver(binding.minuteCharts1) {

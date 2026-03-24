@@ -998,6 +998,17 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas.drawLine(
             16.dp, targetY2, drawWidth - 16.dp, targetY2, mDashPaint
         )
+        var adjust1Offset = 0.dp
+        var adjust2Offset = 0.dp
+        if (abs(targetY1 - targetY2) <= 20.dp) {
+            if (targetPrice2 >= price) {
+                adjust2Offset = 0.dp
+                adjust1Offset = (20.dp - abs(targetY1 - targetY2))
+            } else {
+                adjust2Offset = -(20.dp - abs(targetY1 - targetY2))
+                adjust1Offset = 0.dp
+            }
+        }
         targetTrendPrice2.let {
             val dashPath = Path()
             dashPath.moveTo(lastX, lastY)
@@ -1005,9 +1016,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                 control1X2, control1Y2, control2X2, control2Y2, targetX2, targetY2
             )
             canvas.drawPath(dashPath, mDashPaint)
-
             drawRoundBgTextAtPoint(
-                canvas, mTrendPriceTextPaint, targetTrendPrice2, targetX2, targetY2 - 10.dp
+                canvas, mTrendPriceTextPaint, targetTrendPrice2, targetX2, targetY2 - 10.dp + adjust2Offset
             )
         }
 
@@ -1019,9 +1029,10 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             )
             canvas.drawPath(dashPath, mDashPaint)
             drawRoundBgTextAtPoint(
-                canvas, mTrendPriceTextPaint, targetTrendPrice, targetX1, targetY1 - 10.dp
+                canvas, mTrendPriceTextPaint, targetTrendPrice, targetX1, targetY1 - 10.dp + adjust1Offset
             )
         }
+
     }
 
     fun drawSinglePriceTrendPathConnectOptionsPremiumLong(
