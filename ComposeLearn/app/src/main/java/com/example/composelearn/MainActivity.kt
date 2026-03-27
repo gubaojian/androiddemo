@@ -4,15 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,11 +34,18 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.composelearn.ui.theme.ComposeLearnTheme
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,8 +59,9 @@ class MainActivity : ComponentActivity() {
                             name = "Android",
                             modifier = Modifier.padding(innerPadding)
                         )
-                        WaterCounter()
-                        Parent()
+                        //WaterCounter()
+                        //Parent()
+                        HomeScreen()
                     }
                 }
             }
@@ -127,6 +139,11 @@ fun ProblematicTimer(onFinish: () -> Unit) {
         delay(3000)
         onFinish() // 永远是第一次传入的回调，后续更新无效
     }
+
+    LaunchedEffect(Unit) {
+
+    }
+
 }
 
 @Composable
@@ -163,6 +180,76 @@ fun Parent() {
     }
 
 }
+
+
+@Composable
+fun HomeScreen() {
+    var dataList by remember { mutableStateOf<List<String>>(emptyList()) }
+    var isLoading by remember { mutableStateOf(false) }
+    var errorMsg by remember { mutableStateOf("") }
+    val lifecycleOwner = LocalLifecycleOwner.current
+    LaunchedEffect(lifecycleOwner) {
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            fetchDataFromNetwork (
+                onLoading = {
+                    isLoading = true
+                },
+                onSuccess = { data ->
+                    isLoading = false
+                    errorMsg = ""
+                    dataList = data
+                },
+                onError = { msg ->
+                    errorMsg = msg
+                    isLoading = false
+                }
+            )
+        }
+    }
+
+    Box(
+        modifier = Modifier.fillMaxWidth().background(
+            color = Color.Red
+        ),
+        contentAlignment = Alignment.Center
+    ) {
+        when {
+            isLoading -> CircularProgressIndicator()
+            errorMsg.isNotEmpty() -> Text(text = errorMsg)
+            dataList.isEmpty() -> Text("暂无数据")
+            else -> {
+                Text(text = "成功加载 ${dataList.size} 条数据")
+            }
+        }
+    }
+
+
+}
+
+suspend fun fetchDataFromNetwork(
+    onLoading: () -> Unit,
+    onSuccess: (List<String>) -> Unit,
+    onError: (String) -> Unit
+) {
+
+    onLoading()
+    val result  = withContext(Dispatchers.IO) {
+        try {
+            delay(3000)
+            val mockData = listOf("数据1", "数据2", "数据3")
+            mockData
+        } catch (e: Exception){
+            e
+        }
+    }
+    withContext(Dispatchers.Main) {
+        when (result) {
+            is List<*> ->  onSuccess(result as List<String>)
+            is Exception -> onError(result.message ?: "加载异常")
+        }
+    }
+}
+
 
 @Preview(showBackground = true)
 @Composable
