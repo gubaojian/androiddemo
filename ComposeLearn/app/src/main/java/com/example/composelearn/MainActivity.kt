@@ -30,6 +30,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
@@ -61,6 +62,7 @@ class MainActivity : ComponentActivity() {
                         )
                         //WaterCounter()
                         //Parent()
+                        TimerScreen()
                         HomeScreen()
                     }
                 }
@@ -248,6 +250,24 @@ suspend fun fetchDataFromNetwork(
             is Exception -> onError(result.message ?: "加载异常")
         }
     }
+}
+
+@Composable
+fun TimerScreen() {
+    // 1. 使用 produceState 创建可观察状态
+    val countState = produceState(
+        initialValue = 0, // 初始值：0
+        keys = emptyArray() // 无依赖，只执行一次
+    ) {
+        // 2. 协程逻辑：每秒更新一次状态
+        repeat(10) {
+            delay(1000) // 挂起函数，等待1秒
+            value = value + 1 // 更新状态，触发UI重组
+        }
+    }
+
+    // 3. UI 直接使用状态
+    Text(text = "倒计时：${countState.value}")
 }
 
 

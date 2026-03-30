@@ -152,8 +152,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         } else if (drawScene == "price_down") {
             drawSinglePriceTrendPathPriceDown(canvas, topY, bottomY)
         } else if (drawScene == "two_price_move_at_least") {
-            drawTwoPriceTrendPathForMoveAtLeastTop(canvas, topY, bottomY)
-            drawTwoPriceTrendPathForMoveAtLeastBottom(canvas, topY, bottomY)
+            val targetPrice2Y = drawTwoPriceTrendPathForMoveAtLeastTop(canvas, topY, bottomY)
+            drawTwoPriceTrendPathForMoveAtLeastBottom(canvas, topY, bottomY, targetPrice2Y)
         } else if (drawScene == "two_price_move_with_in") {
             drawTwoPriceTrendPathForMoveWithIn(canvas, topY, bottomY)
         } else if (drawScene == "protect_my_portfolio_long") {
@@ -205,7 +205,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
                     adjustMin = true
                 }
                 if (yMaxPrice < targetPrice) {
-                     adjustMax = true
+                    adjustMax = true
                 }
             }
             val adjustValue = (yMaxPrice - yMinPrice)
@@ -345,7 +345,12 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
         val maxPriceLabelWidth = mPriceTextPaint.measureText(maxPriceLabel)
         if (maxX + 8.dp + maxPriceLabelWidth > (drawWidth - 16.dp)) {
-            canvas.drawText(maxPriceLabel, maxX - maxPriceLabelWidth - 8.dp, maxY + 3.dp, mPriceTextPaint)
+            canvas.drawText(
+                maxPriceLabel,
+                maxX - maxPriceLabelWidth - 8.dp,
+                maxY + 3.dp,
+                mPriceTextPaint
+            )
         } else {
             canvas.drawText(maxPriceLabel, maxX + 8.dp, maxY + 3.dp, mPriceTextPaint)
         }
@@ -669,7 +674,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
 
     fun drawTwoPriceTrendPathForMoveAtLeastTop(
         canvas: Canvas, topY: Float, bottomY: Float
-    ) {
+    ): Float {
         val index = points.size - 1.0f
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
@@ -722,10 +727,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         drawRoundBgTextAtPoint(
             canvas, mTrendPriceTextPaint, targetTrendPrice2, targetX, targetY - 10.dp
         )
+        return targetY
     }
 
     fun drawTwoPriceTrendPathForMoveAtLeastBottom(
-        canvas: Canvas, topY: Float, bottomY: Float
+        canvas: Canvas, topY: Float, bottomY: Float, targetPrice2Y: Float
     ) {
         val index = points.size - 1.0f
         val point = points.last()
@@ -776,9 +782,17 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas.drawLine(
             16.dp, targetY, drawWidth - 16.dp, targetY, mDashPaint
         )
+
+        var adjust1Offset = 0.dp
+        if (abs(targetY - targetPrice2Y) <= 20.dp) {
+            if (targetPrice2 >= price) {
+                adjust1Offset = (20.dp - abs(targetY - targetPrice2Y))
+            }
+        }
         drawRoundBgTextAtPoint(
-            canvas, mTrendPriceTextPaint, targetTrendPrice, targetX, targetY - 10.dp
+            canvas, mTrendPriceTextPaint, targetTrendPrice, targetX, targetY - 10.dp + adjust1Offset
         )
+
     }
 
     fun drawTwoPriceTrendPathForMoveWithIn(
@@ -792,14 +806,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         } else if (targetPrice < price && targetPrice2 < price) {
             drawTwoPriceTrendPathForMoveWithInAllOneSide(canvas, topY, bottomY)
         } else {
-            drawTwoPriceTrendPathForMoveWithInTop(canvas, topY, bottomY)
-            drawTwoPriceTrendPathForMoveWithInBottom(canvas, topY, bottomY)
+            var targetPrice2Y = drawTwoPriceTrendPathForMoveWithInTop(canvas, topY, bottomY)
+            drawTwoPriceTrendPathForMoveWithInBottom(canvas, topY, bottomY, targetPrice2Y)
         }
     }
 
     fun drawTwoPriceTrendPathForMoveWithInTop(
         canvas: Canvas, topY: Float, bottomY: Float
-    ) {
+    ): Float {
         val index = points.size - 1.0f
         val point = points.last()
         val price = point.price.toFloatOrNull() ?: 0.0f
@@ -861,10 +875,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         drawRoundBgTextAtPoint(
             canvas, mTrendPriceTextPaint, targetTrendPrice2, targetX, targetY - 10.dp
         )
+        return targetY
     }
 
     fun drawTwoPriceTrendPathForMoveWithInBottom(
-        canvas: Canvas, topY: Float, bottomY: Float
+        canvas: Canvas, topY: Float, bottomY: Float, targetPrice2Y: Float
     ) {
         val index = points.size - 1.0f
         val point = points.last()
@@ -924,8 +939,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas.drawLine(
             16.dp, targetY, drawWidth - 16.dp, targetY, mDashPaint
         )
+        var adjust1Offset = 0.dp
+        if (abs(targetY - targetPrice2Y) <= 20.dp) {
+            if (targetPrice2 >= price) {
+                adjust1Offset = (20.dp - abs(targetY - targetPrice2Y))
+            }
+        }
         drawRoundBgTextAtPoint(
-            canvas, mTrendPriceTextPaint, targetTrendPrice, targetX, targetY - 10.dp
+            canvas, mTrendPriceTextPaint, targetTrendPrice, targetX, targetY - 10.dp + adjust1Offset
         )
     }
 
@@ -1017,7 +1038,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             )
             canvas.drawPath(dashPath, mDashPaint)
             drawRoundBgTextAtPoint(
-                canvas, mTrendPriceTextPaint, targetTrendPrice2, targetX2, targetY2 - 10.dp + adjust2Offset
+                canvas,
+                mTrendPriceTextPaint,
+                targetTrendPrice2,
+                targetX2,
+                targetY2 - 10.dp + adjust2Offset
             )
         }
         targetTrendPrice.let {
@@ -1028,7 +1053,11 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             )
             canvas.drawPath(dashPath, mDashPaint)
             drawRoundBgTextAtPoint(
-                canvas, mTrendPriceTextPaint, targetTrendPrice, targetX1, targetY1 - 10.dp + adjust1Offset
+                canvas,
+                mTrendPriceTextPaint,
+                targetTrendPrice,
+                targetX1,
+                targetY1 - 10.dp + adjust1Offset
             )
         }
     }
