@@ -33,6 +33,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composelearn.ui.theme.ComposeLearnTheme
+import com.king.ultraswiperefresh.NestedScrollMode
+import com.king.ultraswiperefresh.UltraSwipeRefresh
+import com.king.ultraswiperefresh.indicator.SwipeRefreshFooter
+import com.king.ultraswiperefresh.indicator.SwipeRefreshHeader
+import com.king.ultraswiperefresh.indicator.classic.ClassicRefreshFooter
+import com.king.ultraswiperefresh.indicator.classic.ClassicRefreshHeader
+import com.king.ultraswiperefresh.rememberUltraSwipeRefreshState
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -115,6 +122,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
     var isRefreshing by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
+    val state = rememberUltraSwipeRefreshState()
     Column {
         Text(
             text = "Hello $name!",
@@ -152,9 +160,35 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 .weight(1.0f)
                 .fillMaxWidth()
         ) {
-            LazyColumn() {
-                items(messages) { message ->
-                    GreetingCard(name = message, desc = "desc ${message}")
+            UltraSwipeRefresh(
+                state = state,
+                refreshEnabled = true,
+                onRefresh = {
+                    state.isRefreshing = true
+                    coroutineScope.launch {
+                        delay(1500)
+                        state.isRefreshing = false
+                    }
+                },
+                onLoadMore = {
+                    coroutineScope.launch {
+
+                    }
+                },
+                modifier = Modifier.background(color = Color(0x7FEEEEEE)),
+                headerScrollMode = NestedScrollMode.Translate,
+                footerScrollMode = NestedScrollMode.Translate,
+                headerIndicator = {
+                    ClassicRefreshHeader(it)
+                },
+                footerIndicator = {
+                    ClassicRefreshFooter(it)
+                }
+            ) {
+                LazyColumn() {
+                    items(messages) { message ->
+                        GreetingCard(name = message, desc = "desc ${message}")
+                    }
                 }
             }
         }
