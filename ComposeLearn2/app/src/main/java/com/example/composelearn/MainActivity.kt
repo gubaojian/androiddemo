@@ -175,7 +175,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
                     }
                 },
-                modifier = Modifier.background(color = Color(0x7FEEEEEE)),
                 headerScrollMode = NestedScrollMode.Translate,
                 footerScrollMode = NestedScrollMode.Translate,
                 headerIndicator = {
