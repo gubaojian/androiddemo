@@ -132,7 +132,6 @@ public class AutoAdaptSizeEditText extends EditText {
         float maxInputWidth = textView.getWidth() - textView.getPaddingLeft() - textView.getPaddingRight();
         //获取当前文本字体大小
         float currentTextSize = textView.getTextSize();
-        maxInputWidth -= currentTextSize;
         Log.d("AutoScaleSizeEditText", "currentTextSize=" + String.valueOf(currentTextSize));
         //设置画笔的字体大小
         paint.setTextSize(currentTextSize);
@@ -141,7 +140,7 @@ public class AutoAdaptSizeEditText extends EditText {
          * 1、文本字体小于最大值
          * 2、可输入文本长度小于已输入文本长度
          */
-        while ((currentTextSize > minTextSize) && (paint.measureText(text, 0, text.length()) > maxInputWidth)) {
+        while ((currentTextSize > minTextSize) && (paint.measureText(text, 0, text.length()) > (maxInputWidth - currentTextSize))) {
             Log.e("tag", "paint.measureText(text)=" + paint.measureText(text, 0, text.length()) + "maxInputWidth:" + maxInputWidth);
             hasScaleSmall = true;
             --currentTextSize;
@@ -157,7 +156,7 @@ public class AutoAdaptSizeEditText extends EditText {
          * 1、文本字体小于默认值
          * 2、可输入文本长度大于已输入文本长度
          */
-        while (hasScaleSmall && (currentTextSize < maxTextSize) && (maxInputWidth > paint.measureText(text, 0, text.length()))) {
+        while (hasScaleSmall && (currentTextSize < maxTextSize) && ((maxInputWidth - currentTextSize) > paint.measureText(text, 0, text.length()))) {
             ++currentTextSize;
             if (currentTextSize > maxTextSize) {
                 currentTextSize = maxTextSize;
