@@ -11,6 +11,7 @@ import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.KLinePoin
 import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.OptionPriceDrawProxy
 import com.longbridge.market.databinding.MainBinding
 import com.longbridge.common.uiLib.chart.minutes.MinutesChart
+import com.longbridge.common.uiLib.edit.PriceFormatInputTextWatcher
 import com.longbridge.common.uiLib.edit.ThousandSeparatorTransformation
 import com.longbridge.core.comm.FApp
 import java.util.Locale
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
         kLineNormal(binding)
         kLineTypeMinutes(binding)
 
+        binding.editText.addTextChangedListener(PriceFormatInputTextWatcher())
         binding.editText.addTextChangedListener(ThousandSeparatorWatcher())
 
         binding.editText2.setOnClickListener {

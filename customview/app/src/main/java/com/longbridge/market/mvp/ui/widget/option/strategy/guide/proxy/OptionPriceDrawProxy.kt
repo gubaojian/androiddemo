@@ -256,13 +256,16 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         canvas.drawText(yStartLabel, xAlisStart, yMaxBottom + 16.dp, mYLabelTextPaint)
-
+        val yStartLabelEndX = xAlisStart + mYLabelTextPaint.measureText(yStartLabel) + 4.dp
         val lastPointX = xAlisStart + xAlisRatio * (points.size - 1)
         val yEndLabelWidth = mPriceTextPaint.measureText(yEndLabel)
+        var yEndLabelEndX = lastPointX - yEndLabelWidth - 4.dp
+        if (yEndLabelEndX <= yStartLabelEndX) {
+            yEndLabelEndX = yStartLabelEndX
+        }
         canvas.drawText(
-            yEndLabel, lastPointX - yEndLabelWidth - 4.dp, yMaxBottom + 16.dp, mYLabelTextPaint
+            yEndLabel, yEndLabelEndX, yMaxBottom + 16.dp, mYLabelTextPaint
         )
-
         val yRectEndTopLabelWidth = mPriceTextPaint.measureText(yRectEndTopLabel)
         canvas.drawText(
             yRectEndTopLabel,

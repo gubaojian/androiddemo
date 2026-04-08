@@ -10,9 +10,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <EditText
+            <com.longbridge.android.mdtrade.export.view.AutoAdaptSizeEditText
                 android:id="@+id/editText"
-                android:layout_width="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_width="120dp"
+                android:maxLines="1"
+                android:textSize="40sp"
+                android:inputType="numberDecimal"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/editText2"
