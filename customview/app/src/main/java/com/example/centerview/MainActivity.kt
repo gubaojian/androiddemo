@@ -1,6 +1,8 @@
 package com.example.centerview
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.MeasureSpec
@@ -11,10 +13,10 @@ import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.KLinePoin
 import com.longbridge.market.mvp.ui.widget.option.strategy.guide.proxy.OptionPriceDrawProxy
 import com.longbridge.market.databinding.MainBinding
 import com.longbridge.common.uiLib.chart.minutes.MinutesChart
-import com.longbridge.common.uiLib.edit.PriceFormatInputTextWatcher
 import com.longbridge.common.uiLib.edit.ThousandSeparatorTransformation
 import com.longbridge.core.comm.FApp
 import java.util.Locale
+import kotlin.math.abs
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -349,7 +351,67 @@ class MainActivity : ComponentActivity() {
         binding.minuteCharts8.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         proxy8.initData(points2)*/
     }
+    class PriceFormatInputTextWatcher : TextWatcher {
+        var isEditIng = false
 
+        val maxIntDigit = 8
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            val input = s?.toString() ?: ""
+            if (!isEditIng) {
+                val numbers = input.split(Regex("\\."))
+                if (numbers.size >= 2) {
+                    val firstPart = numbers[0].toIntOrNull()
+                    var firstPartStr = numbers[0]
+                    if (firstPartStr.length > maxIntDigit) {
+                        firstPartStr = firstPartStr.substring(0, maxIntDigit)
+                    }
+                    firstPart?.let {
+                        //大于1保留2位小数，小于1保留4位小数
+                        var formatInput = ""
+                        formatInput = if (abs(firstPart) <= 0) {
+                            if (numbers[1].length <= 4) {
+                                "${firstPartStr}.${numbers[1]}"
+                            } else {
+                                "${firstPartStr}.${numbers[1].substring(0, 4)}"
+                            }
+                        } else {
+                            if (numbers[1].length <= 2) {
+                                "${firstPartStr}.${numbers[1]}"
+                            } else {
+                                "${firstPartStr}.${numbers[1].substring(0, 2)}"
+                            }
+                        }
+                        if (input != formatInput) {
+                            isEditIng = true
+                            s?.replace(0, s.length, formatInput)
+                            isEditIng = false
+                        }
+                    }
+                } else {
+                    val firstPart = input.toIntOrNull()
+                    var firstPartStr = input
+                    if (firstPartStr.length > maxIntDigit) {
+                        firstPartStr = firstPartStr.substring(0, maxIntDigit)
+                    }
+                    firstPart?.let {
+                        val formatInput = "${firstPartStr}"
+                        if (input != formatInput) {
+                            isEditIng = true
+                            s?.replace(0, s.length, formatInput)
+                            isEditIng = false
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }
 

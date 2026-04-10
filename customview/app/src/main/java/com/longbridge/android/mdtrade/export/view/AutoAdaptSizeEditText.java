@@ -90,7 +90,7 @@ public class AutoAdaptSizeEditText extends EditText {
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
         // 根据需要调整字体大小, 延迟50和千分位格式化错开，千分为不会触发onTextChanged,只会改span
         removeCallbacks(autoAdaptTask);
-        postDelayed(autoAdaptTask, 150);
+        postDelayed(autoAdaptTask, 30);
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
     }
 
@@ -100,7 +100,7 @@ public class AutoAdaptSizeEditText extends EditText {
         if (w != oldw) {
             //延迟50和千分位格式化错开
             removeCallbacks(autoAdaptTask);
-            postDelayed(autoAdaptTask, 150);
+            postDelayed(autoAdaptTask, 30);
         }
         super.onSizeChanged(w, h, oldw, oldh);
     }
