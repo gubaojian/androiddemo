@@ -390,7 +390,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             mRightPath.lineTo(drawWidth - 16.dp, yMinTop)
             mRightPath.close()
             mGradientPaint.shader = LinearGradient(
-                0.0f,
+                x,
                 0.0f,
                 drawWidth,
                 0.0f,
@@ -401,13 +401,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             canvas.drawPath(mRightPath, mGradientPaint)
         } else {
             mRightPath.reset()
-            mRightPath.moveTo(drawWidth - 100.dp - 16.dp, yMinTop)
-            mRightPath.lineTo(drawWidth - 100.dp - 16.dp, yMaxBottom)
+            val x = drawWidth - 100.dp - 16.dp
+            mRightPath.moveTo(x, yMinTop)
+            mRightPath.lineTo(x, yMaxBottom)
             mRightPath.lineTo(drawWidth - 16.dp, yMaxBottom)
             mRightPath.lineTo(drawWidth - 16.dp, yMinTop)
             mRightPath.close()
             mGradientPaint.shader = LinearGradient(
-                0.0f,
+                x,
                 0.0f,
                 drawWidth,
                 0.0f,
@@ -461,7 +462,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             yMaxBottom,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         mRightPath.close()
@@ -525,7 +526,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             0.0f,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         mRightPath.close()
@@ -589,7 +590,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             0.0f,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         mRightPath.close()
@@ -653,7 +654,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             yMaxBottom,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         mRightPath.close()
@@ -714,7 +715,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             yMaxBottom,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -772,7 +773,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             0.0f,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -862,7 +863,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             lastY,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -928,7 +929,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             lastY,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
 
@@ -1011,7 +1012,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             drawWidth,
             yMaxBottom,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
 
@@ -1106,7 +1107,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             drawWidth,
             yMaxBottom,
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             "#00FFFFFF".toColorInt(),
             Shader.TileMode.CLAMP
         )
@@ -1168,7 +1169,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             lastX,
             yMaxBottom,
             "#00FFFFFF".toColorInt(),
-            "#6600B8B8".toColorInt(),
+            "#1900B8B8".toColorInt(),
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
