@@ -39,6 +39,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -63,4 +64,8 @@ dependencies {
     implementation("com.github.jenly1314.UltraSwipeRefresh:refresh-indicator-lottie:1.5.0")
 // 进度条样式的指示器 (可选)
     implementation("com.github.jenly1314.UltraSwipeRefresh:refresh-indicator-progress:1.5.0")
+
+
+    implementation ("com.github.abdullahalhakimi:SmoothMotion:1.0.1")
+
 }
