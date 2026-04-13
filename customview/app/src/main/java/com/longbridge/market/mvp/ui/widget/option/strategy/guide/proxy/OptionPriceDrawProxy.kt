@@ -249,7 +249,7 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
         canvas: Canvas, topY: Float, bottomY: Float
     ) {
         canvas.drawLine(xAlisStart, yMinTop, drawWidth - 16.dp, yMinTop, mBottomLinePaint)
-        canvas.drawLine(0.dp, yMaxBottom, drawWidth, yMaxBottom, mBottomLinePaint)
+        canvas.drawLine(xAlisStart, yMaxBottom, drawWidth - 16.dp, yMaxBottom, mBottomLinePaint)
     }
 
     fun drawYLabel(
@@ -358,17 +358,19 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             canvas.drawText(maxPriceLabel, maxX + 8.dp, maxY + 3.dp, mPriceTextPaint)
         }
 
-        val lastPrice = String.format(Locale.getDefault(), "%s%.2f", "$", lastPointPrice)
-        val lastPriceWidth = mPriceTextPaint.measureText(lastPrice)
-        var offsetX = (100.dp - lastPriceWidth) / 2
-        if (lineType == kLineTypeMinute) {
-            offsetX = 4.dp
-        }
-        var lastPricePointY = lastPointY + 16.dp
-        if (lastPricePointY > yAlisBottom - 16.dp) {
-            lastPricePointY = yAlisBottom - 16.dp
-        }
-        canvas.drawText(lastPrice, lastPointX + offsetX, lastPricePointY, mPriceTextPaint)
+        /**
+         ** val lastPrice = String.format(Locale.getDefault(), "%s%.2f", "$", lastPointPrice)
+         ** val lastPriceWidth = mPriceTextPaint.measureText(lastPrice)
+         ** var offsetX = (100.dp - lastPriceWidth) / 2
+         ** if (lineType == kLineTypeMinute) {
+         **     offsetX = 4.dp
+         ** }
+         ** var lastPricePointY = lastPointY + 16.dp
+         ** if (lastPricePointY > yAlisBottom - 16.dp) {
+         **     lastPricePointY = yAlisBottom - 16.dp
+         ** }
+         ** canvas.drawText(lastPrice, lastPointX + offsetX, lastPricePointY, mPriceTextPaint)
+         */
 
         val minPriceLabelWidth = mPriceTextPaint.measureText(minPriceLabel)
         var minPriceLabelX = minX - minPriceLabelWidth - 8.dp
@@ -461,8 +463,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             drawWidth,
             yMaxBottom,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
         mRightPath.close()
@@ -525,8 +527,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             yMaxBottom,
             drawWidth,
             0.0f,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
         mRightPath.close()
@@ -589,8 +591,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             yMaxBottom,
             drawWidth,
             0.0f,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
         mRightPath.close()
@@ -653,8 +655,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             drawWidth,
             yMaxBottom,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
         mRightPath.close()
@@ -714,8 +716,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             drawWidth,
             yMaxBottom,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -772,8 +774,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             yMaxBottom,
             drawWidth,
             0.0f,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -862,8 +864,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             drawWidth,
             lastY,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -928,8 +930,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             yMaxBottom,
             drawWidth,
             lastY,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
 
@@ -1011,8 +1013,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             drawWidth,
             yMaxBottom,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
 
@@ -1107,8 +1109,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             drawWidth,
             yMaxBottom,
-            "#1900B8B8".toColorInt(),
-            "#00FFFFFF".toColorInt(),
+            priceTrendRectEndColor,
+            priceTrendRectStartColor,
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
@@ -1168,8 +1170,8 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
             0.0f,
             lastX,
             yMaxBottom,
-            "#00FFFFFF".toColorInt(),
-            "#1900B8B8".toColorInt(),
+            priceTrendRectStartColor,
+            priceTrendRectEndColor,
             Shader.TileMode.CLAMP
         )
         canvas.drawPath(mRightPath, mGradientPaint)
