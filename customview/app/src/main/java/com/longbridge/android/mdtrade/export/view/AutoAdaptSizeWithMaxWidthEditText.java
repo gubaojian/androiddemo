@@ -137,15 +137,10 @@ public class AutoAdaptSizeWithMaxWidthEditText extends EditText {
             text = "";
         }
         float textWidth = getPaint().measureText(text, 0 , text.length());
-        int hitWidth = 0;
-        if (getHint() != null) {
-            hitWidth = (int)getPaint().measureText(getHint(), 0, getHint().length());
-        }
         // 计算需要的总宽度 = 文本宽度 + padding + 光标预留空间
         float cursorReservedWidth = DimenUtils.dp2px(12f);
         int totalWidth = (int) (textWidth + getPaddingLeft() + getPaddingRight() + cursorReservedWidth);
         totalWidth = Math.min(totalWidth, maxWidthInPx);
-        totalWidth = Math.max(totalWidth, hitWidth);
         setMeasuredDimension(totalWidth, getMeasuredHeight());
     }
 
