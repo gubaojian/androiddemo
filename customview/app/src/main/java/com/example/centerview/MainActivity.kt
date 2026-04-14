@@ -31,8 +31,10 @@ class MainActivity : ComponentActivity() {
         binding.editText.addTextChangedListener(PriceFormatInputTextWatcher())
         binding.editText.addTextChangedListener(ThousandSeparatorWatcher())
 
-        binding.editText2.setOnClickListener {
-            binding.editText2.text = binding.editText.text.toString()
+        binding.editText2.addTextChangedListener(ThousandSeparatorWatcher())
+
+        binding.getContent.setOnClickListener {
+            binding.getContent.text = binding.editText.text.toString()
         }
 
 

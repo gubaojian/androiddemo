@@ -130,6 +130,14 @@ class OptionPriceDrawProxy(val context: Context) : MinutesDrawProxy() {
     override fun onDraw(
         canvas: Canvas, topY: Float, bottomY: Float, customTitleHeight: Float
     ) {
+        try {
+            safeDraw(canvas, topY, bottomY, customTitleHeight)
+        } catch (e: Exception) {}
+    }
+
+    fun safeDraw(
+        canvas: Canvas, topY: Float, bottomY: Float, customTitleHeight: Float
+    ) {
         var realPointSize = 0
         points.forEach {
             if (!it.isVirtualPoint) {
