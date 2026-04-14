@@ -2,6 +2,7 @@ package com.longbridge.android.mdtrade.export.view;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -35,11 +36,6 @@ public class AutoAdaptSizeEditText extends EditText {
     };
 
     /**
-     * 画笔（用来测量已输入文字的长度）
-     */
-    private Paint paint;
-
-    /**
      * 文字字体大小最小值
      */
     private float minTextSize = 0;
@@ -56,7 +52,6 @@ public class AutoAdaptSizeEditText extends EditText {
 
     public AutoAdaptSizeEditText(Context context) {
         super(context);
-        paint = new Paint();
     }
 
     public AutoAdaptSizeEditText(Context context, AttributeSet attrs) {
@@ -64,8 +59,17 @@ public class AutoAdaptSizeEditText extends EditText {
         init(context, attrs);
     }
 
+    public AutoAdaptSizeEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
+
+    public AutoAdaptSizeEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs);
+    }
+
     public void init(Context context, AttributeSet attrs) {
-        paint = new Paint();
         //未设置字体最小值,则使用默认最小值
         if (0 == minTextSize) {
             minTextSize = DEFAULT_TEXT_SIZE_MIN;
@@ -128,6 +132,8 @@ public class AutoAdaptSizeEditText extends EditText {
             }
             return;
         }
+        float savedTextSize = getPaint().getTextSize();
+        TextPaint paint = getPaint();
         //获取输入框总的可输入的文本长度
         float maxInputWidth = textView.getWidth() - textView.getPaddingLeft() - textView.getPaddingRight();
         //获取当前文本字体大小
@@ -166,6 +172,7 @@ public class AutoAdaptSizeEditText extends EditText {
             paint.setTextSize(currentTextSize);
         }
 
+        paint.setTextSize(savedTextSize);
         //设置文本字体(单位为像素px)
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, currentTextSize);
     }
