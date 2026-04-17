@@ -1,11 +1,13 @@
 package com.example.composelearn
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -72,6 +75,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GreetingCard(name: String, desc: String) {
+    val context = LocalContext.current
     Row(
         modifier = Modifier.padding(20.dp)
     ) {
@@ -83,7 +87,13 @@ fun GreetingCard(name: String, desc: String) {
             )
         )
         Column(
-            modifier = Modifier.padding(start = 20.dp)
+            modifier = Modifier.padding(start = 20.dp).clickable(
+                onClick =  {
+                    val intent = Intent(context, TopSnackbarMainActivity::class.java)
+                    context.startActivity(intent)
+                }
+            )
+
         ) {
             Text(
                 text = "Hello $name!"
@@ -141,11 +151,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             desc = "desc"
         )
         DropCircleProgress(
-            modifier = Modifier.size(90.dp),
-            backgroundColor = Color.Gray.copy(alpha = 0.2f),
-            color = MaterialTheme.colorScheme.primary,
-        )
-        CircledDotsProgress(
             modifier = Modifier.size(90.dp),
             backgroundColor = Color.Gray.copy(alpha = 0.2f),
             color = MaterialTheme.colorScheme.primary,
