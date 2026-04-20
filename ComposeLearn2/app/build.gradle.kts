@@ -73,5 +73,15 @@ dependencies {
 
     implementation ("com.github.abdullahalhakimi:SmoothMotion:1.0.1")
 
+    implementation("com.github.xuexiangjys:XUI:1.2.1")
+    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.google.android.material:material:1.13.0")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+
+    implementation("com.github.tapadoo:alerter:7.2.4")
+
+    implementation("com.github.skydoves:balloon:1.7.6")
+
 
 }

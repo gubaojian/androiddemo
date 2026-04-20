@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ComposeLearn">
+        android:theme="@style/Theme.ComposeLearn"
+        tools:replace="android:icon">
         <activity
             android:name=".TopSnackbarMainActivity"
             android:exported="false" />
