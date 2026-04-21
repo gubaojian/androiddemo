@@ -63,8 +63,9 @@ class TopSnackbarMainActivity : ComponentActivity() {
             balloon.showAsDropDown(findViewById<Button>(R.id.button2))
 
             val popup = TestPopup(this@TopSnackbarMainActivity)
-            popup.setPopupGravity(Gravity.BOTTOM or  Gravity.CENTER_HORIZONTAL)
+            popup.setPopupGravity(Gravity.TOP or  Gravity.CENTER_HORIZONTAL)
             popup.setPopupGravityMode(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR)
+            popup.setAutoMirrorEnable(true)
             popup.showPopupWindow(findViewById<Button>(R.id.button2))
         }
     }
