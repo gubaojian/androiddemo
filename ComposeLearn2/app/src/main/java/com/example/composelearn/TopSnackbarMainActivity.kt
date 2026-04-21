@@ -1,6 +1,7 @@
 package com.example.composelearn
 
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import razerdp.basepopup.BasePopupWindow
 
 
 class TopSnackbarMainActivity : ComponentActivity() {
@@ -59,6 +61,11 @@ class TopSnackbarMainActivity : ComponentActivity() {
                 .setLifecycleOwner(this)
                 .build()
             balloon.showAsDropDown(findViewById<Button>(R.id.button2))
+
+            val popup = TestPopup(this@TopSnackbarMainActivity)
+            popup.setPopupGravity(Gravity.BOTTOM or  Gravity.CENTER_HORIZONTAL)
+            popup.setPopupGravityMode(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR)
+            popup.showPopupWindow(findViewById<Button>(R.id.button2))
         }
     }
 }

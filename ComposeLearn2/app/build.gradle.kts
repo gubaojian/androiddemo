@@ -83,5 +83,7 @@ dependencies {
 
     implementation("com.github.skydoves:balloon:1.7.6")
 
+    implementation("io.github.razerdp:BasePopup:3.2.1")
+
 
 }
