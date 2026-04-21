@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateRect
 import androidx.compose.animation.core.tween
@@ -18,9 +17,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -29,15 +28,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import com.example.composelearn.ui.theme.ComposeLearnTheme
-import com.king.ultraswiperefresh.indicator.animationSpec
-import kotlin.properties.ReadOnlyProperty
 
 class ComposeLearn2Main : AppCompatActivity() {
 
@@ -53,6 +51,7 @@ class ComposeLearn2Main : AppCompatActivity() {
                         HelloAnimation2()
                         HelloWorld()
                         HelloWorld2()
+                        HelloWorld3()
                     }
                 }
             }
@@ -166,8 +165,8 @@ fun HelloWorld2() {
 
 @Composable
 fun HelloWorld3() {
-    var stateAnimation by remember { mutableStateOf(false) }
-    if (stateAnimation) {
+    var showDialog by remember { mutableStateOf(false) }
+    if (showDialog) {
         //对话框示例 https://composables.com/blog/dialogs
     }
     Box(modifier = Modifier
@@ -176,9 +175,28 @@ fun HelloWorld3() {
         .background(Color.Red)
     ) {
         Button(onClick = {
-            stateAnimation = !stateAnimation
+            showDialog = !showDialog
         }) {
-            Text("start animation")
+            Text("show dialog")
+        }
+    }
+    if (showDialog) {
+        // 基础 Dialog 组件，完全自定义内容
+        Dialog(onDismissRequest = { showDialog = false }) {
+            // 自定义弹窗布局
+            Column(
+                modifier = Modifier
+                    .background(Color.White, RoundedCornerShape(16.dp))
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(text = "自定义对话框", modifier = Modifier.padding(bottom = 16.dp))
+                Text(text = "支持任意布局、样式、组件", modifier = Modifier.padding(bottom = 24.dp))
+
+                Button(onClick = { showDialog = false }) {
+                    Text("关闭弹窗")
+                }
+            }
         }
     }
 }
