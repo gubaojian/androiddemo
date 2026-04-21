@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.labo.kaji.relativepopupwindow.RelativePopupWindow
 import com.skydoves.balloon.ArrowPositionRules
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
@@ -66,7 +67,12 @@ class TopSnackbarMainActivity : ComponentActivity() {
             popup.setPopupGravity(Gravity.TOP or  Gravity.CENTER_HORIZONTAL)
             popup.setPopupGravityMode(BasePopupWindow.GravityMode.RELATIVE_TO_ANCHOR)
             popup.setAutoMirrorEnable(true)
-            popup.showPopupWindow(findViewById<Button>(R.id.button2))
+            //popup.showPopupWindow(findViewById<Button>(R.id.button2))
+
+            val popup2 = TestPopup2(this@TopSnackbarMainActivity)
+            popup2.showOnAnchor(findViewById<Button>(R.id.button2),
+                RelativePopupWindow.VerticalPosition.ABOVE,
+                RelativePopupWindow.HorizontalPosition.CENTER)
         }
     }
 }
