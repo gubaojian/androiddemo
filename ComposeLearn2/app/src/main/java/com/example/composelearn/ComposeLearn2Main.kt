@@ -3,6 +3,7 @@ package com.example.composelearn
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,6 +32,7 @@ class ComposeLearn2Main : AppCompatActivity() {
                     Column() {
                         Text("hello world")
                         HelloAnimation()
+                        HelloAnimation2()
                     }
                 }
             }
@@ -51,6 +53,22 @@ fun HelloAnimation() {
             Text("hello world")
             if (expandState) {
                 Text("hello world expand animation")
+            }
+        }
+    }
+}
+@Composable
+fun HelloAnimation2() {
+    var animationState by remember { mutableStateOf(false) }
+    Column() {
+        Box(modifier = Modifier.background(Color.Blue).clickable() {
+            animationState = !animationState
+        }) {
+            Text("hello world")
+        }
+        AnimatedVisibility(animationState) {
+            Box(modifier = Modifier.background(Color.Red)) {
+                Text("hello world animatedvisibility ${animationState}")
             }
         }
     }
