@@ -96,7 +96,11 @@ fun GreetingCard(name: String, desc: String) {
 
         ) {
             Text(
-                text = "Hello $name!"
+                modifier = Modifier.clickable() {
+                    val intent = Intent(context, ComposeLearn2Main::class.java)
+                    context.startActivity(intent)
+                },
+                text = "Hello Click $name!"
             )
             Text(
                 text = "Hello $desc!"

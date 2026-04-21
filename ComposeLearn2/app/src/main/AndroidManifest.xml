@@ -13,6 +13,10 @@
         android:theme="@style/Theme.ComposeLearn"
         tools:replace="android:icon">
         <activity
+            android:name=".ComposeLearn2Main"
+            android:exported="false"
+            android:theme="@style/Theme.ComposeLearn" />
+        <activity
             android:name=".TopSnackbarMainActivity"
             android:exported="false" />
         <activity
