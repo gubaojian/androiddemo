@@ -1,11 +1,11 @@
 package com.example.composelearn
 
 import android.content.Context
+import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil.setContentView
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow
-import razerdp.basepopup.BasePopupWindow
+
 
 class TestPopup2(context: Context) : RelativePopupWindow() {
     init {
@@ -13,6 +13,8 @@ class TestPopup2(context: Context) : RelativePopupWindow() {
         setContentView(contentView)
         width = ViewGroup.LayoutParams.WRAP_CONTENT
         height = ViewGroup.LayoutParams.WRAP_CONTENT
-        isOutsideTouchable = true
+        setFocusable(false)
+        setTouchable(true)
+        setOutsideTouchable(true)
     }
 }

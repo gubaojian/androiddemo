@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.debugImplementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -84,6 +86,10 @@ dependencies {
     implementation("com.github.skydoves:balloon:1.7.6")
 
     implementation("io.github.razerdp:BasePopup:3.2.1")
+
+    debugImplementation("com.bytedance.tools.codelocator:codelocator-core:2.0.4")
+    debugImplementation("com.bytedance.tools.codelocator:codelocator-lancet-all:2.0.4")
+
 
 
 }
