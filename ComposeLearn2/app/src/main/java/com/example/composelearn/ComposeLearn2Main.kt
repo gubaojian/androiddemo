@@ -19,6 +19,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -63,9 +65,12 @@ class ComposeLearn2Main : AppCompatActivity() {
 fun HelloAnimation() {
     var expandState by remember { mutableStateOf(false) }
     Box(modifier =
-        Modifier.background(Color.Blue).animateContentSize().clickable() {
-            expandState = !expandState
-        }
+        Modifier
+            .background(Color.Blue)
+            .animateContentSize()
+            .clickable() {
+                expandState = !expandState
+            }
     ) {
         Column() {
             Text("hello world")
@@ -79,9 +84,11 @@ fun HelloAnimation() {
 fun HelloAnimation2() {
     var animationState by remember { mutableStateOf(false) }
     Column() {
-        Box(modifier = Modifier.background(Color.Blue).clickable() {
-            animationState = !animationState
-        }) {
+        Box(modifier = Modifier
+            .background(Color.Blue)
+            .clickable() {
+                animationState = !animationState
+            }) {
             Text("hello world")
         }
         AnimatedVisibility(animationState) {
@@ -106,8 +113,9 @@ fun HelloWorld() {
         .height(100.dp)
         .alpha(animationAlpha)
     ) {
-        Box(modifier = Modifier.fillMaxSize()
-        .background(Color.Cyan)) {
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Cyan)) {
             Button(onClick = {
                 startAnimation = !startAnimation
             }) {
@@ -147,6 +155,25 @@ fun HelloWorld2() {
         .height(rect.height.dp)
         .width(rect.width.dp)
         .background(color)
+    ) {
+        Button(onClick = {
+            stateAnimation = !stateAnimation
+        }) {
+            Text("start animation")
+        }
+    }
+}
+
+@Composable
+fun HelloWorld3() {
+    var stateAnimation by remember { mutableStateOf(false) }
+    if (stateAnimation) {
+        //对话框示例 https://composables.com/blog/dialogs
+    }
+    Box(modifier = Modifier
+        .height(50.dp)
+        .fillMaxWidth()
+        .background(Color.Red)
     ) {
         Button(onClick = {
             stateAnimation = !stateAnimation
