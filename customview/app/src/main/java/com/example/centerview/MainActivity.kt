@@ -1,5 +1,7 @@
 package com.example.centerview
 
+import android.graphics.Color
+import android.graphics.Shader
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +17,7 @@ import com.longbridge.market.databinding.MainBinding
 import com.longbridge.common.uiLib.chart.minutes.MinutesChart
 import com.longbridge.common.uiLib.edit.ThousandSeparatorTransformation
 import com.longbridge.core.comm.FApp
+import android.graphics.LinearGradient
 import java.util.Locale
 import kotlin.math.abs
 
@@ -35,6 +38,15 @@ class MainActivity : ComponentActivity() {
 
         binding.getContent.setOnClickListener {
             binding.getContent.text = binding.editText.text.toString()
+            val gradient  = LinearGradient(
+                0.0f,
+                0.0f,
+                0.0f,
+                0.0f,
+                Color.RED,
+                Color.BLUE,
+                Shader.TileMode.CLAMP
+            )
         }
 
 

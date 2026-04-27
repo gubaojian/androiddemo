@@ -2,7 +2,11 @@ package com.example.composelearn
 
 import android.os.Bundle
 import android.view.Gravity
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
@@ -13,6 +17,8 @@ import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.BalloonSizeSpec
 import com.tapadoo.alerter.Alerter
+import com.tomergoldst.tooltips.ToolTip
+import com.tomergoldst.tooltips.ToolTipsManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -73,6 +79,20 @@ class TopSnackbarMainActivity : ComponentActivity() {
             popup2.showOnAnchor(findViewById<Button>(R.id.button2),
                 RelativePopupWindow.VerticalPosition.ABOVE,
                 RelativePopupWindow.HorizontalPosition.CENTER)
+        }
+
+        val  manager = ToolTipsManager()
+
+        val mainContent = findViewById<ViewGroup>(R.id.main)
+        val targetView = findViewById<Button>(R.id.button3)
+        findViewById<Button>(R.id.button3).setOnClickListener {
+            val builder = ToolTip.Builder(baseContext,
+                targetView,
+                mainContent,
+                      "Hello world",
+                ToolTip.POSITION_ABOVE
+            )
+            manager.show(builder.build())
         }
     }
 }

@@ -93,6 +93,7 @@ dependencies {
     debugImplementation("com.bytedance.tools.codelocator:codelocator-core:2.0.4")
     debugImplementation("com.bytedance.tools.codelocator:codelocator-lancet-all:2.0.4")
 
+    implementation("com.tomergoldst.android:tooltips:1.1.1")
 
 
 }
