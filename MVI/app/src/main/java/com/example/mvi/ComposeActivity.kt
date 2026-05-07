@@ -7,10 +7,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,6 +49,8 @@ class ComposeActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     var openDialogWithImage by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
+
     Column() {
         Text(
             text = "Hello $name!",
@@ -60,10 +68,29 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 openDialogWithImage = false
             }
         ) {
-            Button(onClick = {
-                openDialogWithImage = false
-            }) {
-                Text("click me")
+            Column() {
+                IconButton(onClick = { expanded = !expanded }) {
+                    Icon(Icons.Default.MoreVert, contentDescription = "More options")
+                }
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text("Option 1") },
+                        onClick = { /* Do something... */ }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Option 2") },
+                        onClick = { /* Do something... */ }
+                    )
+                }
+
+                Button(onClick = {
+                    openDialogWithImage = false
+                }) {
+                    Text("click me")
+                }
             }
         }
     }
