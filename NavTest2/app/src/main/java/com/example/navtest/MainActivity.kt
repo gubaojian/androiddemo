@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.magnifier
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -73,21 +76,35 @@ fun MainEntry() {
 
 @Composable
 fun Home(navStack: NavController) {
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Column() {
-            Box(
-                modifier = Modifier.padding(innerPadding)
-            )
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            Button(onClick = {}) {
+                Text("hello world back top bar")
+            }
+        },
+        bottomBar = {
+            Button(onClick = {}) {
+                Text("hello world back bottom bar")
+            }
+        }
+    ) { innerPadding ->
+        Column(
+           modifier =  Modifier
+               .padding(innerPadding)
+               .verticalScroll(state = rememberScrollState())
+        ) {
             Button(onClick = {
                 navStack.navigate(NavRoute.UserProfile(userId = "222", userName = "gubaojian"))
             }) {
-                Text("to user screen page")
+                Text("to user screen page ${innerPadding.calculateTopPadding()} ${innerPadding.calculateBottomPadding()}")
             }
             Button(onClick = {
                 navStack.navigate(NavRoute.DetailRoute(id = "1111"))
             }) {
                 Text("to detail screen page")
             }
+
         }
     }
 }
@@ -140,6 +157,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     NavTestTheme {
-        Greeting("Android")
+        MainEntry()
     }
 }
