@@ -4,31 +4,35 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import androidx.navigation3.runtime.NavKey
-import androidx.navigation3.runtime.entryProvider
-import androidx.navigation3.ui.NavDisplay
-import androidx.navigationevent.NavigationEventHistory
 import com.example.navtest.ui.theme.NavTestTheme
 import kotlinx.serialization.Serializable
 
@@ -74,6 +78,194 @@ fun MainEntry() {
 
 }
 
+
+
+/**优惠券配置：背景色、边框色、圆角、左右圆孔参数*/
+data class CouponConfig(
+    val backgroundColor: Color = Color(0xFFFFF4F4),
+    val dashColor: Color = Color(0xFFFFDFDF),
+    val borderColor: Color = Color(0xFFFFDBDB),
+    val borderWidth: Dp = 0.5.dp,
+    val cornerRadius: Dp = 12.dp,
+    val notchRadius: Dp = 4.dp,      // 凹口“视觉半径”
+    val dividerRatio: Float = 0.35f,
+)
+
+fun Modifier.voucherCouponBg(config: CouponConfig): Modifier = this.then(
+    Modifier.drawBehind {
+
+        val corner = config.cornerRadius.toPx()
+        val notch = config.notchRadius.toPx()
+        val strokeWidth = config.borderWidth.toPx()
+
+        val w = size.width
+        val h = size.height
+        val centerX = 96.dp.toPx()
+
+        val path = Path().apply {
+
+            // =========================
+            // ✅ 左上开始
+            // =========================
+            moveTo(corner, 0f)
+
+            // 左上角
+            quadraticBezierTo(0f, 0f, 0f, corner)
+
+            // 左边
+            lineTo(0f, h - corner)
+
+            // 左下角
+            quadraticBezierTo(0f, h, corner, h)
+
+            // =========================
+            // ✅ 底边 → 到凹口前
+            // =========================
+            lineTo(centerX - 2*notch, h)
+
+            // ✅ 底部凹口（Bezier圆弧）
+            cubicTo(
+                centerX - notch, h,
+                centerX - notch, h - notch,
+                centerX, h - notch
+            )
+            cubicTo(
+                centerX + notch, h - notch,
+                centerX + notch, h,
+                centerX + 2*notch, h
+            )
+
+            // =========================
+            // ✅ 右下角
+            // =========================
+            lineTo(w - corner, h)
+            quadraticBezierTo(w, h, w, h - corner)
+
+            // =========================
+            // ✅ 右边
+            // =========================
+            lineTo(w, corner)
+
+            // 右上角
+            quadraticBezierTo(w, 0f, w - corner, 0f)
+
+            // =========================
+            // ✅ 顶边 → 到上凹口
+            // =========================
+            lineTo(centerX + 2*notch, 0f)
+
+            // ✅ 顶部凹口（Bezier圆弧）
+            cubicTo(
+                centerX + notch, 0f,
+                centerX + notch, notch,
+                centerX, notch
+            )
+            cubicTo(
+                centerX - notch, notch,
+                centerX - notch, 0f,
+                centerX - 2*notch, 0f
+            )
+
+            // =========================
+            // ✅ 回到起点
+            // =========================
+            lineTo(corner, 0f)
+
+            close()
+        }
+
+        // =========================
+        // ✅ 画背景
+        // =========================
+        drawPath(
+            path = path,
+            color = config.backgroundColor
+        )
+
+        // =========================
+        // ✅ 画边框（沿路径）
+        // =========================
+        drawPath(
+            path = path,
+            color = config.borderColor,
+            style = Stroke(width = strokeWidth)
+        )
+
+        // =========================
+        // ✅ 画虚线
+        // =========================
+        drawLine(
+            color = config.dashColor,
+            start = Offset(centerX, 8.dp.toPx()),
+            end = Offset(centerX, h - 8.dp.toPx()),
+            strokeWidth = 1.dp.toPx(),
+            pathEffect = PathEffect.dashPathEffect(
+                floatArrayOf(10f, 8f)
+            )
+        )
+    }
+)
+
+
+
+@Composable
+fun CouponCard(
+    modifier: Modifier = Modifier,
+    width: Dp = 320.dp,
+    height: Dp = 120.dp,
+    config: CouponConfig = CouponConfig(),
+    money: String = "50",
+    title: String = "满100减50",
+    tip: String = "全场通用 · 30天有效"
+) {
+
+    Box(
+        modifier = Modifier
+            .padding(16.dp)
+            .height(95.dp)
+            .fillMaxWidth()
+            .voucherCouponBg(CouponConfig())
+    ) {
+        Box(
+            modifier = Modifier
+                .background(
+                    color = Color(0xFFFFDEA8),
+                    shape = RoundedCornerShape(topStart = 12.dp, bottomEnd = 12.dp)
+                )
+                .width(58.dp)
+                .height(16.dp)
+                .padding(horizontal = 24.dp, vertical = 9.dp)
+        ) {
+            Text(
+                text = "Cashback",
+                fontSize = 10.sp,
+                color = Color(0xFF7C4710),
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewCoupon() {
+    Column(
+        Modifier.fillMaxSize().padding(20.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CouponCard()
+        Spacer(Modifier.height(20.dp))
+        CouponCard(
+            money = "80",
+            title = "满200减80",
+            tip = "美食专享券"
+        )
+    }
+}
+
 @Composable
 fun Home(navStack: NavController) {
     Scaffold(
@@ -104,7 +296,8 @@ fun Home(navStack: NavController) {
             }) {
                 Text("to detail screen page")
             }
-
+            TestPage()
+            RedeemBottomSheetContent()
         }
     }
 }
