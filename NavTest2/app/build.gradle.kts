@@ -64,4 +64,5 @@ dependencies {
 
     implementation("io.coil-kt.coil3:coil-compose:3.5.0")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.5.0")
+    implementation("com.github.commandiron:WheelPickerCompose:1.1.11")
 }

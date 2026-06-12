@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -34,6 +35,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import coil3.compose.AsyncImage
+import com.commandiron.wheel_picker_compose.WheelDatePicker
+import com.commandiron.wheel_picker_compose.core.WheelTextPicker
 import com.example.navtest.ui.theme.NavTestTheme
 import kotlinx.serialization.Serializable
 
@@ -301,6 +304,13 @@ fun Home(navStack: NavController) {
                 modifier = Modifier.size(100.dp).background(color = Color.Red),
                 model = "https://img.alicdn.com/bao/uploaded/i3/2222383086404/O1CN013Duay31xB5YBCjuPb_!!2222383086404.jpg_460x460q90.jpg_.webp",
                 contentDescription = null,
+            )
+            WheelTextPicker(
+                texts = listOf("hello world", "dd", "222"),
+                size = DpSize(128.dp, 44.dp),
+                rowCount = 1
+            )
+            WheelDatePicker(
             )
             TestPage()
             RedeemBottomSheetContent()
