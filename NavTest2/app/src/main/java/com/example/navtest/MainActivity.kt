@@ -306,9 +306,9 @@ fun Home(navStack: NavController) {
                 contentDescription = null,
             )
             WheelTextPicker(
-                texts = listOf("hello world", "dd", "222"),
-                size = DpSize(128.dp, 44.dp),
-                rowCount = 1
+                texts = listOf("hello", "world", "dd", "222"),
+                rowCount = 3,
+                size = DpSize(128.dp, 120.dp),
             )
             WheelDatePicker(
             )
