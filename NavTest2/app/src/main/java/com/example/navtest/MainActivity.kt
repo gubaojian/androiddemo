@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,10 +17,25 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SecondaryTabRow
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Modifier.Companion
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,8 +43,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -38,6 +58,10 @@ import coil3.compose.AsyncImage
 import com.commandiron.wheel_picker_compose.WheelDatePicker
 import com.commandiron.wheel_picker_compose.core.WheelTextPicker
 import com.example.navtest.ui.theme.NavTestTheme
+import com.jvziyaoyao.scale.image.viewer.ImageViewer
+import com.jvziyaoyao.scale.zoomable.zoomable.ZoomableView
+import com.jvziyaoyao.scale.zoomable.zoomable.rememberZoomableState
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
@@ -272,6 +296,11 @@ fun PreviewCoupon() {
 
 @Composable
 fun Home(navStack: NavController) {
+    val tabs = listOf("首页", "消息", "我的", "设置")
+
+    var pagerState = rememberPagerState(pageCount = { tabs.size })
+    val scope = rememberCoroutineScope()
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -312,6 +341,39 @@ fun Home(navStack: NavController) {
             )
             WheelDatePicker(
             )
+            TabRow(
+                selectedTabIndex = pagerState.currentPage,
+                divider = {},
+                indicator = { tabPositions ->
+                    TabRowDefaults.Indicator(
+                        modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
+                        height = 2.dp,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                },
+            ) {
+                tabs.forEachIndexed { index, title ->
+                    Tab(
+                        selected = pagerState.currentPage == index,
+                        onClick = {
+                            scope.launch {
+                                pagerState.animateScrollToPage(index)
+                            }
+                       }
+                    ) {
+                        Text(text = title, modifier = Modifier.padding(vertical = 12.dp))
+                    }
+                }
+            }
+            HorizontalPager(
+                state = pagerState,
+                pageContent = { index->
+                    Box(modifier = Modifier.fillMaxWidth().height(40.dp)) {
+                        Text("${index}", modifier = Modifier.align(Alignment.Center))
+                    }
+                }
+            )
+
             TestPage()
             RedeemBottomSheetContent()
         }
@@ -320,6 +382,8 @@ fun Home(navStack: NavController) {
 
 @Composable
 fun UserProfileScreen(data: NavRoute.UserProfile, navStack: NavController) {
+    var pagerState = rememberPagerState(pageCount = {3})
+    val scope = rememberCoroutineScope()
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column {
             Box(
@@ -331,6 +395,18 @@ fun UserProfileScreen(data: NavRoute.UserProfile, navStack: NavController) {
             }) {
                 Text("Back")
             }
+            HorizontalPager(
+                state = pagerState,
+                pageContent = { index ->
+                    val imagePainter = painterResource(R.drawable.test)
+                    val state = rememberZoomableState(contentSize = imagePainter.intrinsicSize)
+                    ImageViewer(
+                        state = state,
+                        model = painterResource(id = R.drawable.test),
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            )
         }
     }
 }
@@ -338,6 +414,7 @@ fun UserProfileScreen(data: NavRoute.UserProfile, navStack: NavController) {
 
 @Composable
 fun DetailRouteScreen(data: NavRoute.DetailRoute, navStack: NavController) {
+    var pagerState = rememberPagerState(pageCount = {3})
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column() {
             Box(
@@ -349,6 +426,19 @@ fun DetailRouteScreen(data: NavRoute.DetailRoute, navStack: NavController) {
             }) {
                 Text("Back")
             }
+            HorizontalPager(
+                state = pagerState,
+                pageContent = { index ->
+                    /**
+                    ImageViewer {
+                        Image(
+                            painter = painterResource(R.drawable.test),
+                            contentDescription = "Sample Image",
+                            contentScale = ContentScale.FillBounds,
+                        )
+                    }*/
+                }
+            )
         }
     }
 }

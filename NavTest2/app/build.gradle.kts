@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.androidx.compose.tool.tracing)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
@@ -65,4 +66,9 @@ dependencies {
     implementation("io.coil-kt.coil3:coil-compose:3.5.0")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.5.0")
     implementation("com.github.commandiron:WheelPickerCompose:1.1.11")
+    implementation("com.github.0xZhangKe:ImageViewer:1.0.3")
+
+    val version = "1.1.1-beta.3"
+// 图片浏览库
+    implementation("com.jvziyaoyao.scale:image-viewer:$version")
 }
