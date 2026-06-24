@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SecondaryTabRow
 import androidx.compose.material3.Tab
@@ -49,6 +51,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -412,6 +415,7 @@ fun UserProfileScreen(data: NavRoute.UserProfile, navStack: NavController) {
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailRouteScreen(data: NavRoute.DetailRoute, navStack: NavController) {
     var pagerState = rememberPagerState(pageCount = {3})
@@ -439,6 +443,27 @@ fun DetailRouteScreen(data: NavRoute.DetailRoute, navStack: NavController) {
                     }*/
                 }
             )
+        }
+    }
+
+    BasicAlertDialog(
+        onDismissRequest = {
+
+        },
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false
+        ),
+        modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .fillMaxWidth()
+    ) {
+        Column() {
+            Text(text = "detail screen ${data.id}")
+            Button(onClick = {
+                navStack.popBackStack()
+            }) {
+                Text("Back")
+            }
         }
     }
 }
