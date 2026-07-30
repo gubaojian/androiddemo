@@ -21,6 +21,8 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SecondaryTabRow
@@ -32,6 +34,7 @@ import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -377,12 +380,57 @@ fun Home(navStack: NavController) {
                 }
             )
 
+            DropdownMenuSample()
+
             TestPage()
             RedeemBottomSheetContent()
+
         }
     }
 }
 
+@Composable
+fun DropdownMenuSample() {
+
+    var expanded by remember {
+        mutableStateOf(false)
+    }
+
+    Box {
+        Button(
+            onClick = {
+                expanded = true
+            }
+        ) {
+            Text("Show Menu")
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = {
+                expanded = false
+            }
+        ) {
+            DropdownMenuItem(
+                text = {
+                    Text("Edit")
+                },
+                onClick = {
+                    expanded = false
+                }
+            )
+
+            DropdownMenuItem(
+                text = {
+                    Text("Delete")
+                },
+                onClick = {
+                    expanded = false
+                }
+            )
+        }
+    }
+}
 @Composable
 fun UserProfileScreen(data: NavRoute.UserProfile, navStack: NavController) {
     var pagerState = rememberPagerState(pageCount = {3})
