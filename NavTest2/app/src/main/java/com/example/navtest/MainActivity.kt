@@ -1,5 +1,6 @@
 package com.example.navtest
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -49,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.DpSize
@@ -306,11 +308,14 @@ fun Home(navStack: NavController) {
 
     var pagerState = rememberPagerState(pageCount = { tabs.size })
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            Button(onClick = {}) {
+            Button(onClick = {
+                context.startActivity(Intent(context, TestActivity::class.java))
+            }) {
                 Text("hello world back top bar")
             }
         },
@@ -325,6 +330,11 @@ fun Home(navStack: NavController) {
                .padding(innerPadding)
                .verticalScroll(state = rememberScrollState())
         ) {
+            Button(onClick = {
+                context.startActivity(Intent(context, TestActivity::class.java))
+            }) {
+                Text("hello world back top bar")
+            }
             Button(onClick = {
                 navStack.navigate(NavRoute.UserProfile(userId = "222", userName = "gubaojian"))
             }) {

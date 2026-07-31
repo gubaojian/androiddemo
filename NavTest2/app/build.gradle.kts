@@ -43,11 +43,14 @@ android {
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.tool.tracing)
+    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.material3)
@@ -71,4 +74,7 @@ dependencies {
     val version = "1.1.1-beta.3"
 // 图片浏览库
     implementation("com.jvziyaoyao.scale:image-viewer:$version")
+
+    // Source: https://mvnrepository.com/artifact/com.google.android.material/material
+    implementation("com.google.android.material:material:1.14.0")
 }
