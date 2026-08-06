@@ -96,7 +96,7 @@
             android:theme="@style/Theme.Verify" />
 
         <activity
-            android:name="com.zhongpin.mvvm_android.ui.web.WebActivity"
+            android:name="com.zhongpin.mvvm_android.ui.web.WebViewActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             android:theme="@style/Theme.White" />

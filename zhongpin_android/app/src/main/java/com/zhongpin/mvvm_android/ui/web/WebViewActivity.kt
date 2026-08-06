@@ -16,7 +16,7 @@ import com.zhongpin.lib_base.view.LoadingDialog
 import com.zhongpin.mvvm_android.base.view.BaseVMActivity
 import com.zhongpin.mvvm_android.common.utils.StatusBarUtil
 
-class WebActivity : BaseVMActivity<WebViewModel>() {
+class WebViewActivity : BaseVMActivity<WebViewModel>() {
 
 
     private lateinit var mBinding: ActivityWebBinding;

@@ -115,7 +115,7 @@ import com.zhongpin.mvvm_android.ui.pay.view.PayItemFilterBottomSheet
 import com.zhongpin.mvvm_android.ui.photo.preview.PhonePreviewerActivity
 import com.zhongpin.mvvm_android.ui.utils.ApkDownloadUtil
 import com.zhongpin.mvvm_android.ui.utils.ShareParamDataUtils
-import com.zhongpin.mvvm_android.ui.web.WebActivity
+import com.zhongpin.mvvm_android.ui.web.WebViewActivity
 import com.zhongpin.mvvm_android.view.NoSelectLinkMovementMethod
 import com.zhongpin.mvvm_android.view.bottomsheet.confirmreceipt.ConfirmReceiptNoPayBottomSheet
 import com.zhongpin.mvvm_android.view.bottomsheet.confirmreceipt.ConfirmReceiptPayBottomSheet
@@ -480,7 +480,7 @@ fun Activity.goAboutMeActivity() {
 }
 
 fun Activity.goWebActivity(url:String = "", title:String? = null) {
-    val intent = Intent(this, WebActivity::class.java)
+    val intent = Intent(this, WebViewActivity::class.java)
     intent.putExtra("title", title)
     intent.putExtra("url",url)
     startActivity(intent)

@@ -1,20 +1,14 @@
 package com.zhongpin.mvvm_android.ui.register
 
-import android.content.DialogInterface
 import android.content.Intent
-import android.os.Build.*
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
-import android.text.Html.*
 import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
 import androidx.core.widget.addTextChangedListener
 import com.blankj.utilcode.util.SPUtils
@@ -29,11 +23,10 @@ import com.zhongpin.mvvm_android.bean.LoginEvent
 import com.zhongpin.mvvm_android.biz.utils.RsaUtil
 import com.zhongpin.mvvm_android.biz.utils.UserInfoUtil
 import com.zhongpin.mvvm_android.common.utils.Constant
-import com.zhongpin.mvvm_android.common.utils.StatusBarUtil
 import com.zhongpin.mvvm_android.common.utils.hideKeyboard
 import com.zhongpin.mvvm_android.ui.login.LoginActivity
 import com.zhongpin.mvvm_android.ui.verify.person.PersonVerifyActivity
-import com.zhongpin.mvvm_android.ui.web.WebActivity
+import com.zhongpin.mvvm_android.ui.web.WebViewActivity
 import org.greenrobot.eventbus.EventBus
 
 class RegisterActivity : BaseVMActivity<RegisterViewModel>() {
@@ -173,14 +166,14 @@ class RegisterActivity : BaseVMActivity<RegisterViewModel>() {
         }*/
 
         mBinding.platformProtocol.setOnClickListener {
-            val intent = Intent(this@RegisterActivity, WebActivity::class.java)
+            val intent = Intent(this@RegisterActivity, WebViewActivity::class.java)
             intent.putExtra("title","用户协议")
             intent.putExtra("url", Constant.USER_TERM_URL)
             startActivity(intent)
         }
 
         mBinding.privateProtocol.setOnClickListener {
-            val intent = Intent(this@RegisterActivity, WebActivity::class.java)
+            val intent = Intent(this@RegisterActivity, WebViewActivity::class.java)
             intent.putExtra("title","隐私政策")
             intent.putExtra("url", Constant.PRIVATE_TERM_URL)
             startActivity(intent)

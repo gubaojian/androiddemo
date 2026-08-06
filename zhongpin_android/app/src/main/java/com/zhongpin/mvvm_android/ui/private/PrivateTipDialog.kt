@@ -9,7 +9,7 @@ import android.view.View.OnClickListener
 import androidx.core.text.HtmlCompat
 import com.zhilianshidai.pindan.app.R
 import com.zhilianshidai.pindan.app.databinding.DialogPrivateTipBinding
-import com.zhongpin.mvvm_android.ui.web.WebActivity
+import com.zhongpin.mvvm_android.ui.web.WebViewActivity
 
 class PrivateTipDialog(
     val mContext:Context,
@@ -44,14 +44,14 @@ class PrivateTipDialog(
 
 
         mBinding.ivTitle.setOnClickListener {
-            val intent = Intent(mContext, WebActivity::class.java)
+            val intent = Intent(mContext, WebViewActivity::class.java)
             intent.putExtra("title","用户服务协议")
             intent.putExtra("url","https://www.baidu.com")
             mContext.startActivity(intent)
         }
 
         mBinding.privacyContent.setOnClickListener {
-            val intent = Intent(mContext, WebActivity::class.java)
+            val intent = Intent(mContext, WebViewActivity::class.java)
             intent.putExtra("title","用户服务协议")
             intent.putExtra("url","https://www.baidu.com")
             mContext.startActivity(intent)
