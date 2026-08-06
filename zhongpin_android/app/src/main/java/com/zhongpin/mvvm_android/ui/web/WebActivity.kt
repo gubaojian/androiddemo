@@ -88,23 +88,15 @@ class WebActivity : BaseVMActivity<WebViewModel>() {
         // 使用广泛视窗
         wvSettings.useWideViewPort = true
         wvSettings.loadWithOverviewMode = true
-        wvSettings.domStorageEnabled = true
         //是否支持缩放
         wvSettings.builtInZoomControls = false
         wvSettings.setSupportZoom(false)
         //不显示缩放按钮
         wvSettings.displayZoomControls = false
         wvSettings.allowFileAccess = true
-        wvSettings.databaseEnabled = true
-        mBinding.webView.setVerticalScrollbarOverlay(false) //不出现指定的垂直滚动条有叠加样式
-        wvSettings.useWideViewPort = true //设定支持viewport
-        wvSettings.builtInZoomControls = true //设置出现缩放工具
-        wvSettings.displayZoomControls = false //设置缩放工具隐藏
-        wvSettings.setSupportZoom(true) //设定支持缩放
-        //缓存相关
-        //wvSettings.setAppCacheEnabled(true);
         wvSettings.domStorageEnabled = true
         wvSettings.databaseEnabled = true
+        mBinding.webView.setVerticalScrollbarOverlay(false)
     }
 
     override fun onResume() {
