@@ -25,6 +25,8 @@ class MainViewModel : ViewModel() {
             flow2.update {
                 "2hello update value"
             }
+            delay(1000.milliseconds)
+            flow2.value = "update by value"
         }
     }
 }

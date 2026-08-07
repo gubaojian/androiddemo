@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.security.crypto)
+    implementation(libs.secure.preferences.lib)
 
 
     testImplementation(libs.junit)

@@ -1,5 +1,6 @@
 package com.example.testflow
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -13,10 +14,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
 import com.example.testflow.ui.theme.TestFlowTheme
+import com.securepreferences.SecurePreferences
 import kotlinx.coroutines.launch
+
 
 class MainActivity : ComponentActivity() {
 
@@ -38,6 +42,25 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+
+        val context = applicationContext
+        val masterKey = MasterKey.Builder(context)
+            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+            .build()
+
+        val secureSp = EncryptedSharedPreferences.create(
+            context,
+            "secure_sp",
+            masterKey,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+
+        val prefs: SharedPreferences =
+            SecurePreferences(context, "userpassword", "my_user_prefs.xml")
+        prefs.edit().putString("hello", "world").commit()
+
         setContent {
             TestFlowTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
