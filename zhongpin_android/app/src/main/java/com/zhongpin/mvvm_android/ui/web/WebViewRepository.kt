@@ -7,7 +7,7 @@ import com.zhongpin.mvvm_android.bean.UserInfoResponse
 import com.zhongpin.mvvm_android.network.BaseResponse
 import com.zhongpin.mvvm_android.network.dataConvert
 
-class WebRepository(private val loadState: MutableLiveData<State>): BaseRepository() {
+class WebViewRepository(private val loadState: MutableLiveData<State>): BaseRepository() {
 
     suspend fun loadBannerCo(): List<UserInfoResponse>? {
         return apiService.getUserInfoCo().dataConvert(loadState)

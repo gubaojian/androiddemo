@@ -6,7 +6,7 @@ import com.zhongpin.mvvm_android.bean.UserInfoResponse
 import com.zhongpin.mvvm_android.network.BaseResponse
 import com.zhongpin.mvvm_android.network.initiateRequest
 
-class WebViewModel  : BaseViewModel<WebRepository>() {
+class WebViewModel  : BaseViewModel<WebViewRepository>() {
 
     var mBannerData: MutableLiveData<List<UserInfoResponse>> = MutableLiveData()
 
