@@ -7,12 +7,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withAnnotation
+import androidx.compose.ui.text.withLink
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import androidx.security.crypto.EncryptedSharedPreferences
@@ -80,10 +90,40 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    Column() {
+        Text(
+            text = "Hello $name!",
+            modifier = modifier
+        )
+        Text(
+            text = buildAnnotatedString {
+                append("同意")
+                withLink(
+                    link = LinkAnnotation.Url(
+                        url = "http://www.baidu.com",
+                        styles = TextLinkStyles(
+                            style = SpanStyle(
+                                textDecoration = TextDecoration.None
+                            )
+                        ),
+                        linkInteractionListener = { it ->
+                            val url = it as LinkAnnotation.Url
+                            url.url
+
+                        }
+                    ),
+                ) {
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Red
+                        )
+                    ) {
+                        append("隐私协议")
+                    }
+                }
+            }
+        )
+    }
 }
 
 @Preview(showBackground = true)
