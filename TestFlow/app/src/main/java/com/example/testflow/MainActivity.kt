@@ -109,7 +109,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                         linkInteractionListener = { it ->
                             val url = it as LinkAnnotation.Url
                             url.url
-
                         }
                     ),
                 ) {
