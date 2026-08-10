@@ -90,7 +90,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column() {
+    Column(modifier = Modifier.fillMaxSize()) {
         Text(
             text = "Hello $name!",
             modifier = modifier
