@@ -58,8 +58,12 @@ class MainActivity : ComponentActivity() {
         )
 
         val prefs: SharedPreferences =
-            SecurePreferences(context, "userpassword", "my_user_prefs.xml")
+            SecurePreferences(context, "userpassword", "my_user_prefs")
         prefs.edit().putString("hello", "world").commit()
+
+        prefs.getString("hello", "")?.let {
+            Log.e("MainActivity",  "MainActivity back value " + it)
+        }
 
         setContent {
             TestFlowTheme {
