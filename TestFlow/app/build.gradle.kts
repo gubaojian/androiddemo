@@ -52,6 +52,7 @@ dependencies {
     implementation(libs.secure.preferences.lib)
     implementation(libs.androidx.compose.material.icons.extended)
 
+    implementation(libs.powermenu)
 
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
