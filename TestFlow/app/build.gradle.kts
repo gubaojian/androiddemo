@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.security.crypto)
     implementation(libs.secure.preferences.lib)
+    implementation(libs.androidx.compose.material.icons.extended)
 
 
     testImplementation(libs.junit)
