@@ -17,10 +17,15 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -98,6 +103,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Column(modifier = Modifier.fillMaxSize()) {
@@ -169,6 +175,22 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 )
             }
         }
+        TopAppBar(
+            title = {
+                Text("AppBar Test")
+            },
+            colors = TopAppBarDefaults.topAppBarColors().copy(
+                containerColor = Color.Red
+            )
+        )
+        LargeTopAppBar(
+            title = {
+                Text("AppBar Test")
+            },
+            colors = TopAppBarDefaults.topAppBarColors().copy(
+                containerColor = Color.Green
+            )
+        )
     }
 }
 
