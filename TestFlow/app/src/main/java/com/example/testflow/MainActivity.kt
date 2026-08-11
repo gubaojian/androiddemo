@@ -29,16 +29,20 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withAnnotation
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.lifecycleScope
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
@@ -175,9 +179,20 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 )
             }
         }
+        Text(
+            "AppBar Test",
+            style = TextStyle(
+                fontSize = 12.sp
+            )
+        )
         TopAppBar(
             title = {
-                Text("AppBar Test")
+                Text(
+                    "AppBar Test",
+                    style = TextStyle(
+                        fontSize = nonScaledSp(12.0f)
+                    )
+                )
             },
             colors = TopAppBarDefaults.topAppBarColors().copy(
                 containerColor = Color.Red
@@ -192,6 +207,12 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             )
         )
     }
+}
+
+@Composable
+fun nonScaledSp(size: Float): TextUnit {
+    val fontScale = LocalDensity.current.fontScale
+    return (size / fontScale).sp
 }
 
 @Preview(showBackground = true)
