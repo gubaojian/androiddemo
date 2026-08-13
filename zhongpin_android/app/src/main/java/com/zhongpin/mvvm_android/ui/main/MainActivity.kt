@@ -206,7 +206,6 @@ class MainActivity  : BaseVMActivity<MainViewModel>() {
         tabs.add(Tab(this@MainActivity, "我的", R.mipmap.tab_my).setFocusIcon(this, R.mipmap.tab_my_current));            //使用 setFocusIcon(bitmap/drawable/resId) 来添加选中时的第二套图标
         binding.tabs.setTab(tabs)
 
-
         binding.tabs.setOnTabChangeListener(
             object: OnTabChangeListener {
                 override fun onTabChanged(v: View?, index: Int): Boolean {

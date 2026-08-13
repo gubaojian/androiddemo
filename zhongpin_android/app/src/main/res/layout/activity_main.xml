@@ -25,15 +25,15 @@
                 <com.kongzue.tabbar.TabBarView
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="56dp"
                     app:focusColor="#333333"
-                    app:iconPadding="1dp"
                     app:normalColor="#999999"
                     android:background="@color/white"
                     app:noDyeing="true"
                     app:paddingNavigationBar="false"
                     app:tabClickBackground="ripple"
-                    app:tabPaddingVertical="2dp"
+                    app:iconPadding="0dp"
+                    app:tabPaddingVertical="0dp"
                     app:textSize="14dp" />
                 <View
                     android:layout_width="match_parent"
