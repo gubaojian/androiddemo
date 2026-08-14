@@ -69,7 +69,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.example.testflow.ui.theme.TestFlowTheme
@@ -94,6 +96,13 @@ class MainActivity : ComponentActivity() {
             launch {
                 mainViewModel.flow2.collect {
                     Log.e("MainActivity", "MainActivity flow" + it)
+                }
+            }
+            launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    mainViewModel.flowTest.collect {
+                        Log.e("MainActivity", "MainActivity repeatOnLifecycle" + it)
+                    }
                 }
             }
         }
