@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestActivity2"
+    android:orientation="vertical">
+
+
+        <com.jcminarro.roundkornerlayout.RoundKornerFrameLayout
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content"
+            app:corner_radius="16dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                android:src="@drawable/m3_split_button_chevron_avd"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@android:color/holo_red_light"
+                android:padding="8dp"
+                android:text="Cobra"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                />
+        </com.jcminarro.roundkornerlayout.RoundKornerFrameLayout>
+
+</LinearLayout>

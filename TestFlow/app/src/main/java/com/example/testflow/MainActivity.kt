@@ -1,5 +1,6 @@
 package com.example.testflow
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -52,6 +53,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.LinkAnnotation
@@ -183,6 +185,7 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
             text = "Hello $name!",
@@ -252,7 +255,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 )
             }
         }
-        Button(onClick = {}) { Text("Button") }
+        Button(onClick = {
+            context.startActivity(Intent(context, TestActivity2::class.java))
+        }) { Text("Button") }
         Button(
             onClick = { /* Do something! */ }
         ) {

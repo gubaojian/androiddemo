@@ -24,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "TestFlow"
 include(":app")
- 
+include(":ui")
